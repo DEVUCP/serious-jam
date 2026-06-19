@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cm8exx4gwxin5"]
+
+[ext_resource type="Script" uid="uid://b54n83qynfi7n" path="res://src/flashlight/flash_light.gd" id="1_x05cy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_riqys"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bhunq"]
+
+[node name="Flashlight" type="Node3D" unique_id=1150915125]
+script = ExtResource("1_x05cy")
+
+[node name="Crank" type="MeshInstance3D" parent="." unique_id=145425991]
+transform = Transform3D(0.6842682, 0, 0, 0, 0.32933012, 0, 0, 0, 0.31208295, 0.58155274, 0, 0)
+mesh = SubResource("BoxMesh_riqys")
+
+[node name="MainPiece" type="MeshInstance3D" parent="." unique_id=1876886235]
+transform = Transform3D(0.67089057, 0, 0, 0, 0.558097, 0, 0, 0, 1.5336844, 0, 0, 0)
+mesh = SubResource("BoxMesh_bhunq")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=850504187]
+light_energy = 2.0
+
+[node name="FlickerCooldown" type="Timer" parent="." unique_id=581406877]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="FlickerCooldown" to="." method="_on_flicker_cooldown_timeout"]
