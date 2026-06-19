@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cbp1l7joajh4g"]
 
 [ext_resource type="Script" uid="uid://c383iukdu6f1f" path="res://src/player/player_controller.gd" id="1_1va15"]
+[ext_resource type="Script" uid="uid://uymfay1sfh1w" path="res://src/player/interact_area.gd" id="2_oiuio"]
 [ext_resource type="Script" uid="uid://bd523k4h83cda" path="res://src/player/lean_collision_area.gd" id="2_t85a7"]
 [ext_resource type="PackedScene" uid="uid://cm8exx4gwxin5" path="res://src/flashlight/flash_light.tscn" id="2_wkdd3"]
 [ext_resource type="Script" uid="uid://cysjq0xtohde" path="res://src/player/lean_collision_area_right.gd" id="3_wkdd3"]
@@ -196,6 +197,7 @@ libraries/ = SubResource("AnimationLibrary_a5yua")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19999999, -0.7)
 collision_layer = 2
 collision_mask = 2
+script = ExtResource("2_oiuio")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="neck/Camera3D/InteractArea" unique_id=1800865379]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.19999999, -0.22377926)
@@ -257,6 +259,7 @@ current = true
 [connection signal="body_exited" from="neck/Camera3D/HandObjectDetector" to="neck/Camera3D/Hand" method="_on_hand_object_detector_body_exited"]
 [connection signal="area_entered" from="neck/Camera3D/InteractArea" to="neck/Camera3D/InteractArea" method="_on_area_entered"]
 [connection signal="area_exited" from="neck/Camera3D/InteractArea" to="neck/Camera3D/InteractArea" method="_on_area_exited"]
+[connection signal="set_interactable_area" from="neck/Camera3D/InteractArea" to="." method="_on_interact_area_set_interactable_area"]
 [connection signal="body_shape_entered" from="LeanCollisionAreaLeft" to="LeanCollisionAreaLeft" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="LeanCollisionAreaLeft" to="LeanCollisionAreaLeft" method="_on_body_shape_exited"]
 [connection signal="body_shape_entered" from="LeanCollisionAreaRight" to="LeanCollisionAreaRight" method="_on_body_shape_entered"]

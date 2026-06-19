@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dpotuexotkcp0"]
+
+[ext_resource type="Script" uid="uid://bee7wobtehwtp" path="res://src/interactable/interact_area.gd" id="1_658gw"]
+[ext_resource type="Script" uid="uid://qctkb8ij8kl" path="res://src/interactable/music_box.gd" id="1_lr7nc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bhunq"]
+size = Vector3(1.6036377, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bhunq"]
+
+[node name="MusicBox" type="Node3D" unique_id=836771714]
+script = ExtResource("1_lr7nc")
+
+[node name="InteractArea" type="Area3D" parent="." unique_id=2056525957]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_658gw")
+metadata/_custom_type_script = "uid://bee7wobtehwtp"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea" unique_id=1226224894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30181885, 0, 0)
+shape = SubResource("BoxShape3D_bhunq")
+
+[node name="Crank" type="MeshInstance3D" parent="." unique_id=1134695795]
+transform = Transform3D(0.76926726, 0, 0, 0, 0.39050496, 0, 0, 0, 0.3493954, 0.7359, -0.004385054, 0)
+mesh = SubResource("BoxMesh_bhunq")
+
+[node name="Box" type="MeshInstance3D" parent="." unique_id=802745092]
+mesh = SubResource("BoxMesh_bhunq")
+
+[connection signal="interacted_with" from="InteractArea" to="." method="_on_interact_area_interacted_with"]
