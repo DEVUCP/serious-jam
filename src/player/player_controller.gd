@@ -10,6 +10,9 @@ signal camera_finished_transition
 @export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
 @export var MOUSE_SENSITIVITY : float = 0.5 
 @export var INTERACT_RANGE : float = 3
+@export var SPRINT_SPEED_FACTOR : float = 2.0
+@export var STAMINA_PENALTY : float = 4.0
+@export var STAMINA_COOLDOWN : float = STAMINA_PENALTY / 2
 
 @onready var CAMERA_CONTROLLER = $neck/Camera3D
 @onready var fire_ray = $neck/Camera3D/RayCast3D
@@ -17,6 +20,10 @@ signal camera_finished_transition
 @onready var hand = $neck/Camera3D/Hand
 @onready var footsteps = $Footsteps
 @onready var cam = $neck/Camera3D
+@onready var stamina_cooldown: Timer = $StaminaCooldown
+
+@onready var stamina_bar_left: ProgressBar = $neck/Camera3D/HUD/SubViewport/Control/StaminaBar/StaminaBarLeft
+@onready var stamina_bar_right: ProgressBar = $neck/Camera3D/HUD/SubViewport/Control/StaminaBar/StaminaBarRight
 
 var _mouse_input : bool = false
 var _mouse_rotation : Vector3
@@ -31,6 +38,7 @@ var _cam_transition_rot : Vector3
 var player_interactable_area
 var notebook_toggled = false
 var bobbing_up = true
+var stamina : float = 100.0
  
 enum camera_transition_states{
 	NO_TRANSITION,
@@ -171,6 +179,35 @@ func _update_camera(delta):
 	_rotation_input = 0.0
 	_tilt_input = 0.0
 
+func _stamina_regen(delta: float) -> void:
+	if stamina_cooldown.is_stopped() and stamina <= 99:
+		stamina = clamp(stamina + 15 * delta, 0, 100)
+		_stamina_bar(0.09, delta)
+
+func _stamina_deplete(delta: float) -> void:
+	stamina = clamp(stamina - 20 * delta, 0, 100)
+	if stamina <= 1:
+		stamina_cooldown.start(STAMINA_PENALTY)
+	else:
+		stamina_cooldown.start(STAMINA_COOLDOWN)
+	_stamina_bar(-0.09, delta)
+
+func _stamina_bar(green_shift: float, delta: float) -> void:
+	stamina_bar_left.value = stamina
+	stamina_bar_right.value = stamina
+	
+	var current_color: Color = stamina_bar_left.get_theme_stylebox("fill").get("bg_color")
+	var new_color = Color(current_color.r, clamp(current_color.g + green_shift * delta, 0, 255), current_color.b)
+	
+	stamina_bar_left.get_theme_stylebox("fill").set("bg_color", new_color)
+
+func _sprint(run_speed: float, delta: float) -> float:
+	if Input.is_action_pressed("run") and stamina >= 1:
+		run_speed = SPRINT_SPEED_FACTOR
+		_stamina_deplete(delta)
+
+	return run_speed
+
 func _physics_process(delta: float) -> void:
 	if !is_input_allowed():
 		#printerr("Player:_physics_process -> Input not allowed")
@@ -182,8 +219,12 @@ func _physics_process(delta: float) -> void:
 		velocity += (get_gravity() * 0.5) * delta
 
 	var RUN_SPEED = 1
-	if Input.is_action_pressed("run"):
-		RUN_SPEED = 1.25
+	_stamina_regen(delta)
+	
+	RUN_SPEED = _sprint(RUN_SPEED, delta)
+		
+	print(stamina)
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -309,3 +350,5 @@ func _process(delta: float) -> void:
 			#cam.rotation = Vector3.ZERO
 			print('cam_finished_transition')
 			camera_finished_transition.emit()
+			
+			

@@ -43,6 +43,9 @@ albedo_texture = SubResource("ViewportTexture_u3ddb")
 [sub_resource type="ViewportTexture" id="ViewportTexture_fuhe1"]
 viewport_path = NodePath("neck/Camera3D/HUD/SubViewport")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oiuio"]
+bg_color = Color(0.7173393, 0.617981, 0.16985252, 1)
+
 [sub_resource type="Animation" id="Animation_1wijd"]
 length = 0.001
 tracks/0/type = "value"
@@ -190,6 +193,37 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.42745098)
 
+[node name="StaminaBar" type="HBoxContainer" parent="neck/Camera3D/HUD/SubViewport/Control" unique_id=423714851]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -1
+alignment = 1
+
+[node name="StaminaBarLeft" type="ProgressBar" parent="neck/Camera3D/HUD/SubViewport/Control/StaminaBar" unique_id=160354562]
+custom_minimum_size = Vector2(250, 25)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_oiuio")
+value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="StaminaBarRight" type="ProgressBar" parent="neck/Camera3D/HUD/SubViewport/Control/StaminaBar" unique_id=2009118967]
+custom_minimum_size = Vector2(250, 25)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_oiuio")
+value = 100.0
+show_percentage = false
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="neck/Camera3D/HUD" unique_id=2061881600]
 libraries/ = SubResource("AnimationLibrary_a5yua")
 
@@ -254,6 +288,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00068438053, 0.68890774, 0)
 current = true
 
 [node name="SFXManager" type="Node" parent="." unique_id=1788716484]
+
+[node name="StaminaCooldown" type="Timer" parent="." unique_id=1646898248]
+wait_time = 2.0
+one_shot = true
 
 [connection signal="body_entered" from="neck/Camera3D/HandObjectDetector" to="neck/Camera3D/Hand" method="_on_hand_object_detector_body_entered"]
 [connection signal="body_exited" from="neck/Camera3D/HandObjectDetector" to="neck/Camera3D/Hand" method="_on_hand_object_detector_body_exited"]

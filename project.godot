@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Serious-jam"
-run/main_scene="uid://bsrgf4jivrq5f"
+run/main_scene="uid://yuy7lp8mln37"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -22,7 +22,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/spatial_audio_extended/plugin.cfg")
+enabled=PackedStringArray("res://addons/spatial_audio_extended/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [input]
 
