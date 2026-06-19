@@ -1,6 +1,5 @@
 extends Node3D
 
-const MAX_ROTATION_SPEED: float = deg_to_rad(360) # degrees/sec
 const DRAIN_RATE: float = 12.0 # per second
 
 @onready var crank: MeshInstance3D = $Crank
@@ -22,9 +21,6 @@ func _process(delta: float) -> void:
 	set_light()
 
 	flicker()
-	
-	print(crank_meter)
-	print(is_light_blocked)
 
 func set_light() -> void:
 	if (!is_light_blocked):
@@ -39,15 +35,16 @@ func flicker() -> void:
 			flicker_cooldown.start()
 
 func crank_flashlight(delta: float) -> void:
-	if crank_meter >= 90: return
+	if crank_meter >= 95: return
 	
 	crank_meter = min(100, crank_meter + 5)
-	crank_rotation_target += deg_to_rad(45)
 	
-	crank.rotation.x = move_toward(
-		crank.rotation.x,
-		crank_rotation_target,
-		MAX_ROTATION_SPEED * delta
+	var tween = create_tween()
+	tween.tween_property(
+		crank,
+		"rotation:x",
+		crank.rotation.x + deg_to_rad(65),
+		0.3
 	)
 
 func _on_flicker_cooldown_timeout() -> void:

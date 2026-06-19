@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c383iukdu6f1f" path="res://src/player/player_controller.gd" id="1_1va15"]
 [ext_resource type="Script" uid="uid://bd523k4h83cda" path="res://src/player/lean_collision_area.gd" id="2_t85a7"]
+[ext_resource type="PackedScene" uid="uid://cm8exx4gwxin5" path="res://src/flashlight/flash_light.tscn" id="2_wkdd3"]
 [ext_resource type="Script" uid="uid://cysjq0xtohde" path="res://src/player/lean_collision_area_right.gd" id="3_wkdd3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fqqb2"]
@@ -201,7 +202,10 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 shape = SubResource("CapsuleShape3D_hthqk")
 
 [node name="Hand" type="Node3D" parent="neck/Camera3D" unique_id=1223726754]
-transform = Transform3D(0.9396925, 0, 0.34202015, 0, 1, 0, -0.34202015, 0, 0.9396925, 0.4, -0.61517304, -0.6747516)
+transform = Transform3D(0.9396925, 0, 0.34202015, 0, 1, 0, -0.34202015, 0, 0.9396925, 0.4, -0.3235088, -0.6747516)
+
+[node name="Flashlight" parent="neck/Camera3D/Hand" unique_id=1150915125 instance=ExtResource("2_wkdd3")]
+transform = Transform3D(-0.19203253, 0.0015521762, -0.055866774, -0.0016481989, -0.19999318, 0.00010888733, -0.05586401, 0.0005649472, 0.19203882, 0, 0, 0)
 
 [node name="FlashlightSFX" type="AudioStreamPlayer3D" parent="neck" unique_id=2124313023]
 panning_strength = 0.0

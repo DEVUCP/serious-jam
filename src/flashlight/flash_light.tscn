@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b54n83qynfi7n" path="res://src/flashlight/flash_light.gd" id="1_x05cy"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x05cy"]
+shading_mode = 0
+
 [sub_resource type="BoxMesh" id="BoxMesh_riqys"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bhunq"]
@@ -9,16 +12,20 @@
 [node name="Flashlight" type="Node3D" unique_id=1150915125]
 script = ExtResource("1_x05cy")
 
-[node name="Crank" type="MeshInstance3D" parent="." unique_id=145425991]
-transform = Transform3D(0.6842682, 0, 0, 0, 0.32933012, 0, 0, 0, 0.31208295, 0.58155274, 0, 0)
+[node name="Crank" type="MeshInstance3D" parent="." unique_id=1342476456]
+transform = Transform3D(0.6842682, 0, 0, 0, 0.32933012, 0, 0, 0, 0.31208295, 0.6786866, 0, 0)
+material_override = SubResource("StandardMaterial3D_x05cy")
 mesh = SubResource("BoxMesh_riqys")
 
 [node name="MainPiece" type="MeshInstance3D" parent="." unique_id=1876886235]
 transform = Transform3D(0.67089057, 0, 0, 0, 0.558097, 0, 0, 0, 1.5336844, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_x05cy")
 mesh = SubResource("BoxMesh_bhunq")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=850504187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.059269, -1.5002675, -0.8319068)
 light_energy = 2.0
+spot_range = 10.0
 
 [node name="FlickerCooldown" type="Timer" parent="." unique_id=581406877]
 wait_time = 0.2
