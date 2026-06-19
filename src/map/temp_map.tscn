@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bsrgf4jivrq5f"]
+
+[ext_resource type="PackedScene" uid="uid://cbp1l7joajh4g" path="res://src/player/player_controller.tscn" id="1_0rdcq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0rdcq"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_bdcwf"]
+sky_material = SubResource("ProceduralSkyMaterial_0rdcq")
+
+[sub_resource type="Environment" id="Environment_rusgr"]
+background_mode = 2
+sky = SubResource("Sky_bdcwf")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kpvvf"]
+data = PackedVector3Array(-3.8933105, -0.0847168, 5.614441, -3.8933105, -0.0847168, -5.614441, -3.8933105, 0.0847168, -5.614441, 3.8933105, -0.0847168, -5.614441, -3.8933105, -0.0847168, -5.614441, -3.8933105, -0.0847168, 5.614441, -3.8933105, 0.0847168, -5.614441, -3.8933105, -0.0847168, -5.614441, 3.8933105, -0.0847168, -5.614441, -3.8933105, 0.0847168, -5.614441, -3.8933105, 0.0847168, 5.614441, -3.8933105, -0.0847168, 5.614441, -3.8933105, -0.0847168, 5.614441, -3.8933105, 0.0847168, 5.614441, 3.8933105, 0.0847168, 5.614441, 3.8933105, 0.0847168, 5.614441, -3.8933105, 0.0847168, 5.614441, -3.8933105, 0.0847168, -5.614441, -3.8933105, -0.0847168, 5.614441, 3.8933105, -0.0847168, 5.614441, 3.8933105, -0.0847168, -5.614441, 3.8933105, 0.0847168, 5.614441, 3.8933105, -0.0847168, 5.614441, -3.8933105, -0.0847168, 5.614441, 3.8933105, -0.0847168, -5.614441, 3.8933105, -0.0847168, 5.614441, 3.8933105, 0.0847168, 5.614441, 3.8933105, -0.0847168, -5.614441, 3.8933105, 0.0847168, -5.614441, -3.8933105, 0.0847168, -5.614441, -3.8933105, 0.0847168, -5.614441, 3.8933105, 0.0847168, -5.614441, 3.8933105, 0.0847168, 5.614441, 3.8933105, 0.0847168, 5.614441, 3.8933105, 0.0847168, -5.614441, 3.8933105, -0.0847168, -5.614441)
+
+[node name="TempMap" type="Node3D" unique_id=1322663439]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1929538703]
+environment = SubResource("Environment_rusgr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=638487339]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=997957134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22338867, -0.4152832, -2.0637817)
+size = Vector3(7.786621, 0.1694336, 11.228882)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1161309968]
+collision_layer = 4
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=507630219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22338867, -0.4152832, -2.0637817)
+shape = SubResource("ConcavePolygonShape3D_kpvvf")
+
+[node name="PlayerController" parent="." unique_id=698889221 instance=ExtResource("1_0rdcq")]

@@ -1,0 +1,259 @@
+[gd_scene format=3 uid="uid://cbp1l7joajh4g"]
+
+[ext_resource type="Script" uid="uid://c383iukdu6f1f" path="res://src/player/player_controller.gd" id="1_1va15"]
+[ext_resource type="Script" uid="uid://bd523k4h83cda" path="res://src/player/lean_collision_area.gd" id="2_t85a7"]
+[ext_resource type="Script" uid="uid://cysjq0xtohde" path="res://src/player/lean_collision_area_right.gd" id="3_wkdd3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fqqb2"]
+
+[sub_resource type="Animation" id="Animation_kxctt"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_chubl"]
+resource_name = "toggle_notebook_off"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_fqqsv"]
+resource_name = "toggle_notebook_on"
+length = 0.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kxctt"]
+_data = {
+&"RESET": SubResource("Animation_kxctt"),
+&"toggle_notebook_off": SubResource("Animation_chubl"),
+&"toggle_notebook_on": SubResource("Animation_fqqsv")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pgsjq"]
+size = Vector3(0.5581665, 0.59368896, 0.57177734)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_u3ddb"]
+viewport_path = NodePath("neck/Camera3D/HUD/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u3ddb"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+no_depth_test = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_u3ddb")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fuhe1"]
+viewport_path = NodePath("neck/Camera3D/HUD/SubViewport")
+
+[sub_resource type="Animation" id="Animation_1wijd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Control/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a5yua"]
+resource_name = "camera_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Control/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8ich8"]
+resource_name = "camera_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Control/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a5yua"]
+_data = {
+&"RESET": SubResource("Animation_1wijd"),
+&"camera_in": SubResource("Animation_a5yua"),
+&"camera_out": SubResource("Animation_8ich8")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hthqk"]
+radius = 0.2
+height = 0.9975586
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fqqsv"]
+size = Vector3(1.0476909, 0.535, 1.0150757)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kxctt"]
+size = Vector3(1.0773926, 0.54248047, 1.020874)
+
+[node name="PlayerController" type="CharacterBody3D" unique_id=698889221]
+collision_mask = 4
+script = ExtResource("1_1va15")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=755441300]
+visible = false
+shape = SubResource("CapsuleShape3D_fqqb2")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1819404388]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1715353898]
+libraries/ = SubResource("AnimationLibrary_kxctt")
+
+[node name="neck" type="Node3D" parent="." unique_id=1161167349]
+
+[node name="Camera3D" type="Camera3D" parent="neck" unique_id=1760317265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+current = true
+far = 2000.0
+
+[node name="HandObjectDetector" type="Area3D" parent="neck/Camera3D" unique_id=1909803390]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0.25765646, -0.038701713, -1.0266638)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="neck/Camera3D/HandObjectDetector" unique_id=1913906198]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016141355, -0.01864624, 0.31020612)
+shape = SubResource("BoxShape3D_pgsjq")
+debug_color = Color(0.8543358, 0.0008014733, 0.8909647, 0.41960785)
+
+[node name="RayCast3D" type="RayCast3D" parent="neck/Camera3D" unique_id=1702715253]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+visible = false
+target_position = Vector3(0, -10, 0)
+collision_mask = 0
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="HUD" type="Sprite3D" parent="neck/Camera3D" unique_id=1517648699]
+transform = Transform3D(0.063, 0, 0, 0, 0.063, 0, 0, 0, 0.063, 0, 0, -0.4470975)
+material_override = SubResource("StandardMaterial3D_u3ddb")
+texture = SubResource("ViewportTexture_fuhe1")
+
+[node name="SubViewport" type="SubViewport" parent="neck/Camera3D/HUD" unique_id=1961634024]
+transparent_bg = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(1920, 1080)
+
+[node name="Control" type="Control" parent="neck/Camera3D/HUD/SubViewport" unique_id=1667897560]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="neck/Camera3D/HUD/SubViewport/Control" unique_id=594762497]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="neck/Camera3D/HUD/SubViewport/Control" unique_id=452160227]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.42745098)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="neck/Camera3D/HUD" unique_id=2061881600]
+libraries/ = SubResource("AnimationLibrary_a5yua")
+
+[node name="InteractArea" type="Area3D" parent="neck/Camera3D" unique_id=1896025638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19999999, -0.7)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="neck/Camera3D/InteractArea" unique_id=1800865379]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.19999999, -0.22377926)
+shape = SubResource("CapsuleShape3D_hthqk")
+
+[node name="Hand" type="Node3D" parent="neck/Camera3D" unique_id=1223726754]
+transform = Transform3D(0.9396925, 0, 0.34202015, 0, 1, 0, -0.34202015, 0, 0.9396925, 0.4, -0.61517304, -0.6747516)
+
+[node name="FlashlightSFX" type="AudioStreamPlayer3D" parent="neck" unique_id=2124313023]
+panning_strength = 0.0
+
+[node name="SpatialAudioPlayer3D2" type="AudioStreamPlayer3D" parent="neck" unique_id=1176622857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 66.38187, 0)
+max_db = 5.127
+autoplay = true
+panning_strength = 0.0
+
+[node name="LeanCollisionAreaLeft" type="Area3D" parent="." unique_id=1864338033]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_t85a7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeanCollisionAreaLeft" unique_id=345243184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5336071, 0.23266602, -0.007537842)
+shape = SubResource("BoxShape3D_fqqsv")
+
+[node name="LeanCollisionAreaRight" type="Area3D" parent="." unique_id=1759174609]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("3_wkdd3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeanCollisionAreaRight" unique_id=108801963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52893066, 0.22875977, -0.010437012)
+shape = SubResource("BoxShape3D_kxctt")
+
+[node name="Footsteps" type="Node3D" parent="." unique_id=1260492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9813928, 0)
+
+[node name="SpatialAudioPlayer3D" type="AudioStreamPlayer3D" parent="Footsteps" unique_id=2003978929]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9813928, 0)
+panning_strength = 0.0
+metadata/_custom_type_script = "uid://c7i5d6q1jumg1"
+
+[node name="RayCast3D" type="RayCast3D" parent="Footsteps" unique_id=1213471744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8853983, 0)
+target_position = Vector3(0, -1.115, 0)
+collision_mask = 4
+
+[node name="Listener" type="AudioListener3D" parent="." unique_id=520892794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00068438053, 0.68890774, 0)
+current = true
+
+[node name="SFXManager" type="Node" parent="." unique_id=1788716484]
+
+[connection signal="body_entered" from="neck/Camera3D/HandObjectDetector" to="neck/Camera3D/Hand" method="_on_hand_object_detector_body_entered"]
+[connection signal="body_exited" from="neck/Camera3D/HandObjectDetector" to="neck/Camera3D/Hand" method="_on_hand_object_detector_body_exited"]
+[connection signal="area_entered" from="neck/Camera3D/InteractArea" to="neck/Camera3D/InteractArea" method="_on_area_entered"]
+[connection signal="area_exited" from="neck/Camera3D/InteractArea" to="neck/Camera3D/InteractArea" method="_on_area_exited"]
+[connection signal="body_shape_entered" from="LeanCollisionAreaLeft" to="LeanCollisionAreaLeft" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="LeanCollisionAreaLeft" to="LeanCollisionAreaLeft" method="_on_body_shape_exited"]
+[connection signal="body_shape_entered" from="LeanCollisionAreaRight" to="LeanCollisionAreaRight" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="LeanCollisionAreaRight" to="LeanCollisionAreaRight" method="_on_body_shape_exited"]
