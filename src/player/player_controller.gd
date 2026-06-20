@@ -152,8 +152,7 @@ func _input(event):
 		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
-	if event.is_action_pressed("interact"):
-		_attempt_interact_with_object()
+
 
 func toggle_camera_capture(val : bool) -> void:
 	CAMERA_CONTROLLER.current = val
@@ -223,7 +222,7 @@ func _physics_process(delta: float) -> void:
 	
 	RUN_SPEED = _sprint(RUN_SPEED, delta)
 		
-	print(stamina)
+	#print(stamina)
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -322,6 +321,9 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(delta: float) -> void:
+	if Input.is_action_pressed("interact"):
+		print("held")
+		_attempt_interact_with_object()
 	if cam_transition_state == camera_transition_states.IN:
 		cam.position = lerp(cam.position, _cam_transition_pos, 0.05)
 		#cam.rotation = lerp(cam.rotation, _cam_transition_rot, 0.2)
