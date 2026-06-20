@@ -2,7 +2,7 @@ extends Node3D
 
 const DRAIN_RATE: float = 12.0 # per second
 
-@onready var crank: MeshInstance3D = $Crank
+@onready var crank: Node3D = $FlashlightModel/crank
 @onready var spot_light_3d: SpotLight3D = $SpotLight3D
 @onready var flicker_cooldown: Timer = $FlickerCooldown
 
@@ -40,11 +40,13 @@ func crank_flashlight(delta: float) -> void:
 	crank_meter = min(100, crank_meter + 5)
 	
 	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_property(
 		crank,
 		"rotation:x",
-		crank.rotation.x + deg_to_rad(65),
-		0.3
+		crank.rotation.x + deg_to_rad(190),
+		1
 	)
 
 func _on_flicker_cooldown_timeout() -> void:

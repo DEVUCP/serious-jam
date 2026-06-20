@@ -241,7 +241,7 @@ shape = SubResource("CapsuleShape3D_hthqk")
 transform = Transform3D(0.9396925, 0, 0.34202015, 0, 1, 0, -0.34202015, 0, 0.9396925, 0.4, -0.3235088, -0.6747516)
 
 [node name="Flashlight" parent="neck/Camera3D/Hand" unique_id=1150915125 instance=ExtResource("2_wkdd3")]
-transform = Transform3D(-0.19203253, 0.0015521762, -0.055866774, -0.0016481989, -0.19999318, 0.00010888733, -0.05586401, 0.0005649472, 0.19203882, 0, 0, 0)
+transform = Transform3D(0.93988365, 0, -0.34149435, 0, 1, 0, 0.34149435, 0, 0.93988365, 0, 0, 0)
 
 [node name="FlashlightSFX" type="AudioStreamPlayer3D" parent="neck" unique_id=2124313023]
 panning_strength = 0.0

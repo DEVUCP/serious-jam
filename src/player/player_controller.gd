@@ -202,7 +202,7 @@ func _stamina_bar(green_shift: float, delta: float) -> void:
 	stamina_bar_left.get_theme_stylebox("fill").set("bg_color", new_color)
 
 func _sprint(run_speed: float, delta: float) -> float:
-	if Input.is_action_pressed("run") and stamina >= 1:
+	if Input.is_action_pressed("run") and stamina >= 1 and not Input.is_action_pressed("lean_left") and not Input.is_action_pressed("lean_right"):
 		run_speed = SPRINT_SPEED_FACTOR
 		_stamina_deplete(delta)
 
