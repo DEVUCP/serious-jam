@@ -24,7 +24,10 @@ func _process(delta: float) -> void:
 
 func set_light() -> void:
 	if (!is_light_blocked):
-		spot_light_3d.light_energy = (crank_meter / 25.0)
+		if crank_meter < 50:
+			spot_light_3d.light_energy = (crank_meter / 25.0)
+		else:
+			spot_light_3d.light_energy = lerpf(spot_light_3d.light_energy,4, 0.1)
 	else:
 		spot_light_3d.light_energy = 0
 
