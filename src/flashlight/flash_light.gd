@@ -2,7 +2,7 @@ extends Node3D
 
 const DRAIN_RATE: float = 12.0 # per second
 
-@onready var crank: MeshInstance3D = $Crank
+@onready var crank: Node3D = $FlashlightModel/crank
 @onready var spot_light_3d: SpotLight3D = $SpotLight3D
 @onready var flicker_cooldown: Timer = $FlickerCooldown
 
