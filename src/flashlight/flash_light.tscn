@@ -12,6 +12,8 @@ cull_mode = 2
 albedo_texture = ExtResource("2_1e40g")
 texture_filter = 0
 texture_repeat = false
+use_z_clip_scale = true
+z_clip_scale = 0.01
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pu8nu"]
@@ -287,7 +289,6 @@ transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -0.09375, 0.125, 0.171875)
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 layers = 2
 cast_shadow = 0
-gi_lightmap_texel_scale = 10.0
 mesh = SubResource("ArrayMesh_8te2s")
 
 [node name="cylinder" type="MeshInstance3D" parent="FlashlightModel/flashlightbody" unique_id=1276940862]
@@ -330,9 +331,10 @@ layers = 2
 mesh = SubResource("ArrayMesh_4hkv1")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=850504187]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035136104, 0.13050944, -0.28553024)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19329864, 0.66079146, 1.1703106)
 light_energy = 2.0
 light_indirect_energy = 16.0
+light_cull_mask = 4294967293
 spot_range = 8.483507
 spot_angle = 29.753487
 
