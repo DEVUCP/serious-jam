@@ -287,28 +287,28 @@ transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -0.09375, 0.125, 0.171875)
 
 [node name="mesh" type="MeshInstance3D" parent="FlashlightModel/flashlightbody" unique_id=346703868]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
-layers = 2
+layers = 4
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_8te2s")
 
 [node name="cylinder" type="MeshInstance3D" parent="FlashlightModel/flashlightbody" unique_id=1276940862]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.0625, 0.05625, -0.1)
-layers = 2
+layers = 4
 mesh = SubResource("ArrayMesh_dby4k")
 
 [node name="cylinder2" type="MeshInstance3D" parent="FlashlightModel/flashlightbody" unique_id=1617436243]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.00625, 0.05625, -0.1)
-layers = 2
+layers = 4
 mesh = SubResource("ArrayMesh_yjur8")
 
 [node name="cylinder3" type="MeshInstance3D" parent="FlashlightModel/flashlightbody" unique_id=543562597]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0.075, 0.05625, -0.1)
-layers = 2
+layers = 4
 mesh = SubResource("ArrayMesh_lyfa5")
 
 [node name="tube" type="MeshInstance3D" parent="FlashlightModel/flashlightbody" unique_id=593735964]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0125, -0.140625)
-layers = 2
+layers = 4
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_oc21j")
 
@@ -317,24 +317,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05625, 0.125, 0.0328125)
 
 [node name="cylinder4" type="MeshInstance3D" parent="FlashlightModel/crank" unique_id=195807211]
 transform = Transform3D(0, 1, 0, -0.6946584, 0, 0.7193398, 0.7193398, 0, 0.6946584, 0, 0, 0)
-layers = 2
+layers = 4
 mesh = SubResource("ArrayMesh_rgrtl")
 
 [node name="beveled_cuboid" type="MeshInstance3D" parent="FlashlightModel/crank" unique_id=55594153]
 transform = Transform3D(0.9935719, 0, -0.11320321, 0, 1, 0, 0.11320321, 0, 0.9935719, 0.025, -0.0875, -0.1296875)
-layers = 2
+layers = 4
 mesh = SubResource("ArrayMesh_f5tt7")
 
 [node name="beveled_cuboid2" type="MeshInstance3D" parent="FlashlightModel/crank" unique_id=1712375150]
 transform = Transform3D(0.9986295, 0, -0.052335955, 0, 1, 0, 0.052335955, 0, 0.9986295, 0.0625, -0.0167, -0.2921875)
-layers = 2
+layers = 4
 mesh = SubResource("ArrayMesh_4hkv1")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=850504187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19329864, 0.66079146, 1.1703106)
 light_energy = 2.0
 light_indirect_energy = 16.0
-light_cull_mask = 4294967293
+light_cull_mask = 4294967291
 spot_range = 8.483507
 spot_angle = 29.753487
 
@@ -344,8 +344,9 @@ one_shot = true
 
 [node name="AreaLight3D" type="AreaLight3D" parent="." unique_id=1861641007]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0009313)
+layers = 2
 light_energy = 0.6
-light_cull_mask = 4294966274
+light_cull_mask = 4294967294
 area_range = 2.76
 area_attenuation = 0.0
 area_size = Vector2(2.085, 2.085)
