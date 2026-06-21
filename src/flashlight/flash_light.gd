@@ -12,6 +12,10 @@ var is_light_blocked: bool = false
 
 func _ready() -> void:
 	spot_light_3d.light_energy = 0
+	const LAYER_2 = 1 << 1
+	const LAYER_32 = 1 << 31
+
+	$AreaLight3D.light_cull_mask = ~(LAYER_2 | LAYER_32)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Crank"):
