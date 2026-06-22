@@ -142,6 +142,16 @@ collision_layer = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D/StaticBody3D" unique_id=984543679]
 shape = SubResource("ConcavePolygonShape3D_cti7x")
 
+[node name="CSGBox3D2" type="MeshInstance3D" parent="." unique_id=529039479]
+transform = Transform3D(0.0025698673, 0.9999967, 0, -0.9999967, 0.0025698673, 0, 0, 0, 1, -119.909645, 4.9646997, 120.78934)
+mesh = SubResource("BoxMesh_bhunq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CSGBox3D2" unique_id=380876633]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D2/StaticBody3D" unique_id=1888077836]
+shape = SubResource("ConcavePolygonShape3D_cti7x")
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1142001436]
 navigation_mesh = SubResource("NavigationMesh_cti7x")
 
