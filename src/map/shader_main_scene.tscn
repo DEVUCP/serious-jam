@@ -11,7 +11,7 @@ viewport_path = NodePath("SubViewport")
 resource_local_to_scene = true
 shader = ExtResource("1_b45px")
 shader_parameter/screen_texture = SubResource("ViewportTexture_m33rx")
-shader_parameter/pixel_resolution = 120.14000266664999
+shader_parameter/pixel_resolution = 175.158005280005
 shader_parameter/color_steps = 16
 shader_parameter/noise_strength = 0.1
 shader_parameter/enable_dither = true
@@ -39,4 +39,4 @@ audio_listener_enable_3d = true
 physics_object_picking = true
 render_target_update_mode = 4
 
-[node name="TempMap" parent="SubViewport" unique_id=1322663439 instance=ExtResource("2_m33rx")]
+[node name="Map" parent="SubViewport" unique_id=82686766 instance=ExtResource("3_m33rx")]
