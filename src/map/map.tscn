@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ba3imscs4whad" path="res://src/map/map_objects/grass/grass.tscn" id="3_3ubge"]
 [ext_resource type="Texture2D" uid="uid://c88j3oj0lf6om" path="res://assets/textures/rock023_alb_ht.png" id="3_cti7x"]
 [ext_resource type="Texture2D" uid="uid://c307hdmos4gtm" path="res://assets/textures/rock023_nrm_rgh.png" id="4_3ubge"]
-[ext_resource type="PackedScene" uid="uid://bo6fmiacdrbou" path="res://src/map/map_objects/bush/bush.tscn" id="4_40mr5"]
+[ext_resource type="PackedScene" uid="uid://bo6fmiacdrbou" path="res://src/map/map_objects/bush/bush.tscn" id="5_40mr5"]
 [ext_resource type="PackedScene" uid="uid://cbp1l7joajh4g" path="res://src/player/player_controller.tscn" id="5_osvph"]
 [ext_resource type="PackedScene" uid="uid://dpotuexotkcp0" path="res://src/interactable/music_box.tscn" id="6_4cvdr"]
 [ext_resource type="PackedScene" uid="uid://dpqvbx23oxenq" path="res://src/map/map_objects/tree/tree.tscn" id="9_osvph"]
@@ -93,8 +93,7 @@ lod0_range = 128.0
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_qprrh"]
 name = "bush"
 id = 1
-scene_file = ExtResource("4_40mr5")
-density = 4.37
+scene_file = ExtResource("5_40mr5")
 last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0
