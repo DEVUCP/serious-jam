@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bo6fmiacdrbou"]
+
+[ext_resource type="PackedScene" uid="uid://vg5vcjmxrvlh" path="res://assets/models/bush.gltf" id="1_lble8"]
+
+[node name="bush" type="Node3D" unique_id=673504767]
+
+[node name="blockbench_export" parent="." unique_id=1442356853 instance=ExtResource("1_lble8")]

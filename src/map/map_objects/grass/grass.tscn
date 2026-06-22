@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ba3imscs4whad"]
+
+[ext_resource type="PackedScene" uid="uid://gbu5lcsk4ucu" path="res://assets/models/grass.gltf" id="1_8fs6l"]
+
+[node name="Grass" type="Node3D" unique_id=132366139]
+
+[node name="blockbench_export" parent="." unique_id=2055120222 instance=ExtResource("1_8fs6l")]
