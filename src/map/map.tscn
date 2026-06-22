@@ -22,7 +22,9 @@ sky_material = SubResource("ProceduralSkyMaterial_ujspj")
 background_mode = 2
 background_energy_multiplier = 0.0
 sky = SubResource("Sky_bdcwf")
-ambient_light_sky_contribution = 0.0
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.01
 fog_light_color = Color(0.14779508, 0.16187039, 0.20879358, 1)
 fog_light_energy = 0.27
 fog_density = 0.2786
@@ -124,7 +126,7 @@ environment = SubResource("Environment_dacv3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=567087704]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_energy = 0.0
+light_energy = 0.39
 shadow_enabled = true
 
 [node name="MusicBox" parent="." unique_id=836771714 instance=ExtResource("6_4cvdr")]
