@@ -211,6 +211,9 @@ func _sprint(run_speed: float, delta: float) -> float:
 	if Input.is_action_pressed("run") and stamina >= 1 and not Input.is_action_pressed("lean_left") and not Input.is_action_pressed("lean_right"):
 		run_speed = SPRINT_SPEED_FACTOR
 		_stamina_deplete(delta)
+		footsteps.set_stream(true)
+	else:
+		footsteps.set_stream(false)
 
 	return run_speed
 
@@ -256,9 +259,10 @@ func _physics_process(delta: float) -> void:
 	
 	if (input_dir.y > 0 or input_dir.y < 0) and not leaning:
 		_handle_headbobbing(RUN_SPEED)
+		footsteps.call_deferred("play_footstep")
 		#print($neck.position.y)
-	#else:
-		#footsteps.call_deferred("stop_footstep")
+	else:
+		footsteps.call_deferred("stop_footstep")
 	
 	if(not leaning):
 		move_and_slide()
