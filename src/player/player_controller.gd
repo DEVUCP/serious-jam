@@ -21,6 +21,7 @@ signal camera_finished_transition
 @onready var footsteps = $Footsteps
 @onready var cam = $neck/Camera3D
 @onready var stamina_cooldown: Timer = $StaminaCooldown
+@onready var flashlight: Node3D = $neck/Camera3D/Hand/Flashlight
 
 @onready var stamina_bar_left: ProgressBar = $neck/Camera3D/HUD/SubViewport/Control/StaminaBar/StaminaBarLeft
 @onready var stamina_bar_right: ProgressBar = $neck/Camera3D/HUD/SubViewport/Control/StaminaBar/StaminaBarRight
@@ -56,6 +57,12 @@ enum input_capture_modes{ # all non "no cam" MUST use the camera (implied)
 
 var cam_transition_state = camera_transition_states.NO_TRANSITION
 var input_capture : input_capture_modes = input_capture_modes.PLAYER_CAPTURED
+
+func get_flashlight() -> Node3D:
+	return flashlight
+
+func get_light_detection_factor() -> float:
+	return flashlight.get_light_level() / 2.0
 
 func is_input_allowed() -> bool:
 	return input_capture == input_capture_modes.PLAYER_CAPTURED
