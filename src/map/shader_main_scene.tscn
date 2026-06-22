@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://nce46h1glew4" path="res://src/shaders/PSXCamera.gdshader" id="1_b45px"]
 [ext_resource type="Script" uid="uid://mo60fr31l34h" path="res://src/map/shader_main_scene.gd" id="2_3fxir"]
-[ext_resource type="PackedScene" uid="uid://bsrgf4jivrq5f" path="res://src/map/temp_map.tscn" id="2_m33rx"]
+[ext_resource type="PackedScene" uid="uid://yuy7lp8mln37" path="res://src/map/map.tscn" id="3_m33rx"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_m33rx"]
 viewport_path = NodePath("SubViewport")
