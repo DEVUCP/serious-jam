@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var detection_range: float = 25.0
 @export var agro_range: float = detection_range / 2.0
 @export var investigate_range: float = 5
+@export var light_detection_tolerence: float = 1.0
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
@@ -40,24 +41,43 @@ func _ready() -> void:
 	roam()
 
 func _physics_process(delta: float) -> void:
-	print(state)
+	print(states.keys()[state])
 	
 	velocity = Vector3.ZERO
 	
 	#ray_cast_3d.set_target_position(to_local(player.global_position))
 	
 	_looking()
+	_update_detection_range()
 	
 	if _is_player_detected():
 		_on_player_detected()
 		
+	if target_pos == Vector3.ZERO: 
+		check_state()
+		return
 	
-	navigation_agent_3d.set_target_position(target_pos)
+	var map_rid: RID = get_world_3d().get_navigation_map()
+	var closest_point = NavigationServer3D.map_get_closest_point(map_rid, target_pos)
+	navigation_agent_3d.set_target_position(closest_point)
+	
 	var next_nav_point = navigation_agent_3d.get_next_path_position()
 	velocity = (next_nav_point - global_position).normalized() * SPEED * sprint_factor
-	look_at(next_nav_point)
+	
+	var direction: Vector3 = global_position.direction_to(next_nav_point)
+	var target_basis: Basis = Basis.looking_at(direction, Vector3.UP)
+	
+	basis = basis.slerp(target_basis, 0.1)
 	
 	move_and_slide()
+
+func _update_detection_range() -> void:
+	var light_detection_factor = player.get_light_detection_factor()
+	
+	detection_range = 8.0 + (15 * light_detection_factor)
+	agro_range = detection_range / 2.0
+	
+	ray_cast_3d.target_position.z = -detection_range
 
 func _is_in_agro_range() -> bool:
 	return global_position.distance_to(player.global_position) < agro_range
@@ -101,9 +121,13 @@ func investigate():
 	
 	if investigating_cooldown.is_stopped():
 		target_pos = investigation_positions.pop_front()
+		$MeshInstance3D3.global_position = target_pos
+
 		investigating_cooldown.start()
 		
 		print("INVESTIGATING AT ", target_pos)
+	else:
+		target_pos = Vector3.ZERO
 	
 func chase():
 	target_pos = player.global_position
@@ -140,3 +164,21 @@ func check_state():
 
 func _on_navigation_agent_3d_target_reached() -> void:
 	check_state()
+
+func _on_light_detection_area_area_entered(area: Area3D) -> void:
+	if player.get_flashlight().get_light_level() < light_detection_tolerence: return
+	
+	var raycast: RayCast3D = RayCast3D.new()
+	add_child(raycast)
+	raycast.set_collision_mask_value(1, false)
+	raycast.set_collision_mask_value(3, true)
+	raycast.target_position = to_local(player.global_position)
+	
+	if raycast.is_colliding():
+		raycast.call_deferred("queue_free")
+		return
+	
+	state = states.chasing
+	check_state()
+	
+	raycast.call_deferred("queue_free")

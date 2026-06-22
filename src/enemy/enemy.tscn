@@ -10,6 +10,18 @@
 radius = 0.3332367
 height = 0.6664734
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qr0ht"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 3.55
+
+[sub_resource type="SphereMesh" id="SphereMesh_6f8o3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bhunq"]
+radius = 0.8442383
+height = 3.0776978
+
 [node name="Enemy" type="CharacterBody3D" unique_id=448364292]
 script = ExtResource("1_6j2al")
 
@@ -40,4 +52,18 @@ one_shot = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39275, 0)
 spot_range = 7.937
 
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1290362176]
+top_level = true
+material_override = SubResource("StandardMaterial3D_qr0ht")
+mesh = SubResource("SphereMesh_6f8o3")
+
+[node name="LightDetectionArea" type="Area3D" parent="." unique_id=862346159]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightDetectionArea" unique_id=316993375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0248632, 0)
+shape = SubResource("CapsuleShape3D_bhunq")
+
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="area_entered" from="LightDetectionArea" to="." method="_on_light_detection_area_area_entered"]
