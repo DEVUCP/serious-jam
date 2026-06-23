@@ -11,8 +11,12 @@ extends CharacterBody3D
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
 @onready var investigating_cooldown: Timer = $InvestigatingCooldown
+@onready var footstep_sfx: SpatialAudioPlayer3D = $FootstepSFX
 
 const SPEED: float = 3.0
+
+var dirt_sfx = preload("res://assets/sounds/dirt_footsteps.mp3")
+var dirt_sprinting_sfx = preload("res://assets/sounds/dirt_footsteps_run.mp3")
 
 var player: CharacterBody3D = null
 var nav_region: NavigationRegion3D = null
@@ -41,7 +45,7 @@ func _ready() -> void:
 	roam()
 
 func _physics_process(delta: float) -> void:
-	print(states.keys()[state])
+	#print(states.keys()[state])
 	
 	velocity = Vector3.ZERO
 	
@@ -68,7 +72,8 @@ func _physics_process(delta: float) -> void:
 	var target_basis: Basis = Basis.looking_at(direction, Vector3.UP)
 	
 	basis = basis.slerp(target_basis, 0.1)
-	
+	if velocity and !footstep_sfx.playing:
+		footstep_sfx.play()
 	move_and_slide()
 
 func _update_detection_range() -> void:
@@ -111,9 +116,13 @@ func _looking() -> void:
 	ray_cast_3d.look_at(target, Vector3.UP)
 
 func roam():
+	if footstep_sfx.stream != dirt_sfx:
+		footstep_sfx.stream = dirt_sfx
 	target_pos = get_random_nav_point()
 	
 func investigate():
+	if footstep_sfx.stream != dirt_sfx:
+		footstep_sfx.stream = dirt_sfx
 	if investigation_positions.size() == 0: 
 		state = states.roaming
 		check_state()
@@ -130,6 +139,8 @@ func investigate():
 		target_pos = Vector3.ZERO
 	
 func chase():
+	if footstep_sfx.stream != dirt_sprinting_sfx:
+		footstep_sfx.stream = dirt_sprinting_sfx
 	target_pos = player.global_position
 
 func get_random_nav_point(

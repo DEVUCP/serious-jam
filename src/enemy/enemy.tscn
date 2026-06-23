@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://clxtu2ui45vau"]
 
 [ext_resource type="Script" uid="uid://cjsiiu8qdchwb" path="res://src/enemy/enemy.gd" id="1_6j2al"]
+[ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="2_ig63i"]
+[ext_resource type="AudioStream" uid="uid://ddc2qpeee18fm" path="res://assets/sounds/dirt_footsteps_run.mp3" id="2_xso4u"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_riqys"]
 
@@ -64,6 +66,19 @@ collision_mask = 8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LightDetectionArea" unique_id=316993375]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0248632, 0)
 shape = SubResource("CapsuleShape3D_bhunq")
+
+[node name="FootstepSFX" type="AudioStreamPlayer3D" parent="." unique_id=83427751]
+stream = ExtResource("2_xso4u")
+bus = &"SFX"
+script = ExtResource("2_ig63i")
+reverb_collision_mask = 4
+audio_occlusion = false
+occlusion_strength = 0.0
+occlusion_collision_mask = 4
+inner_radius = 34.7
+falloff_distance = 92.35000000000001
+enable_air_absorption = true
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="area_entered" from="LightDetectionArea" to="." method="_on_light_detection_area_area_entered"]
