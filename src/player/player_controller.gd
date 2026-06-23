@@ -79,12 +79,12 @@ func set_player_interactable_object(area) -> void:
 func _attempt_interact_with_object() -> void:
 	#print("interact attempt")
 	if _is_there_interactable_object():
-		print("I SHOULD WORK")
+		#print("I SHOULD WORK")
 		_interact_with_object()
 
 func _interact_with_object() -> void:
 	#print("player interact")
-	print(player_interactable_area.get_parent())
+	#print(player_interactable_area.get_parent())
 	player_interactable_area.interact(self)
 
 func _is_there_interactable_object() -> bool:
@@ -333,7 +333,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("interact"):
-		print("held")
+		#print("held")
 		_attempt_interact_with_object()
 	if cam_transition_state == camera_transition_states.IN:
 		cam.position = lerp(cam.position, _cam_transition_pos, 0.05)
