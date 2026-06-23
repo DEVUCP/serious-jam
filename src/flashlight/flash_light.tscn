@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b54n83qynfi7n" path="res://src/flashlight/flash_light.gd" id="1_x05cy"]
 [ext_resource type="Texture2D" uid="uid://6q6sxf0siv6n" path="res://assets/models/crank_flashlight_0.png" id="2_1e40g"]
+[ext_resource type="AudioStream" uid="uid://uxcumouys5od" path="res://assets/sounds/flashlight_crank_sfx.mp3" id="3_4yp3c"]
+[ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="4_7ixad"]
+[ext_resource type="AudioStream" uid="uid://0svu2ydeas46" path="res://assets/sounds/flicker_sfx.mp3" id="5_7ixad"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0vmk"]
 resource_name = "material_0"
@@ -363,4 +366,25 @@ collision_mask = 8
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -5)
 shape = SubResource("CylinderShape3D_riqys")
 
+[node name="CrankSFX" type="AudioStreamPlayer3D" parent="." unique_id=1904593305]
+stream = ExtResource("3_4yp3c")
+bus = &"SFX"
+script = ExtResource("4_7ixad")
+reverb_collision_mask = 4
+occlusion_collision_mask = 4
+enable_air_absorption = true
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
+
+[node name="CrankCooldown" type="Timer" parent="." unique_id=256330454]
+wait_time = 0.7
+one_shot = true
+
+[node name="FlickerSFX" type="AudioStreamPlayer3D" parent="." unique_id=1766042739]
+stream = ExtResource("5_7ixad")
+bus = &"SFX"
+script = ExtResource("4_7ixad")
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
+
 [connection signal="timeout" from="FlickerCooldown" to="." method="_on_flicker_cooldown_timeout"]
+[connection signal="finished" from="CrankSFX" to="." method="_on_spatial_audio_player_3d_finished"]
+[connection signal="timeout" from="CrankCooldown" to="." method="_on_crank_cooldown_timeout"]

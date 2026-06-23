@@ -79,12 +79,12 @@ func set_player_interactable_object(area) -> void:
 func _attempt_interact_with_object() -> void:
 	#print("interact attempt")
 	if _is_there_interactable_object():
-		print("I SHOULD WORK")
+		#print("I SHOULD WORK")
 		_interact_with_object()
 
 func _interact_with_object() -> void:
 	#print("player interact")
-	print(player_interactable_area.get_parent())
+	#print(player_interactable_area.get_parent())
 	player_interactable_area.interact(self)
 
 func _is_there_interactable_object() -> bool:
@@ -211,6 +211,9 @@ func _sprint(run_speed: float, delta: float) -> float:
 	if Input.is_action_pressed("run") and stamina >= 1 and not Input.is_action_pressed("lean_left") and not Input.is_action_pressed("lean_right"):
 		run_speed = SPRINT_SPEED_FACTOR
 		_stamina_deplete(delta)
+		footsteps.set_stream(true)
+	else:
+		footsteps.set_stream(false)
 
 	return run_speed
 
@@ -256,9 +259,10 @@ func _physics_process(delta: float) -> void:
 	
 	if (input_dir.y > 0 or input_dir.y < 0) and not leaning:
 		_handle_headbobbing(RUN_SPEED)
+		footsteps.call_deferred("play_footstep")
 		#print($neck.position.y)
-	#else:
-		#footsteps.call_deferred("stop_footstep")
+	else:
+		footsteps.call_deferred("stop_footstep")
 	
 	if(not leaning):
 		move_and_slide()
@@ -329,7 +333,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("interact"):
-		print("held")
+		#print("held")
 		_attempt_interact_with_object()
 	if cam_transition_state == camera_transition_states.IN:
 		cam.position = lerp(cam.position, _cam_transition_pos, 0.05)

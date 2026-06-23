@@ -5,6 +5,10 @@
 [ext_resource type="Script" uid="uid://bd523k4h83cda" path="res://src/player/lean_collision_area.gd" id="2_t85a7"]
 [ext_resource type="PackedScene" uid="uid://cm8exx4gwxin5" path="res://src/flashlight/flash_light.tscn" id="2_wkdd3"]
 [ext_resource type="Script" uid="uid://cysjq0xtohde" path="res://src/player/lean_collision_area_right.gd" id="3_wkdd3"]
+[ext_resource type="AudioStream" uid="uid://btkdgts8ma80j" path="res://assets/sounds/freesound_community-night-woods-7012.mp3" id="4_culmh"]
+[ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="5_dmwdg"]
+[ext_resource type="AudioStream" uid="uid://bet0l4xojy8fp" path="res://assets/sounds/footsteps_grass.mp3" id="8_dmwdg"]
+[ext_resource type="Script" uid="uid://bxb0s8odw0k4l" path="res://src/player/footsteps.gd" id="8_gwvns"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fqqb2"]
 
@@ -246,11 +250,22 @@ transform = Transform3D(0.93988365, 0, -0.34149435, 0, 1, 0, 0.34149435, 0, 0.93
 [node name="FlashlightSFX" type="AudioStreamPlayer3D" parent="neck" unique_id=2124313023]
 panning_strength = 0.0
 
-[node name="SpatialAudioPlayer3D2" type="AudioStreamPlayer3D" parent="neck" unique_id=1176622857]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 66.38187, 0)
+[node name="SpatialAudioPlayer3D2" type="AudioStreamPlayer3D" parent="neck" unique_id=864942129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.069977, 0)
+stream = ExtResource("4_culmh")
 max_db = 5.127
 autoplay = true
 panning_strength = 0.0
+bus = &"Ambient"
+script = ExtResource("5_dmwdg")
+ignore_floor = true
+reverb_collision_mask = 4
+occlusion_strength = 0.1
+occlusion_collision_mask = 4
+inner_radius = 10.35
+falloff_distance = 18.6
+enable_air_absorption = true
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
 
 [node name="LeanCollisionAreaLeft" type="Area3D" parent="." unique_id=1864338033]
 collision_layer = 0
@@ -272,11 +287,18 @@ shape = SubResource("BoxShape3D_kxctt")
 
 [node name="Footsteps" type="Node3D" parent="." unique_id=1260492]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9813928, 0)
+script = ExtResource("8_gwvns")
 
-[node name="SpatialAudioPlayer3D" type="AudioStreamPlayer3D" parent="Footsteps" unique_id=2003978929]
+[node name="SpatialAudioPlayer3D" type="AudioStreamPlayer3D" parent="Footsteps" unique_id=1106574362]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9813928, 0)
+stream = ExtResource("8_dmwdg")
 panning_strength = 0.0
-metadata/_custom_type_script = "uid://c7i5d6q1jumg1"
+bus = &"SFX"
+script = ExtResource("5_dmwdg")
+ignore_floor = true
+reverb_collision_mask = 4
+occlusion_collision_mask = 4
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
 
 [node name="RayCast3D" type="RayCast3D" parent="Footsteps" unique_id=1213471744]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8853983, 0)

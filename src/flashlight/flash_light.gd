@@ -6,6 +6,9 @@ const DRAIN_RATE: float = 12.0 # per second
 @onready var spot_light_3d: SpotLight3D = $SpotLight3D
 @onready var flicker_cooldown: Timer = $FlickerCooldown
 @onready var flashlight_collision: Area3D = $FlashlightCollision
+@onready var crank_sfx: SpatialAudioPlayer3D = $CrankSFX
+@onready var crank_cooldown: Timer = $CrankCooldown
+@onready var flicker_sfx: SpatialAudioPlayer3D = $FlickerSFX
 
 var crank_meter: float = 0
 var crank_rotation_target: float = 0.0
@@ -47,12 +50,18 @@ func flicker() -> void:
 		if randi() % 99 < 25:
 			is_light_blocked = true
 			flicker_cooldown.start()
+			flicker_sfx.play()
+			if crank_meter <= 5:
+				flicker_sfx.stop()
 
 func crank_flashlight(delta: float) -> void:
 	if crank_meter >= 95: return
-	
 	crank_meter = min(100, crank_meter + 5)
 	
+	if crank_cooldown.is_stopped():
+		crank_sfx.play()
+	crank_cooldown.start()
+
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
@@ -65,3 +74,7 @@ func crank_flashlight(delta: float) -> void:
 
 func _on_flicker_cooldown_timeout() -> void:
 	is_light_blocked = false
+
+
+func _on_crank_cooldown_timeout() -> void:
+	crank_sfx.stop()
