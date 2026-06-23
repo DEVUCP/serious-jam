@@ -2,11 +2,16 @@ extends Node3D
 
 var crank_meter: float = 0.0
 
+var stopped_time: float = 0.0
+var time_elapsed_paused: float = 0.0
 @onready var crank_obj: Node3D = $blockbench_export/crank
 @onready var crank_cooldown_timer: Timer = $CrankCooldownTimer
 @onready var animation_player: AnimationPlayer = $blockbench_export/AnimationPlayer
+@onready var music_sfx: SpatialAudioPlayer3D = $MusicSFX
+const JACK_IN_THE_BOX_OPEN = preload("uid://chi30reeokeef")
 
-@export var crank_target: int = 5
+@export var crank_target: int = 13.5
+var playback_position: float = 0.0
 
 func _on_interact_area_interacted_with(something: Variant) -> void:
 	if crank_cooldown_timer.is_stopped():
@@ -14,25 +19,70 @@ func _on_interact_area_interacted_with(something: Variant) -> void:
 		crank_cooldown_timer.start()
 
 func _physics_process(delta: float) -> void:
-	#print(crank_meter)
-	if crank_cooldown_timer.is_stopped() and crank_meter < crank_target and crank_meter > 0:
-		var tween = create_tween()
-		crank_meter = clamp(crank_meter-0.7 * delta, 0, 100)
-		tween.set_ease(Tween.EASE_OUT)
-		tween.set_trans(Tween.TRANS_SINE)
-		tween.tween_property(
+	_reverse_crank(delta)
+
+func crank() -> void:
+	if crank_meter >= crank_target:
+		return
+	
+	_increase_crank_meter()
+	_do_crank_tween()
+	
+	#if !music_sfx.is_playing():
+		#music_sfx.play()
+	#
+	if !_resume_music() and !music_sfx.is_playing():
+		music_sfx.play()
+	
+	if crank_meter >= crank_target:
+		_on_finished_crank_completion()
+
+
+func _reverse_crank(delta) -> void:
+	if crank_cooldown_timer.is_stopped() and crank_meter < crank_target and crank_meter > 0 and !Input.is_action_pressed("interact"):
+		print("reversing crank")
+		_deplete_crank_meter(delta)
+		_do_reverse_tween()
+		_set_stopped_time()
+		_count_elapsed(delta)
+
+func _resume_music() -> bool:
+	if floor(stopped_time) and !music_sfx.is_playing():
+		print('resumed')
+		music_sfx.seek(clampf(stopped_time - time_elapsed_paused, 0, stopped_time))
+		stopped_time = 0
+		time_elapsed_paused = 0
+		return true
+	return false
+
+func _set_stopped_time() -> void:
+	if floor(stopped_time):
+		return
+	#print(stopped_time)
+	stopped_time = music_sfx.get_playback_position()
+	music_sfx.stop()
+
+func _count_elapsed(delta) -> void:
+	time_elapsed_paused += delta
+
+func _deplete_crank_meter(delta) -> void:
+	crank_meter = clamp(crank_meter-0.7 * delta, 0, 100)
+
+func _increase_crank_meter() -> void:
+	crank_meter = min(crank_meter +  0.07 , crank_target)
+
+func _do_reverse_tween() -> void:
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(
 		crank_obj,
 		"rotation:x",
 		crank_obj.rotation.x - deg_to_rad(70),
 		1
 	)
 
-func crank() -> void:
-	if crank_meter >= crank_target:
-		return
-	
-	crank_meter = min(crank_meter +  0.07 , crank_target)
-	
+func _do_crank_tween() -> void:
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
@@ -43,8 +93,8 @@ func crank() -> void:
 		0.7
 	)
 
-	if crank_meter >= crank_target:
-		_on_finished_crank_completion()
-
 func _on_finished_crank_completion() -> void:
 	animation_player.play("open")
+	music_sfx.stop()
+	music_sfx.stream = JACK_IN_THE_BOX_OPEN
+	music_sfx.play()
