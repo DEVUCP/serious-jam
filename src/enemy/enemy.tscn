@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cjsiiu8qdchwb" path="res://src/enemy/enemy.gd" id="1_6j2al"]
 [ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="2_ig63i"]
 [ext_resource type="AudioStream" uid="uid://ddc2qpeee18fm" path="res://assets/sounds/dirt_footsteps_run.mp3" id="2_xso4u"]
+[ext_resource type="AudioStream" uid="uid://50pj53ajonrx" path="res://assets/sounds/monkey_screech.mp3" id="4_t1xhc"]
+[ext_resource type="PackedScene" uid="uid://dkeycwqnlgee7" path="res://assets/models/creature_2.gltf" id="5_h4y1u"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_riqys"]
 
@@ -29,6 +31,7 @@ script = ExtResource("1_6j2al")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=812830582]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8958132, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_riqys")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=390270427]
@@ -44,6 +47,7 @@ collision_mask = 5
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=685764003]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3934697, -0.3779986)
+visible = false
 mesh = SubResource("CapsuleMesh_bhunq")
 
 [node name="InvestigatingCooldown" type="Timer" parent="." unique_id=1435264705]
@@ -52,6 +56,7 @@ one_shot = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=724846289]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39275, 0)
+visible = false
 spot_range = 7.937
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1290362176]
@@ -75,10 +80,30 @@ reverb_collision_mask = 4
 audio_occlusion = false
 occlusion_strength = 0.0
 occlusion_collision_mask = 4
-inner_radius = 34.7
-falloff_distance = 92.35000000000001
+inner_radius = 10.0
+falloff_distance = 40.0
 enable_air_absorption = true
 metadata/_custom_type_script = "uid://d0vgcravmqb8m"
 
+[node name="MonkeySounds" type="AudioStreamPlayer3D" parent="." unique_id=994990939]
+stream = ExtResource("4_t1xhc")
+bus = &"SFX"
+script = ExtResource("2_ig63i")
+ignore_floor = true
+reverb_collision_mask = 4
+occlusion_collision_mask = 4
+inner_radius = 15.0
+falloff_distance = 50.0
+enable_air_absorption = true
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
+
+[node name="blockbench_export" parent="." unique_id=76210856 instance=ExtResource("5_h4y1u")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="RoamingSFXTimer" type="Timer" parent="." unique_id=1966429087]
+wait_time = 7.0
+autostart = true
+
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="area_entered" from="LightDetectionArea" to="." method="_on_light_detection_area_area_entered"]
+[connection signal="timeout" from="RoamingSFXTimer" to="." method="_on_roaming_sfx_timer_timeout"]
