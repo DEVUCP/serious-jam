@@ -157,6 +157,8 @@ func _cam_transition() -> void:
 		cam_transition_state = camera_transition_states.IN
 
 func _input(event):
+	if is_immune: return
+	
 	if !is_input_allowed():
 		printerr("Player:_input -> Input not allowed")
 		return
@@ -231,6 +233,8 @@ func _sprint(run_speed: float, delta: float, is_moving: bool) -> float:
 	return run_speed
 
 func _physics_process(delta: float) -> void:
+	if is_immune: return
+	
 	if !is_input_allowed():
 		#printerr("Player:_physics_process -> Input not allowed")
 		return
@@ -345,6 +349,9 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(delta: float) -> void:
+	if is_immune: return
+
+	
 	if Input.is_action_pressed("interact"):
 		#print("held")
 		_attempt_interact_with_object()
