@@ -9,6 +9,7 @@ var time_elapsed_paused: float = 0.0
 @onready var animation_player: AnimationPlayer = $blockbench_export/AnimationPlayer
 @onready var music_sfx: SpatialAudioPlayer3D = $MusicSFX
 @onready var key: Node3D = $Key
+@onready var sound_area: Area3D = $SoundArea
 
 const JACK_IN_THE_BOX_OPEN = preload("uid://chi30reeokeef")
 
@@ -36,6 +37,7 @@ func crank() -> void:
 	#
 	if !_resume_music() and !music_sfx.is_playing():
 		music_sfx.play()
+		sound_area.call_deferred("add_sound", music_sfx.stream)
 	
 	if crank_meter >= crank_target:
 		_on_finished_crank_completion()
@@ -64,6 +66,7 @@ func _set_stopped_time() -> void:
 	#print(stopped_time)
 	stopped_time = music_sfx.get_playback_position()
 	music_sfx.stop()
+	sound_area.call_deferred("remove_sound", music_sfx.stream)
 
 func _count_elapsed(delta) -> void:
 	time_elapsed_paused += delta
@@ -99,6 +102,7 @@ func _do_crank_tween() -> void:
 func _on_finished_crank_completion() -> void:
 	animation_player.play("open")
 	music_sfx.stop()
+	sound_area.call_deferred("remove_sound", music_sfx.stream)
 	music_sfx.stream = JACK_IN_THE_BOX_OPEN
 	music_sfx.play()
 
