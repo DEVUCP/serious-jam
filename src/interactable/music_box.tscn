@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://c0fe81n8fcwpo" path="res://assets/models/music_box_0.png" id="3_nlswy"]
 [ext_resource type="AudioStream" uid="uid://cggscbh7jca5j" path="res://assets/sounds/jack_in_the_box_music.mp3" id="4_xuy1t"]
 [ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="5_r526a"]
+[ext_resource type="Script" uid="uid://bqjsxd1xs8ll0" path="res://src/interactable/key.gd" id="6_t18wk"]
+[ext_resource type="PackedScene" uid="uid://spjcc5gbe3cl" path="res://assets/models/key.gltf" id="7_lexcj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bhunq"]
 size = Vector3(1.4356842, 0.8357849, 1)
@@ -169,6 +171,8 @@ _data = {
 &"open": SubResource("Animation_v3eex")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+
 [node name="MusicBox" type="Node3D" unique_id=836771714]
 script = ExtResource("1_lr7nc")
 
@@ -229,4 +233,27 @@ occlusion_collision_mask = 4
 enable_air_absorption = true
 metadata/_custom_type_script = "uid://d0vgcravmqb8m"
 
+[node name="Key" type="Node3D" parent="." unique_id=236443187]
+transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, 0, 0.6472553, -0.13207155)
+visible = false
+script = ExtResource("6_t18wk")
+
+[node name="blockbench_export" parent="Key" unique_id=1181727147 instance=ExtResource("7_lexcj")]
+transform = Transform3D(0.99999976, 0, -3.5527137e-15, 0, 0.99999976, 0, 3.5527137e-15, 0, 0.99999976, -0.20616916, 0, -0.2123303)
+
+[node name="InteractArea" type="Area3D" parent="Key" unique_id=1412543786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45859742, 0)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+monitorable = false
+script = ExtResource("1_658gw")
+metadata/_custom_type_script = "uid://bee7wobtehwtp"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Key/InteractArea" unique_id=1739548191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15778795)
+shape = SubResource("SphereShape3D_g4v7s")
+
 [connection signal="interacted_with" from="InteractArea" to="." method="_on_interact_area_interacted_with"]
+[connection signal="animation_finished" from="blockbench_export/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="interacted_with" from="Key/InteractArea" to="Key" method="_on_interact_area_interacted_with"]
