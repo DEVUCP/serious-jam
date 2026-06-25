@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://dy2csty78ky26"]
+
+[ext_resource type="Script" uid="uid://k2x1mi0dahnd" path="res://src/enemy/hearing_enemy.gd" id="1_bolxj"]
+[ext_resource type="AudioStream" uid="uid://ddc2qpeee18fm" path="res://assets/sounds/dirt_footsteps_run.mp3" id="1_wnjfx"]
+[ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="2_bolxj"]
+[ext_resource type="AudioStream" uid="uid://50pj53ajonrx" path="res://assets/sounds/monkey_screech.mp3" id="3_a0mh5"]
+[ext_resource type="PackedScene" uid="uid://dkeycwqnlgee7" path="res://assets/models/creature_2.gltf" id="4_a4v8l"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6f8o3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qr0ht"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 3.55
+
+[sub_resource type="SphereMesh" id="SphereMesh_6f8o3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bhunq"]
+radius = 16.0
+
+[node name="HearingEnemy" type="CharacterBody3D" unique_id=448364292]
+script = ExtResource("1_bolxj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=390270427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8967755, 0)
+shape = SubResource("CapsuleShape3D_6f8o3")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=800995589]
+
+[node name="InvestigatingCooldown" type="Timer" parent="." unique_id=1435264705]
+wait_time = 5.0
+one_shot = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=724846289]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39275, 0)
+visible = false
+spot_range = 7.937
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1290362176]
+top_level = true
+material_override = SubResource("StandardMaterial3D_qr0ht")
+mesh = SubResource("SphereMesh_6f8o3")
+
+[node name="FootstepSFX" type="AudioStreamPlayer3D" parent="." unique_id=83427751]
+stream = ExtResource("1_wnjfx")
+bus = &"SFX"
+script = ExtResource("2_bolxj")
+reverb_collision_mask = 4
+audio_occlusion = false
+occlusion_strength = 0.0
+occlusion_collision_mask = 4
+inner_radius = 10.0
+falloff_distance = 40.0
+enable_air_absorption = true
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
+
+[node name="MonkeySounds" type="AudioStreamPlayer3D" parent="." unique_id=994990939]
+stream = ExtResource("3_a0mh5")
+bus = &"SFX"
+script = ExtResource("2_bolxj")
+ignore_floor = true
+reverb_collision_mask = 4
+occlusion_collision_mask = 4
+inner_radius = 15.0
+falloff_distance = 50.0
+enable_air_absorption = true
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
+
+[node name="blockbench_export" parent="." unique_id=76210856 instance=ExtResource("4_a4v8l")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="RoamingSFXTimer" type="Timer" parent="." unique_id=1966429087]
+wait_time = 7.0
+autostart = true
+
+[node name="SoundDetectionArea" type="Area3D" parent="." unique_id=1786646376]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoundDetectionArea" unique_id=224148852]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0198202, 0)
+shape = SubResource("SphereShape3D_bhunq")
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="timeout" from="RoamingSFXTimer" to="." method="_on_roaming_sfx_timer_timeout"]
