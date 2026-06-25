@@ -25,6 +25,7 @@ signal camera_finished_transition
 
 @onready var stamina_bar_left: ProgressBar = $neck/Camera3D/HUD/SubViewport/Control/StaminaBar/StaminaBarLeft
 @onready var stamina_bar_right: ProgressBar = $neck/Camera3D/HUD/SubViewport/Control/StaminaBar/StaminaBarRight
+@onready var sound_area: Area3D = $SoundArea
 
 var _mouse_input : bool = false
 var _mouse_rotation : Vector3
@@ -60,6 +61,9 @@ var input_capture : input_capture_modes = input_capture_modes.PLAYER_CAPTURED
 
 func get_flashlight() -> Node3D:
 	return flashlight
+
+func get_sound_area() -> Node3D:
+	return sound_area
 
 func get_light_detection_factor() -> float:
 	return flashlight.get_light_level() / 2.0
