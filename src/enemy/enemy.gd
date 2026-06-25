@@ -14,6 +14,7 @@ extends CharacterBody3D
 @onready var footstep_sfx: SpatialAudioPlayer3D = $FootstepSFX
 @onready var monkey_sounds: SpatialAudioPlayer3D = $MonkeySounds
 @onready var roaming_sfx_timer: Timer = $RoamingSFXTimer
+@onready var animation_player: AnimationPlayer = $EnemyModel/AnimationPlayer
 
 const SPEED: float = 235.0
 var investigating_sfx: Resource = preload("res://assets/sounds/monkey_investigate.mp3")
@@ -61,9 +62,9 @@ func update_state(new_state: states) -> void:
 
 func _physics_process(delta: float) -> void:
 	#print(states.keys()[state])
-	
 	velocity = Vector3.ZERO
-	
+	if animation_player.current_animation == "investigating":
+		return
 	_looking()
 	_update_detection_range()
 	
@@ -77,6 +78,8 @@ func _physics_process(delta: float) -> void:
 	var next_nav_point = _handle_movement(delta)
 	_face_move_direction(next_nav_point)
 	_do_footstep_sounds()
+	if (velocity.x > 0.2 or velocity.z > 0.2) and !animation_player.is_playing():
+		animation_player.play("running")
 	move_and_slide()
 
 ## Handles movement of body to next poisition 
@@ -228,6 +231,9 @@ func do_state_action():
 			chase()
 
 func _on_navigation_agent_3d_target_reached() -> void:
+	if state == states.investigating:
+		animation_player.stop()
+		animation_player.play("investigating")
 	do_state_action()
 
 func _on_light_detection_area_area_entered(area: Area3D) -> void:
