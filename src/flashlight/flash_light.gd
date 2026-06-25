@@ -9,6 +9,7 @@ const DRAIN_RATE: float = 12.0 # per second
 @onready var crank_sfx: SpatialAudioPlayer3D = $CrankSFX
 @onready var crank_cooldown: Timer = $CrankCooldown
 @onready var flicker_sfx: SpatialAudioPlayer3D = $FlickerSFX
+@onready var sound_area: Area3D = get_parent().get_parent().get_parent().get_parent().get_child(10)
 
 var crank_meter: float = 0
 var crank_rotation_target: float = 0.0
@@ -60,6 +61,8 @@ func crank_flashlight(delta: float) -> void:
 	
 	if crank_cooldown.is_stopped():
 		crank_sfx.play()
+		sound_area.call_deferred("add_sound", crank_sfx.stream)
+
 	crank_cooldown.start()
 
 	var tween = create_tween()
@@ -77,4 +80,5 @@ func _on_flicker_cooldown_timeout() -> void:
 
 
 func _on_crank_cooldown_timeout() -> void:
+	sound_area.call_deferred("remove_sound", crank_sfx.stream)	
 	crank_sfx.stop()

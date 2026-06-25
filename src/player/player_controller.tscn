@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="5_dmwdg"]
 [ext_resource type="AudioStream" uid="uid://bet0l4xojy8fp" path="res://assets/sounds/footsteps_grass.mp3" id="8_dmwdg"]
 [ext_resource type="Script" uid="uid://bxb0s8odw0k4l" path="res://src/player/footsteps.gd" id="8_gwvns"]
+[ext_resource type="Script" uid="uid://bxgfyo4nkmet4" path="res://src/player/sound_area.gd" id="10_h0ep3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fqqb2"]
 
@@ -113,6 +114,8 @@ size = Vector3(1.0476909, 0.535, 1.0150757)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kxctt"]
 size = Vector3(1.0773926, 0.54248047, 1.020874)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bhunq"]
 
 [node name="PlayerController" type="CharacterBody3D" unique_id=698889221]
 collision_mask = 4
@@ -315,6 +318,20 @@ current = true
 wait_time = 2.0
 one_shot = true
 
+[node name="SoundArea" type="Area3D" parent="." unique_id=1382770982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.827882, 0)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_h0ep3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoundArea" unique_id=130853651]
+shape = SubResource("SphereShape3D_bhunq")
+debug_color = Color(0.033818975, 0, 0.8577128, 1)
+
+[node name="RefreshAreaTimer" type="Timer" parent="SoundArea" unique_id=1344367034]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="body_entered" from="neck/Camera3D/HandObjectDetector" to="neck/Camera3D/Hand" method="_on_hand_object_detector_body_entered"]
 [connection signal="body_exited" from="neck/Camera3D/HandObjectDetector" to="neck/Camera3D/Hand" method="_on_hand_object_detector_body_exited"]
 [connection signal="area_entered" from="neck/Camera3D/InteractArea" to="neck/Camera3D/InteractArea" method="_on_area_entered"]
@@ -324,3 +341,4 @@ one_shot = true
 [connection signal="body_shape_exited" from="LeanCollisionAreaLeft" to="LeanCollisionAreaLeft" method="_on_body_shape_exited"]
 [connection signal="body_shape_entered" from="LeanCollisionAreaRight" to="LeanCollisionAreaRight" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="LeanCollisionAreaRight" to="LeanCollisionAreaRight" method="_on_body_shape_exited"]
+[connection signal="timeout" from="SoundArea/RefreshAreaTimer" to="SoundArea" method="_on_refresh_area_timer_timeout"]
