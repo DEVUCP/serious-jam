@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="5_r526a"]
 [ext_resource type="Script" uid="uid://bqjsxd1xs8ll0" path="res://src/interactable/key.gd" id="6_t18wk"]
 [ext_resource type="PackedScene" uid="uid://spjcc5gbe3cl" path="res://assets/models/key.gltf" id="7_lexcj"]
+[ext_resource type="Script" uid="uid://bxgfyo4nkmet4" path="res://src/player/sound_area.gd" id="8_lexcj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bhunq"]
 size = Vector3(1.4356842, 0.8357849, 1)
@@ -173,6 +174,8 @@ _data = {
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_7pqgg"]
+
 [node name="MusicBox" type="Node3D" unique_id=836771714]
 script = ExtResource("1_lr7nc")
 
@@ -254,6 +257,21 @@ metadata/_custom_type_script = "uid://bee7wobtehwtp"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15778795)
 shape = SubResource("SphereShape3D_g4v7s")
 
+[node name="SoundArea" type="Area3D" parent="." unique_id=305795644]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.827882, 0)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("8_lexcj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoundArea" unique_id=65437031]
+shape = SubResource("SphereShape3D_7pqgg")
+debug_color = Color(0.033818975, 0, 0.8577128, 1)
+
+[node name="RefreshAreaTimer" type="Timer" parent="SoundArea" unique_id=1236859678]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="interacted_with" from="InteractArea" to="." method="_on_interact_area_interacted_with"]
 [connection signal="animation_finished" from="blockbench_export/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="interacted_with" from="Key/InteractArea" to="Key" method="_on_interact_area_interacted_with"]
+[connection signal="timeout" from="SoundArea/RefreshAreaTimer" to="SoundArea" method="_on_refresh_area_timer_timeout"]

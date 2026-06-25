@@ -223,7 +223,7 @@ func _stamina_bar(green_shift: float, delta: float) -> void:
 	stamina_bar_left.get_theme_stylebox("fill").set("bg_color", new_color)
 
 func _sprint(run_speed: float, delta: float, is_moving: bool) -> float:
-	if Input.is_action_pressed("run") and stamina >= 1 and is_moving and not Input.is_action_pressed("lean_left") and not Input.is_action_pressed("lean_right"):
+	if Input.is_action_pressed("run") and stamina >= 1 and is_moving and !Input.is_action_pressed("slow_walk") and not Input.is_action_pressed("lean_left") and not Input.is_action_pressed("lean_right"):
 		run_speed = SPRINT_SPEED_FACTOR
 		_stamina_deplete(delta)
 		footsteps.set_stream(true)
@@ -254,9 +254,11 @@ func _physics_process(delta: float) -> void:
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	RUN_SPEED = _sprint(RUN_SPEED, delta, direction != Vector3.ZERO)
-	
+	if Input.is_action_pressed("slow_walk"):
+		RUN_SPEED = 0.5
+		
 	if direction:
-		velocity.x = direction.x * SPEED * RUN_SPEED
+		velocity.x = direction.x * SPEED * RUN_SPEED 
 		velocity.z = direction.z * SPEED * RUN_SPEED
 		
 	else:
@@ -275,8 +277,11 @@ func _physics_process(delta: float) -> void:
 	var leaning = _handle_leaning()
 	
 	if (input_dir.y > 0 or input_dir.y < 0) and not leaning:
-		_handle_headbobbing(RUN_SPEED)
-		footsteps.call_deferred("play_footstep")
+		if Input.is_action_pressed("slow_walk"):
+			footsteps.call_deferred("stop_footstep")
+		else:
+			_handle_headbobbing(RUN_SPEED)
+			footsteps.call_deferred("play_footstep")
 		#print($neck.position.y)
 	else:
 		footsteps.call_deferred("stop_footstep")
