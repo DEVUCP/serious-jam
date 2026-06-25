@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c3fomx24faxpb"]
+
+[ext_resource type="PackedScene" uid="uid://dgfpkbk6yfjjg" path="res://assets/models/cart_cage.gltf" id="1_wabkt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(1, 1.1343994, 1)
+
+[node name="CartCage" type="Node3D" unique_id=1511341321]
+
+[node name="blockbench_export" parent="." unique_id=391430811 instance=ExtResource("1_wabkt")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=565592601]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1840075460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5328003, 0)
+shape = SubResource("BoxShape3D_g4v7s")

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b0wg88yrglv3a"]
+
+[ext_resource type="PackedScene" uid="uid://b31wmjd8iyqm" path="res://assets/models/rock.gltf" id="1_rtycb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n14sv"]
+size = Vector3(1, 0.90000004, 1.1)
+
+[node name="Rock" type="Node3D" unique_id=573348540]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2091349218]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=290092115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35000002, 0.050000012)
+shape = SubResource("BoxShape3D_n14sv")
+
+[node name="blockbench_export" parent="." unique_id=425731476 instance=ExtResource("1_rtycb")]

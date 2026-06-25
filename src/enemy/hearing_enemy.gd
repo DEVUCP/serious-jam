@@ -219,7 +219,7 @@ func on_sound_detected() -> void:
 		update_state(states.investigating)
 		
 func _on_jumpscare_area_body_entered(body: Node3D) -> void:
-	if not body is CharacterBody3D: return
+	if body != player: return
 
 	$AnimationPlayer.play("jump_scare")
 	body.is_immune = true

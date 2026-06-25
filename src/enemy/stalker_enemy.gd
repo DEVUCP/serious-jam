@@ -44,7 +44,7 @@ func set_state(new_state : states) -> void:
 
 func _ready() -> void:
 	randomize()
-	#visible = false
+	visible = false
 	initialize_ai()
 	
 	$DefaultEnemyModel.visible = false
@@ -147,6 +147,7 @@ func do_state_action():
 		states.chasing:
 			chase()
 		states.waiting:
+			print("IM WAITING")
 			wait()
 		states.running_away:
 			run_away()
@@ -189,8 +190,8 @@ func _next_stalking_stage() -> void:
 	stalking_stage +=1
 	stalk()
 
-func _on_player_detection_area_body_entered(_body: Node3D) -> void:
-	if state == states.roaming:
+func _on_player_detection_area_body_entered(body: Node3D) -> void:
+	if state == states.roaming and body == player:
 		_initiate_stalking()
 
 
@@ -229,7 +230,7 @@ func _on_waiting_timer_timeout() -> void:
 	_initiate_stalking()
 	
 func _on_jumpscare_area_body_entered(body: Node3D) -> void:
-	if not body is CharacterBody3D: return
+	if body != player: return
 	
 	left_eye.visible = false
 	right_eye.visible = false
