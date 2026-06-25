@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bulcetb8rqt3i"]
+
+[ext_resource type="PackedScene" uid="uid://spjcc5gbe3cl" path="res://assets/models/key.gltf" id="1_0ew8i"]
+[ext_resource type="Script" uid="uid://bqjsxd1xs8ll0" path="res://src/interactable/key.gd" id="1_arxn4"]
+[ext_resource type="Script" uid="uid://bee7wobtehwtp" path="res://src/interactable/interact_area.gd" id="2_hfb4l"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+
+[node name="Key" type="Node3D" unique_id=236443187]
+script = ExtResource("1_arxn4")
+
+[node name="blockbench_export" parent="." unique_id=1181727147 instance=ExtResource("1_0ew8i")]
+
+[node name="InteractArea" type="Area3D" parent="." unique_id=1412543786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45859742, 0)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_hfb4l")
+metadata/_custom_type_script = "uid://bee7wobtehwtp"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea" unique_id=1739548191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15778795)
+shape = SubResource("SphereShape3D_g4v7s")
+
+[connection signal="interacted_with" from="InteractArea" to="." method="_on_interact_area_interacted_with"]
