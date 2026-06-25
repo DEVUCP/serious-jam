@@ -40,10 +40,11 @@ var state: states
 func set_state(new_state : states) -> void:
 	state = new_state
 
-
 func _ready() -> void:
 	randomize()
 	initialize_ai()
+	
+	$DefaultEnemyModel.visible = false
 
 ## Initilizes [member player], [member nav_region], [member ray_cast_3d.target_position.z] and sets initial [member state] to [member states.ROAMING]
 func initialize_ai() -> void:
@@ -62,6 +63,9 @@ func update_state(new_state: states) -> void:
 
 func _physics_process(delta: float) -> void:
 	#print(states.keys()[state])
+	
+	if player.is_immune: return
+	
 	velocity = Vector3.ZERO
 	if animation_player.current_animation == "investigating":
 		return
@@ -257,3 +261,13 @@ func _is_player_lighting_me() -> void:
 func _on_roaming_sfx_timer_timeout() -> void:
 	if state == states.roaming:
 		_play_state_sound(roaming_sfx)
+
+func _on_jumpscare_area_body_entered(body: Node3D) -> void:
+	if not body is CharacterBody3D: return
+	$AnimationPlayer.play("jump_scare")
+	body.is_immune = true
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name != "jump_scare": return
+	
+	get_tree().reload_current_scene()

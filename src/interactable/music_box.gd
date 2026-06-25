@@ -1,14 +1,17 @@
 extends Node3D
 
 var crank_meter: float = 0.0
-
 var stopped_time: float = 0.0
 var time_elapsed_paused: float = 0.0
+
 @onready var crank_obj: Node3D = $blockbench_export/crank
 @onready var crank_cooldown_timer: Timer = $CrankCooldownTimer
 @onready var animation_player: AnimationPlayer = $blockbench_export/AnimationPlayer
 @onready var music_sfx: SpatialAudioPlayer3D = $MusicSFX
+@onready var key: Node3D = $Key
+
 const JACK_IN_THE_BOX_OPEN = preload("uid://chi30reeokeef")
+
 
 @export var crank_target: int = 13.5
 var playback_position: float = 0.0
@@ -98,3 +101,11 @@ func _on_finished_crank_completion() -> void:
 	music_sfx.stop()
 	music_sfx.stream = JACK_IN_THE_BOX_OPEN
 	music_sfx.play()
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name != "open": return
+	key.visible = true
+	await get_tree().create_timer(1).timeout
+	key.get_child(1).monitoring = true
+	key.get_child(1).monitorable = true
+	

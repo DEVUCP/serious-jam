@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="2_ig63i"]
 [ext_resource type="AudioStream" uid="uid://ddc2qpeee18fm" path="res://assets/sounds/dirt_footsteps_run.mp3" id="2_xso4u"]
 [ext_resource type="AudioStream" uid="uid://50pj53ajonrx" path="res://assets/sounds/monkey_screech.mp3" id="4_t1xhc"]
+[ext_resource type="AudioStream" uid="uid://38j6rea3yllh" path="res://assets/sounds/jump_scare.mp3" id="6_ll8s5"]
 [ext_resource type="Texture2D" uid="uid://buern8g0uvbd3" path="res://assets/models/creature_2_0.png" id="6_uydu6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0g7kt"]
@@ -296,8 +297,282 @@ emission_energy_multiplier = 3.55
 radius = 0.8442383
 height = 3.0776978
 
+[sub_resource type="Animation" id="Animation_pql7r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DefaultEnemyModel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemyModel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.4989896, -0.9629244)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera3D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.1415925, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("JumpscareSpotlight:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("JumpscareAudio:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fuy6v"]
+resource_name = "jump_scare"
+length = 2.7333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DefaultEnemyModel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemyModel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.016666668, 0.16666667, 0.33333334, 0.5, 0.71666664, 0.861264, 1.011264, 1.1779306, 1.3445973, 1.561264, 1.6666666, 1.8166666, 1.9833333, 2.1499999, 2.3666666, 2.5112638, 2.661264, 2.8279305, 2.9945974, 3.2112641, 3.3333333, 3.4833333, 3.6499999, 3.8166666, 4.0333333, 4.177931, 4.3279305, 4.4945974, 4.661264, 4.8779306),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9113834), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9113834), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9113834), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9113834), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9113834), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9113834), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera3D:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.016666668, 0.15999998, 0.32333335, 0.5, 0.71, 0.861264, 1.0045973, 1.1679306, 1.3445973, 1.5545974, 1.6666666, 1.81, 1.9733334, 2.1499999, 2.36, 2.5112638, 2.6545973, 2.8179307, 2.9945974, 3.2045975, 3.3333333, 3.4766665, 3.6399999, 3.8166666, 4.0266666, 4.177931, 4.321264, 4.484597, 4.661264, 4.871264),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0.0869082, -3.12086, -0.13721877), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0.0869082, -3.12086, -0.13721877), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0.0869082, -3.12086, -0.13721877), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0.0869082, -3.12086, -0.13721877), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0.0869082, -3.12086, -0.13721877), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0.0869082, -3.12086, -0.13721877), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("JumpscareSpotlight:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.49596116, 0.6, 0.70000005, 0.8, 0.90000004, 1, 1.0959611, 1.2, 1.3000001, 1.4000001, 1.5, 1.6, 1.6959612, 1.7666667, 1.8666667, 1.9666667, 2.0666666, 2.1666667, 2.2666667, 2.3626277, 2.4666667, 2.5666666, 2.6666667, 2.7666667, 2.8666668, 2.962628, 3.0666666, 3.1666667, 3.266667, 3.3666668, 3.4666667, 3.5626278, 3.6333332, 3.7333333, 3.8333333, 3.9333334, 4.0333333, 4.133333, 4.2292943, 4.3333335, 4.4333334, 4.5333333, 4.633333, 4.7333336, 4.829294, 4.9333334, 5.0333333, 5.133333, 5.2333336, 5.3333335, 5.4292946, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("JumpscareAudio:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.722957),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_njrcb"]
+_data = {
+&"RESET": SubResource("Animation_pql7r"),
+&"jump_scare": SubResource("Animation_fuy6v")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bhunq"]
+radius = 1.4737868
+
 [node name="Enemy" type="CharacterBody3D" unique_id=448364292]
+collision_layer = 8
 script = ExtResource("1_6j2al")
+
+[node name="DefaultEnemyModel" type="Node3D" parent="." unique_id=754706319]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.30963087, 0)
+
+[node name="armature" type="Node3D" parent="DefaultEnemyModel" unique_id=275656387]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="DefaultEnemyModel/armature" unique_id=900685689]
+bones/0/name = "bone"
+bones/0/parent = -1
+bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0625, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(0, 2.875, 0)
+bones/0/rotation = Quaternion(0, 0, 0, 1)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/name = "bone2"
+bones/1/parent = 0
+bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8125, 0)
+bones/1/enabled = true
+bones/1/position = Vector3(0, 0.6875, 0)
+bones/1/rotation = Quaternion(-0.108866885, 0, 0, 0.9940564)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/name = "bone3"
+bones/2/parent = 1
+bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1875, 0)
+bones/2/enabled = true
+bones/2/position = Vector3(0, 1.1875, 0)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/name = "bone8"
+bones/3/parent = 1
+bones/3/rest = Transform3D(0.052336037, 0.99862957, 0, -0.99862957, 0.052336037, 0, 0, 0, 1, 0.4375, 1.203125, 0.03125)
+bones/3/enabled = true
+bones/3/position = Vector3(0.4375, 1.203125, 0.03125)
+bones/3/rotation = Quaternion(0, 0, -0.997564, 0.0697565)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/name = "bone10"
+bones/4/parent = 3
+bones/4/rest = Transform3D(0.99939084, 0.034899496, 0, -0.034899496, 0.99939084, 0, 0, 0, 1, 0, 1.109375, 0)
+bones/4/enabled = true
+bones/4/position = Vector3(0, 1.109375, 0)
+bones/4/rotation = Quaternion(0, 0, -0.017452406, 0.9998477)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/name = "bone9"
+bones/5/parent = 1
+bones/5/rest = Transform3D(0.052336037, -0.99862957, 0, 0.99862957, 0.052336037, 0, 0, 0, 1, -0.4375, 1.203125, 0.03125)
+bones/5/enabled = true
+bones/5/position = Vector3(-0.4375, 1.203125, 0.03125)
+bones/5/rotation = Quaternion(0, 0, 0.995805, 0.091501564)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/name = "bone11"
+bones/6/parent = 5
+bones/6/rest = Transform3D(0.99939084, -0.034899496, 0, 0.034899496, 0.99939084, 0, 0, 0, 1, 0, 1.109375, 0)
+bones/6/enabled = true
+bones/6/position = Vector3(0, 1.109375, 0)
+bones/6/rotation = Quaternion(0, 0, 0.017452406, 0.9998477)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/name = "leftthigh"
+bones/7/parent = 0
+bones/7/rest = Transform3D(1, 0, 0, 0, -0.9961947, 0.087155744, 0, -0.087155744, -0.9961947, -0.3125, 0.25, 0)
+bones/7/enabled = true
+bones/7/position = Vector3(-0.3125, 0.25, 0)
+bones/7/rotation = Quaternion(0.9786856, -0.19467191, -0.012759464, -0.064145684)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/name = "leftleg"
+bones/8/parent = 7
+bones/8/rest = Transform3D(1, -3.6787923e-18, 1.5772653e-18, 3.145214e-18, 0.9659258, 0.25881904, -2.4756629e-18, -0.25881904, 0.9659258, 0, 1.65625, -0.078125)
+bones/8/enabled = true
+bones/8/position = Vector3(0, 1.65625, -0.078125)
+bones/8/rotation = Quaternion(-0.10721372, -0.018905448, -0.1726145, 0.9789546)
+bones/8/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/9/name = "rightthigh"
+bones/9/parent = 0
+bones/9/rest = Transform3D(1, 0, 0, 0, -0.9961947, 0.087155744, 0, -0.087155744, -0.9961947, 0.3125, 0.25, 0)
+bones/9/enabled = true
+bones/9/position = Vector3(0.3125, 0.25, 0)
+bones/9/rotation = Quaternion(0.9829628, 0.12940952, 0.017038168, -0.12941036)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/name = "rightleg"
+bones/10/parent = 9
+bones/10/rest = Transform3D(1, 3.6787923e-18, -1.5772653e-18, -3.145214e-18, 0.9659258, 0.25881904, 2.4756629e-18, -0.25881904, 0.9659258, 0, 1.65625, -0.078125)
+bones/10/enabled = true
+bones/10/position = Vector3(0, 1.65625, -0.078125)
+bones/10/rotation = Quaternion(-0.3214395, -6.666419e-19, -1.8870368e-18, 0.9469301)
+bones/10/scale = Vector3(1, 0.99999994, 0.99999994)
+
+[node name="armature" type="MeshInstance3D" parent="DefaultEnemyModel/armature/Skeleton3D" unique_id=2003039474]
+mesh = SubResource("ArrayMesh_kr8xk")
+skin = SubResource("Skin_eyqit")
+skeleton = NodePath("..")
 
 [node name="EnemyModel" type="Node3D" parent="." unique_id=2047435473]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.3, 0)
@@ -316,36 +591,36 @@ bones/1/name = "bone2"
 bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8125, 0)
 bones/1/enabled = true
-bones/1/position = Vector3(0, 0.875, 0)
-bones/1/rotation = Quaternion(0, -0.043619387, 0, 0.99904823)
+bones/1/position = Vector3(0, 0.6875, 0)
+bones/1/rotation = Quaternion(-0.108866885, 0, 0, 0.9940564)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "bone3"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1875, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 1.1875, 0)
-bones/2/rotation = Quaternion(0, -0.8064446, 0, 0.59130967)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "bone8"
 bones/3/parent = 1
 bones/3/rest = Transform3D(0.052336037, 0.99862957, 0, -0.99862957, 0.052336037, 0, 0, 0, 1, 0.4375, 1.203125, 0.03125)
 bones/3/enabled = true
 bones/3/position = Vector3(0.4375, 1.203125, 0.03125)
-bones/3/rotation = Quaternion(0.35606775, -0.0041970755, -0.7064476, 0.6116616)
+bones/3/rotation = Quaternion(0, 0, -0.997564, 0.0697565)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "bone10"
 bones/4/parent = 3
 bones/4/rest = Transform3D(0.99939084, 0.034899496, 0, -0.034899496, 0.99939084, 0, 0, 0, 1, 0, 1.109375, 0)
 bones/4/enabled = true
 bones/4/position = Vector3(0, 1.109375, 0)
-bones/4/rotation = Quaternion(0, 0, -0.190809, 0.98162717)
+bones/4/rotation = Quaternion(0, 0, -0.017452406, 0.9998477)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "bone9"
 bones/5/parent = 1
 bones/5/rest = Transform3D(0.052336037, -0.99862957, 0, 0.99862957, 0.052336037, 0, 0, 0, 1, -0.4375, 1.203125, 0.03125)
 bones/5/enabled = true
 bones/5/position = Vector3(-0.4375, 1.203125, 0.03125)
-bones/5/rotation = Quaternion(0.4477363, -0.26671252, 0.73387533, 0.43568772)
+bones/5/rotation = Quaternion(0, 0, 0.995805, 0.091501564)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "bone11"
 bones/6/parent = 5
@@ -453,6 +728,33 @@ metadata/_custom_type_script = "uid://d0vgcravmqb8m"
 wait_time = 7.0
 autostart = true
 
+[node name="Camera3D" type="Camera3D" parent="." unique_id=154083876]
+transform = Transform3D(-0.99999994, 0, -1.5099579e-07, 0, 0.99999994, 0, 1.5099579e-07, 0, -0.99999994, 0, 2.4989896, -0.9629244)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1922617655]
+libraries/ = SubResource("AnimationLibrary_njrcb")
+
+[node name="JumpscareSpotlight" type="SpotLight3D" parent="." unique_id=2048546478]
+transform = Transform3D(1, 0, 0, 0, -0.39044815, -0.9206249, 0, 0.9206249, -0.39044815, 0, 0, -1.4372135)
+visible = false
+light_energy = 14.245
+spot_range = 3.24
+spot_attenuation = 0.0
+spot_angle = 17.05
+
+[node name="JumpscareAudio" type="AudioStreamPlayer3D" parent="." unique_id=876313731]
+stream = ExtResource("6_ll8s5")
+pitch_scale = 0.75
+
+[node name="JumpscareArea" type="Area3D" parent="." unique_id=1844034281]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JumpscareArea" unique_id=1579787125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2602096, -0.04314208)
+shape = SubResource("SphereShape3D_bhunq")
+
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="area_entered" from="LightDetectionArea" to="." method="_on_light_detection_area_area_entered"]
 [connection signal="timeout" from="RoamingSFXTimer" to="." method="_on_roaming_sfx_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="JumpscareArea" to="." method="_on_jumpscare_area_body_entered"]

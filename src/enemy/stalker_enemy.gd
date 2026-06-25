@@ -46,6 +46,9 @@ func _ready() -> void:
 	randomize()
 	#visible = false
 	initialize_ai()
+	
+	$DefaultEnemyModel.visible = false
+
 
 ## Initilizes [member player], [member nav_region], [member ray_cast_3d.target_position.z] and sets initial [member state] to [member states.ROAMING]
 func initialize_ai() -> void:
@@ -225,3 +228,15 @@ func _on_stalking_timer_timeout() -> void:
 func _on_waiting_timer_timeout() -> void:
 	_initiate_stalking()
 	
+func _on_jumpscare_area_body_entered(body: Node3D) -> void:
+	if not body is CharacterBody3D: return
+	
+	left_eye.visible = false
+	right_eye.visible = false
+	$AnimationPlayer.play("jump_scare")
+	body.is_immune = true
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name != "jump_scare": return
+	
+	get_tree().reload_current_scene()

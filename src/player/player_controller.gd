@@ -41,7 +41,8 @@ var player_interactable_area
 var notebook_toggled = false
 var bobbing_up = true
 var stamina : float = 100.0
-var current_keys:int = 0
+var current_keys: int = 0
+var is_immune: bool = false
  
 enum camera_transition_states{
 	NO_TRANSITION,
@@ -83,6 +84,10 @@ func set_camera_transition_rotation(new_rot : Vector3) -> void:
 
 func set_player_interactable_object(area) -> void:
 	player_interactable_area = area
+
+func fade_out() -> void:
+	$neck/Camera3D/HUD/AnimationPlayer.play("camera_out")
+	is_immune = true
 
 func _attempt_interact_with_object() -> void:
 	#print("interact attempt")
@@ -152,6 +157,8 @@ func _cam_transition() -> void:
 		cam_transition_state = camera_transition_states.IN
 
 func _input(event):
+	if is_immune: return
+	
 	if !is_input_allowed():
 		printerr("Player:_input -> Input not allowed")
 		return
@@ -215,8 +222,8 @@ func _stamina_bar(green_shift: float, delta: float) -> void:
 	
 	stamina_bar_left.get_theme_stylebox("fill").set("bg_color", new_color)
 
-func _sprint(run_speed: float, delta: float) -> float:
-	if Input.is_action_pressed("run") and stamina >= 1 and not Input.is_action_pressed("lean_left") and not Input.is_action_pressed("lean_right"):
+func _sprint(run_speed: float, delta: float, is_moving: bool) -> float:
+	if Input.is_action_pressed("run") and stamina >= 1 and is_moving and not Input.is_action_pressed("lean_left") and not Input.is_action_pressed("lean_right"):
 		run_speed = SPRINT_SPEED_FACTOR
 		_stamina_deplete(delta)
 		footsteps.set_stream(true)
@@ -226,6 +233,8 @@ func _sprint(run_speed: float, delta: float) -> float:
 	return run_speed
 
 func _physics_process(delta: float) -> void:
+	if is_immune: return
+	
 	if !is_input_allowed():
 		#printerr("Player:_physics_process -> Input not allowed")
 		return
@@ -237,15 +246,15 @@ func _physics_process(delta: float) -> void:
 
 	var RUN_SPEED = 1
 	_stamina_regen(delta)
-	
-	RUN_SPEED = _sprint(RUN_SPEED, delta)
-		
 	#print(stamina)
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	RUN_SPEED = _sprint(RUN_SPEED, delta, direction != Vector3.ZERO)
+	
 	if direction:
 		velocity.x = direction.x * SPEED * RUN_SPEED
 		velocity.z = direction.z * SPEED * RUN_SPEED
@@ -340,6 +349,9 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(delta: float) -> void:
+	if is_immune: return
+
+	
 	if Input.is_action_pressed("interact"):
 		#print("held")
 		_attempt_interact_with_object()
@@ -372,4 +384,7 @@ func _process(delta: float) -> void:
 			print('cam_finished_transition')
 			camera_finished_transition.emit()
 			
-			
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "camera_out":
+		get_tree().change_scene_to_file("res://src/UI/win_page.tscn")

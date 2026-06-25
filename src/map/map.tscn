@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cf1073tlqid6l" path="res://src/map/map_objects/fence.tscn" id="15_b3iwv"]
 [ext_resource type="PackedScene" uid="uid://68od7u1im4ys" path="res://assets/models/ritual_site.gltf" id="15_uvejg"]
 [ext_resource type="PackedScene" uid="uid://c5cnl3aly5hvf" path="res://src/map/map_objects/gate.tscn" id="16_b3iwv"]
+[ext_resource type="PackedScene" uid="uid://bulcetb8rqt3i" path="res://src/interactable/key.tscn" id="18_g8ld4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_b3iwv"]
 panorama = ExtResource("2_e7nxu")
@@ -711,6 +712,12 @@ size = Vector3(0.072064206, 0.2, 0.10688476)
 
 [node name="PlayerController" parent="." unique_id=698889221 instance=ExtResource("5_osvph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.336487, 1.8457716, 119.02955)
+TILT_LOWER_LIMIT = -1.5707963267948966
+TILT_UPPER_LIMIT = 1.5707963267948966
+MOUSE_SENSITIVITY = 0.5
+INTERACT_RANGE = 3.0
+SPRINT_SPEED_FACTOR = 2.0
+STAMINA_PENALTY = 4.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1109885631]
 environment = SubResource("Environment_dacv3")
@@ -2239,6 +2246,9 @@ shape = SubResource("BoxShape3D_d0u6y")
 [node name="fence" type="Node3D" parent="NavigationRegion3D" unique_id=1839320975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 135)
 
+[node name="Gate" parent="NavigationRegion3D/fence" unique_id=535208570 instance=ExtResource("16_b3iwv")]
+transform = Transform3D(-8.9786866e-08, 0, 2, 0, 2, 0, -2.0540838, 0, -8.742278e-08, -13.8, 0, -14.990646)
+
 [node name="Fence" parent="NavigationRegion3D/fence" unique_id=1654036097 instance=ExtResource("15_b3iwv")]
 transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -13.8, 0, -9)
 
@@ -2263,10 +2273,19 @@ transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -13.
 [node name="Fence8" parent="NavigationRegion3D/fence" unique_id=1144312110 instance=ExtResource("15_b3iwv")]
 transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -13.8, 0, -39)
 
-[node name="Gate" parent="NavigationRegion3D/fence" unique_id=535208570 instance=ExtResource("16_b3iwv")]
-transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -13.8, 0, -15)
+[node name="Key" parent="NavigationRegion3D" unique_id=236443187 instance=ExtResource("18_g8ld4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.291197, 0, 115.856316)
+
+[node name="Key2" parent="NavigationRegion3D" unique_id=1236523039 instance=ExtResource("18_g8ld4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.66193, 0, 115.856316)
+
+[node name="Key3" parent="NavigationRegion3D" unique_id=86220661 instance=ExtResource("18_g8ld4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.685125, 0, 115.856316)
+
+[node name="Key4" parent="NavigationRegion3D" unique_id=1292958081 instance=ExtResource("18_g8ld4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.052462, 0, 115.856316)
 
 [node name="Enemy" parent="." unique_id=448364292 instance=ExtResource("2_cti7x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -146.45264, 0, 120.30462)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.975508, 3.8146973e-06, 119.958954)
 player_path = NodePath("../PlayerController")
 nav_region_path = NodePath("../NavigationRegion3D")
