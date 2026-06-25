@@ -263,7 +263,8 @@ func _on_roaming_sfx_timer_timeout() -> void:
 		_play_state_sound(roaming_sfx)
 
 func _on_jumpscare_area_body_entered(body: Node3D) -> void:
-	if not body is CharacterBody3D: return
+	if body != player: return
+	print(body)
 	$AnimationPlayer.play("jump_scare")
 	body.is_immune = true
 
