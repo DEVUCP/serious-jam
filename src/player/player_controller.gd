@@ -215,8 +215,8 @@ func _stamina_bar(green_shift: float, delta: float) -> void:
 	
 	stamina_bar_left.get_theme_stylebox("fill").set("bg_color", new_color)
 
-func _sprint(run_speed: float, delta: float) -> float:
-	if Input.is_action_pressed("run") and stamina >= 1 and not Input.is_action_pressed("lean_left") and not Input.is_action_pressed("lean_right"):
+func _sprint(run_speed: float, delta: float, is_moving: bool) -> float:
+	if Input.is_action_pressed("run") and stamina >= 1 and is_moving and not Input.is_action_pressed("lean_left") and not Input.is_action_pressed("lean_right"):
 		run_speed = SPRINT_SPEED_FACTOR
 		_stamina_deplete(delta)
 		footsteps.set_stream(true)
@@ -237,15 +237,15 @@ func _physics_process(delta: float) -> void:
 
 	var RUN_SPEED = 1
 	_stamina_regen(delta)
-	
-	RUN_SPEED = _sprint(RUN_SPEED, delta)
-		
 	#print(stamina)
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	RUN_SPEED = _sprint(RUN_SPEED, delta, direction != Vector3.ZERO)
+	
 	if direction:
 		velocity.x = direction.x * SPEED * RUN_SPEED
 		velocity.z = direction.z * SPEED * RUN_SPEED
