@@ -1,0 +1,202 @@
+[gd_scene format=3 uid="uid://b645wpw4dvddd"]
+
+[ext_resource type="Script" uid="uid://cb07061ufwfpt" path="res://src/map/map_objects/monkey_plush.gd" id="1_c8n6a"]
+[ext_resource type="PackedScene" uid="uid://c2od1owa218ti" path="res://assets/models/monkey_plushie.gltf" id="1_ujq1o"]
+[ext_resource type="Script" uid="uid://bee7wobtehwtp" path="res://src/interactable/interact_area.gd" id="2_c8n6a"]
+[ext_resource type="AudioStream" uid="uid://38j6rea3yllh" path="res://assets/sounds/jump_scare.mp3" id="3_xoiny"]
+
+[sub_resource type="Animation" id="Animation_pql7r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DefaultEnemyModel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.299, -0.963)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.1415925, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("JumpscareSpotlight:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("JumpscareAudio:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fuy6v"]
+resource_name = "jump_scare"
+length = 2.7333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DefaultEnemyModel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.016666668, 0.16666667, 0.33333334, 0.5, 0.71666664, 0.861264, 1.011264, 1.1779306, 1.3445973, 1.561264, 1.6666666, 1.8166666, 1.9833333, 2.1499999, 2.3666666, 2.5112638, 2.661264, 2.8279305, 2.9945974, 3.2112641, 3.3333333, 3.4833333, 3.6499999, 3.8166666, 4.0333333, 4.177931, 4.3279305, 4.4945974, 4.661264, 4.8779306),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector3(0, 1.399, -0.963), Vector3(0, 1.399, -0.799), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 1.399, -0.911), Vector3(0, 2.4989896, -0.9113834), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9113834), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634), Vector3(0, 2.4989896, -0.9113834), Vector3(0, 2.4989896, -0.9629244), Vector3(0, 2.4989896, -0.79891634)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.016666668, 0.15999998, 0.32333335, 0.5, 0.71, 0.861264, 1.0045973, 1.1679306, 1.3445973, 1.5545974, 1.6666666, 1.81, 1.9733334, 2.1499999, 2.36, 2.5112638, 2.6545973, 2.8179307, 2.9945974, 3.2045975, 3.3333333, 3.4766665, 3.6399999, 3.8166666, 4.0266666, 4.177931, 4.321264, 4.484597, 4.661264, 4.871264),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0.0869082, -3.12086, -0.13721877), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0.0869082, -3.12086, -0.13721877), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0.0869082, -3.12086, -0.13721877), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0.0869082, -3.12086, -0.13721877), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0.0869082, -3.12086, -0.13721877), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597), Vector3(0.0869082, -3.12086, -0.13721877), Vector3(0, -3.1415925, 0), Vector3(-0.08058618, -3.1415925, 0.11963597)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("JumpscareSpotlight:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.49596116, 0.6, 0.70000005, 0.8, 0.90000004, 1, 1.0959611, 1.2, 1.3000001, 1.4000001, 1.5, 1.6, 1.6959612, 1.7666667, 1.8666667, 1.9666667, 2.0666666, 2.1666667, 2.2666667, 2.3626277, 2.4666667, 2.5666666, 2.6666667, 2.7666667, 2.8666668, 2.962628, 3.0666666, 3.1666667, 3.266667, 3.3666668, 3.4666667, 3.5626278, 3.6333332, 3.7333333, 3.8333333, 3.9333334, 4.0333333, 4.133333, 4.2292943, 4.3333335, 4.4333334, 4.5333333, 4.633333, 4.7333336, 4.829294, 4.9333334, 5.0333333, 5.133333, 5.2333336, 5.3333335, 5.4292946, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = false
+tracks/5/path = NodePath("JumpscareAudio:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.722957),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kgb14"]
+_data = {
+&"RESET": SubResource("Animation_pql7r"),
+&"jump_scare": SubResource("Animation_fuy6v")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 1.3000001
+
+[node name="MonkeyPlush" type="Node3D" unique_id=215528610]
+script = ExtResource("1_c8n6a")
+
+[node name="DefaultEnemyModel" parent="." unique_id=1440062828 instance=ExtResource("1_ujq1o")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1284978248]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 1.299, -0.963)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=991218092]
+libraries/ = SubResource("AnimationLibrary_kgb14")
+
+[node name="InteractArea" type="Area3D" parent="." unique_id=1737211330]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_c8n6a")
+metadata/_custom_type_script = "uid://bee7wobtehwtp"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea" unique_id=2012950477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="JumpscareSpotlight" type="SpotLight3D" parent="." unique_id=1155378820]
+transform = Transform3D(1, 0, 0, 0, -0.6154192, -0.7881999, 0, 0.7881999, -0.6154192, 0, 0, -1.1372135)
+visible = false
+light_energy = 14.245
+spot_range = 3.24
+spot_attenuation = 0.0
+spot_angle = 17.05
+
+[node name="JumpscareAudio" type="AudioStreamPlayer3D" parent="." unique_id=1869807740]
+stream = ExtResource("3_xoiny")
+pitch_scale = 0.75
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="interacted_with" from="InteractArea" to="." method="_on_interact_area_interacted_with"]

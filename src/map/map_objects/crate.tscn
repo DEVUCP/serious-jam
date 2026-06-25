@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cqjatbhtiwnkr"]
+
+[ext_resource type="PackedScene" uid="uid://dr8gjp2vg2d0w" path="res://assets/models/cardboardbox.gltf" id="1_elcka"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(1, 0.8, 1)
+
+[node name="Crate" type="Node3D" unique_id=573348540]
+
+[node name="blockbench_export" parent="." unique_id=1353943092 instance=ExtResource("1_elcka")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2091349218]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=290092115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("BoxShape3D_g4v7s")
