@@ -120,12 +120,6 @@ size = Vector3(1.0773926, 0.54248047, 1.020874)
 [node name="PlayerController" type="CharacterBody3D" unique_id=698889221]
 collision_mask = 4
 script = ExtResource("1_1va15")
-TILT_LOWER_LIMIT = null
-TILT_UPPER_LIMIT = null
-MOUSE_SENSITIVITY = null
-INTERACT_RANGE = null
-SPRINT_SPEED_FACTOR = null
-STAMINA_PENALTY = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=755441300]
 visible = false
@@ -184,6 +178,7 @@ mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="neck/Camera3D/HUD/SubViewport/Control" unique_id=594762497]
 modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -340,6 +335,7 @@ one_shot = true
 
 [connection signal="body_entered" from="neck/Camera3D/HandObjectDetector" to="neck/Camera3D/Hand" method="_on_hand_object_detector_body_entered"]
 [connection signal="body_exited" from="neck/Camera3D/HandObjectDetector" to="neck/Camera3D/Hand" method="_on_hand_object_detector_body_exited"]
+[connection signal="animation_finished" from="neck/Camera3D/HUD/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="neck/Camera3D/InteractArea" to="neck/Camera3D/InteractArea" method="_on_area_entered"]
 [connection signal="area_exited" from="neck/Camera3D/InteractArea" to="neck/Camera3D/InteractArea" method="_on_area_exited"]
 [connection signal="set_interactable_area" from="neck/Camera3D/InteractArea" to="." method="_on_interact_area_set_interactable_area"]
