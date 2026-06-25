@@ -41,6 +41,7 @@ var player_interactable_area
 var notebook_toggled = false
 var bobbing_up = true
 var stamina : float = 100.0
+var current_keys:int = 0
  
 enum camera_transition_states{
 	NO_TRANSITION,
@@ -58,6 +59,9 @@ enum input_capture_modes{ # all non "no cam" MUST use the camera (implied)
 
 var cam_transition_state = camera_transition_states.NO_TRANSITION
 var input_capture : input_capture_modes = input_capture_modes.PLAYER_CAPTURED
+
+func take_key() -> void:
+	current_keys +=1
 
 func get_flashlight() -> Node3D:
 	return flashlight
