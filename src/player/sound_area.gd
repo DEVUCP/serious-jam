@@ -7,6 +7,7 @@ const FLASHLIGHT_CRANK_SFX = preload("res://assets/sounds/flashlight_crank_sfx.m
 const AMBIENCE = preload("res://assets/sounds/freesound_community-night-woods-7012.mp3")
 const JACK_IN_THE_BOX_MUSIC = preload("res://assets/sounds/jack_in_the_box_music.mp3")
 const JACK_IN_THE_BOX_OPEN = preload("res://assets/sounds/jack_in_the_box_open.mp3")
+@onready var player_ui: Control = $"../neck/Camera3D/HUD/SubViewport/PlayerUI"
 
 @onready var refresh_area_timer: Timer = $RefreshAreaTimer
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
@@ -29,9 +30,12 @@ func add_sound(sound_file: Resource) -> void:
 		collision_shape_3d.disabled = false
 		
 	collision_shape_3d.shape.radius = min(collision_shape_3d.shape.radius + sounds[sound_file], 115)
+	player_ui.set_sound_level(collision_shape_3d.shape.radius)
 	
 func remove_sound(sound_file: Resource) -> void:
+	if !sounds: return
 	if collision_shape_3d.shape.radius - sounds[sound_file] < 1:
 		collision_shape_3d.disabled = true
 		
 	collision_shape_3d.shape.radius = max(collision_shape_3d.shape.radius - sounds[sound_file], 0.1)
+	player_ui.set_sound_level(collision_shape_3d.shape.radius)
