@@ -6,6 +6,7 @@ const JUMP_VELOCITY = 4.5
 
 signal camera_finished_transition
 
+@export var is_in_tutorial: bool = false
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
 @export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
 @export var MOUSE_SENSITIVITY : float = 0.5 
@@ -283,7 +284,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			_handle_headbobbing(RUN_SPEED)
 			footsteps.call_deferred("play_footstep")
-		#print($neck.position.y)
 	else:
 		footsteps.call_deferred("stop_footstep")
 	
@@ -303,12 +303,9 @@ func _handle_headbobbing(run_speed):
 	
 	if bobbing_up:
 		$neck.position.y = lerp($neck.position.y, 0.2, bob_speed)
-		#footsteps.call_deferred("play_footstep")
-		#print("bobbing up")
 	else:
 		$neck.position.y = lerp($neck.position.y, -0.1, bob_speed)
-		#footsteps.call_deferred("play_footstep")
-		#print("bobbing down")
+
 
 func _handle_leaning() -> bool: 
 	var lean_colliding_left = $LeanCollisionAreaLeft.get_colliding()
@@ -339,18 +336,6 @@ func _handle_leaning() -> bool:
 		
 		return false
 
-#
-#func door_interact(newpos : Vector3) -> void:
-	#var localized_tp = to_local(newpos)
-	#$neck/Camera3D/HUD/AnimationPlayer.play("camera_out")
-	#translate(localized_tp)
-	#$neck/Camera3D/HUD/AnimationPlayer.play("camera_in")
-	#print("zamnn shawty")
-
-#func toggle_flashlight() -> void:
-	#flashlight.visible = !flashlight.visible
-	#$SFXManager.call_deferred("play_flashlight_sfx")
-
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -363,34 +348,28 @@ func _process(delta: float) -> void:
 		_attempt_interact_with_object()
 	if cam_transition_state == camera_transition_states.IN:
 		cam.position = lerp(cam.position, _cam_transition_pos, 0.05)
-		#cam.rotation = lerp(cam.rotation, _cam_transition_rot, 0.2)
 		var snapped_cam_pos = Vector3(snapped(cam.position.x,0.1), snapped(cam.position.y,0.1), snapped(cam.position.z,0.1))
 		var snapped_target_pos = Vector3(snapped(_cam_transition_pos.x,0.1), snapped(_cam_transition_pos.y,0.1), snapped(_cam_transition_pos.z,0.1))
-		#var snapped_cam_rot = Vector3(snapped(cam.rotation.x,0.001), snapped(cam.rotation.y,0.001), snapped(cam.rotation.z,0.001))
-		#var snapped_target_rot = Vector3(snapped(_cam_transition_rot.x,0.001), snapped(_cam_transition_rot.y,0.001), snapped(_cam_transition_rot.z,0.001))
-		
-		#print(snapped_cam, snapped_target)
+
 		if snapped_cam_pos == snapped_target_pos:
 			cam_transition_state = camera_transition_states.NO_TRANSITION
 			cam.position = _cam_transition_pos
-			#cam.rotation = _cam_transition_rot
 			camera_finished_transition.emit()
 			print('cam_finished_transition')
 	elif cam_transition_state == camera_transition_states.OUT:
 		cam.position = lerp(cam.position, Vector3(0.0,0.7,0.0), 0.1)
-		#cam.rotation = lerp(cam.rotation, Vector3.ZERO, 0.2)
 		var snapped_cam_pos = Vector3(snapped(cam.position.x,0.1), snapped(cam.position.y,0.1), snapped(cam.position.z,0.1))
 		var snapped_target_pos = Vector3(0.0,0.7,0.0)
-		#var snapped_cam_rot = Vector3(snapped(cam.rotation.x,0.001), snapped(cam.rotation.y,0.001), snapped(cam.rotation.z,0.001))
-		#var snapped_target_rot = Vector3.ZERO
+
 		if snapped_cam_pos == snapped_target_pos:
 			cam_transition_state = camera_transition_states.NO_TRANSITION
 			cam.position = Vector3(0,0.7,0)
-			#cam.rotation = Vector3.ZERO
 			print('cam_finished_transition')
 			camera_finished_transition.emit()
 			
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "camera_out":
+	if anim_name == "camera_out" and not is_in_tutorial:
 		get_tree().change_scene_to_file("res://src/UI/win_page.tscn")
+	elif is_in_tutorial:
+		get_tree().change_scene_to_file("res://src/map/map.tscn")

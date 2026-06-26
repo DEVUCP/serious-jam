@@ -6,6 +6,8 @@
 size = Vector3(0.37329102, 0.6220703, 0.30566406)
 
 [node name="Lock" type="RigidBody3D" unique_id=1138028920]
+collision_layer = 4
+collision_mask = 4
 freeze = true
 
 [node name="blockbench_export" parent="." unique_id=1672146301 instance=ExtResource("1_uufac")]

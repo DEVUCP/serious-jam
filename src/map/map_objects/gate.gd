@@ -14,6 +14,6 @@ func _on_interact_area_interacted_with(something: Variant) -> void:
 			locks.get_child(current_keys - 1).freeze = false
 		current_keys -= 1
 	
-	if something.current_keys == 4:
+	if something.current_keys == locks.get_child_count():
 		$blockbench_export/Node3D.rotate_y(-90)
 		something.fade_out()

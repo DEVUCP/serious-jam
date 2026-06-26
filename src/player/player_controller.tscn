@@ -13,24 +13,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fqqb2"]
 
-[sub_resource type="Animation" id="Animation_kxctt"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_chubl"]
-resource_name = "toggle_notebook_off"
-length = 0.5
-
-[sub_resource type="Animation" id="Animation_fqqsv"]
-resource_name = "toggle_notebook_on"
-length = 0.5
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kxctt"]
-_data = {
-&"RESET": SubResource("Animation_kxctt"),
-&"toggle_notebook_off": SubResource("Animation_chubl"),
-&"toggle_notebook_on": SubResource("Animation_fqqsv")
-}
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_pgsjq"]
 size = Vector3(0.5581665, 0.59368896, 0.57177734)
 
@@ -118,6 +100,7 @@ size = Vector3(1.0773926, 0.54248047, 1.020874)
 [sub_resource type="SphereShape3D" id="SphereShape3D_bhunq"]
 
 [node name="PlayerController" type="CharacterBody3D" unique_id=698889221]
+collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_1va15")
 
@@ -126,9 +109,6 @@ visible = false
 shape = SubResource("CapsuleShape3D_fqqb2")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1819404388]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1715353898]
-libraries/ = SubResource("AnimationLibrary_kxctt")
 
 [node name="neck" type="Node3D" parent="." unique_id=1161167349]
 
@@ -312,8 +292,6 @@ collision_mask = 4
 [node name="Listener" type="AudioListener3D" parent="." unique_id=520892794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00068438053, 0.68890774, 0)
 current = true
-
-[node name="SFXManager" type="Node" parent="." unique_id=1788716484]
 
 [node name="StaminaCooldown" type="Timer" parent="." unique_id=1646898248]
 wait_time = 2.0
