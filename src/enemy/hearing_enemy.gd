@@ -237,4 +237,4 @@ func _on_jumpscare_area_body_entered(body: Node3D) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name != "jump_scare": return
 	
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://src/main_menu.tscn")
