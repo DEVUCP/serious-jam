@@ -1,0 +1,243 @@
+[gd_scene format=3 uid="uid://dakyk3mesv1nv"]
+
+[ext_resource type="Script" uid="uid://ccdjiuql5dfbm" path="res://src/main_menu_ui.gd" id="1_l1yws"]
+[ext_resource type="FontFile" uid="uid://m4eqw8kmlmos" path="res://assets/fonts/ITCKRIST.TTF" id="1_ys680"]
+[ext_resource type="Texture2D" uid="uid://daf8kl15dj8hk" path="res://assets/textures/slider_bob.png" id="2_pjvno"]
+[ext_resource type="Texture2D" uid="uid://bxbwg00qo51c6" path="res://assets/textures/slider_bob_pressed.png" id="3_l1yws"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
+bg_color = Color(0.18932778, 0.1893278, 0.18932769, 0.4509804)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_ys680"]
+font = ExtResource("1_ys680")
+font_size = 38
+font_color = Color(0.9490196, 0.93333334, 0.5764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjvno"]
+content_margin_top = 15.0
+bg_color = Color(0.21795529, 0.23095393, 0.22000447, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1yws"]
+bg_color = Color(1, 0.9882353, 0.68235296, 1)
+
+[node name="MainMenuUI" type="Control" unique_id=2083154758]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l1yws")
+
+[node name="MainMenuPage" type="Control" parent="." unique_id=1143942314]
+anchors_preset = 0
+offset_left = 459.565
+offset_top = 177.5
+offset_right = 459.565
+offset_bottom = 470.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenuPage" unique_id=1765805572]
+layout_mode = 0
+offset_left = -380.565
+offset_top = -124.5
+offset_right = 450.435
+offset_bottom = -42.5
+theme_override_colors/font_color = Color(1, 0.9882353, 0.68235296, 1)
+theme_override_fonts/font = ExtResource("1_ys680")
+theme_override_font_sizes/font_size = 60
+text = "CRANK! CRANK! CRANK!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuPage" unique_id=216867945]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -379.565
+offset_top = -140.0
+offset_right = -96.565
+offset_bottom = 258.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuPage/HBoxContainer" unique_id=1312028625]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 22
+
+[node name="PlayButton" type="Button" parent="MainMenuPage/HBoxContainer/VBoxContainer" unique_id=1609773675]
+custom_minimum_size = Vector2(282.715, 82.065)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9490196, 0.93333334, 0.5764706, 1)
+theme_override_fonts/font = ExtResource("1_ys680")
+theme_override_font_sizes/font_size = 44
+text = "PLAY"
+
+[node name="TutorialButton" type="Button" parent="MainMenuPage/HBoxContainer/VBoxContainer" unique_id=485071296]
+custom_minimum_size = Vector2(282.715, 82.065)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9490196, 0.93333334, 0.5764706, 1)
+theme_override_fonts/font = ExtResource("1_ys680")
+theme_override_font_sizes/font_size = 44
+text = "TUTORIAL"
+
+[node name="SettingsButton" type="Button" parent="MainMenuPage/HBoxContainer/VBoxContainer" unique_id=30853869]
+custom_minimum_size = Vector2(282.715, 82.065)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9490196, 0.93333334, 0.5764706, 1)
+theme_override_fonts/font = ExtResource("1_ys680")
+theme_override_font_sizes/font_size = 44
+text = "SETTINGS"
+
+[node name="QuitButton" type="Button" parent="MainMenuPage/HBoxContainer/VBoxContainer" unique_id=1234312974]
+custom_minimum_size = Vector2(282.715, 82.065)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9490196, 0.93333334, 0.5764706, 1)
+theme_override_fonts/font = ExtResource("1_ys680")
+theme_override_font_sizes/font_size = 44
+text = "QUIT"
+
+[node name="SettingsPage" type="Control" parent="." unique_id=1419750349]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_position = Vector2(37.445, 59.195)
+
+[node name="Panel" type="Panel" parent="SettingsPage" unique_id=1451101243]
+custom_maximum_size = Vector2(1050, 568.43)
+layout_mode = 0
+offset_left = 51.0
+offset_top = 39.785004
+offset_right = 1101.0
+offset_bottom = 608.21497
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yf5fn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPage/Panel" unique_id=193011521]
+custom_maximum_size = Vector2(803.125, 450.775)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 88.793
+offset_top = 43.398
+offset_right = -158.08203
+offset_bottom = -74.25699
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPage/Panel/VBoxContainer" unique_id=1503569209]
+custom_minimum_size = Vector2(518.35, 166.625)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer" unique_id=395555855]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer/MarginContainer2" unique_id=1151750871]
+custom_minimum_size = Vector2(134.73, 0)
+layout_mode = 2
+text = "Master Volume"
+label_settings = SubResource("LabelSettings_ys680")
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer" unique_id=1466401684]
+layout_mode = 2
+
+[node name="MasterSlider" type="HSlider" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1001644128]
+custom_minimum_size = Vector2(603.84, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("2_pjvno")
+theme_override_icons/grabber_highlight = ExtResource("3_l1yws")
+theme_override_styles/slider = SubResource("StyleBoxFlat_pjvno")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_l1yws")
+max_value = 30.0
+value = 20.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsPage/Panel/VBoxContainer" unique_id=210608135]
+custom_minimum_size = Vector2(518.35, 166.625)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer2" unique_id=1698299190]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=2103138290]
+custom_minimum_size = Vector2(134.73, 0)
+layout_mode = 2
+text = "Ambience Volume"
+label_settings = SubResource("LabelSettings_ys680")
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer2" unique_id=1150124056]
+layout_mode = 2
+
+[node name="AmbienceSlider" type="HSlider" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer2/MarginContainer" unique_id=1361843880]
+custom_minimum_size = Vector2(603.84, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("2_pjvno")
+theme_override_icons/grabber_highlight = ExtResource("3_l1yws")
+theme_override_styles/slider = SubResource("StyleBoxFlat_pjvno")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_l1yws")
+max_value = 30.0
+value = 20.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="SettingsPage/Panel/VBoxContainer" unique_id=1094321453]
+custom_minimum_size = Vector2(518.35, 166.625)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer3" unique_id=1454760151]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer3/MarginContainer2" unique_id=449553458]
+custom_minimum_size = Vector2(134.73, 0)
+layout_mode = 2
+text = "Sound Volume"
+label_settings = SubResource("LabelSettings_ys680")
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer3" unique_id=1001176966]
+layout_mode = 2
+
+[node name="SFXSlider" type="HSlider" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer3/MarginContainer" unique_id=1168622826]
+custom_minimum_size = Vector2(603.84, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("2_pjvno")
+theme_override_icons/grabber_highlight = ExtResource("3_l1yws")
+theme_override_styles/slider = SubResource("StyleBoxFlat_pjvno")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_l1yws")
+max_value = 30.0
+value = 20.0
+
+[node name="SettingsBackButton" type="Button" parent="SettingsPage/Panel" unique_id=1115700961]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 479.215
+offset_right = 179.0
+offset_bottom = 548.21497
+theme_override_colors/font_color = Color(1, 0.9882353, 0.68235296, 1)
+theme_override_fonts/font = ExtResource("1_ys680")
+theme_override_font_sizes/font_size = 44
+text = "     Back     "
+
+[connection signal="pressed" from="MainMenuPage/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenuPage/HBoxContainer/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="MainMenuPage/HBoxContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainMenuPage/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="SettingsPage/Panel/VBoxContainer/HBoxContainer/MarginContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="SettingsPage/Panel/VBoxContainer/HBoxContainer2/MarginContainer/AmbienceSlider" to="." method="_on_ambience_slider_value_changed"]
+[connection signal="value_changed" from="SettingsPage/Panel/VBoxContainer/HBoxContainer3/MarginContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="SettingsPage/Panel/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
