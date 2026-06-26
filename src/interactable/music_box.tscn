@@ -173,6 +173,7 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 1.0066091
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7pqgg"]
 
@@ -238,7 +239,6 @@ metadata/_custom_type_script = "uid://d0vgcravmqb8m"
 
 [node name="Key" type="Node3D" parent="." unique_id=236443187]
 transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, 0, 0.6472553, -0.13207155)
-visible = false
 script = ExtResource("6_t18wk")
 
 [node name="blockbench_export" parent="Key" unique_id=1181727147 instance=ExtResource("7_lexcj")]
@@ -254,7 +254,7 @@ script = ExtResource("1_658gw")
 metadata/_custom_type_script = "uid://bee7wobtehwtp"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Key/InteractArea" unique_id=1739548191]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15778795)
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, -0.19031145, 0, -0.033984426)
 shape = SubResource("SphereShape3D_g4v7s")
 
 [node name="SoundArea" type="Area3D" parent="." unique_id=305795644]

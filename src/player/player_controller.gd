@@ -144,6 +144,7 @@ func _set_input_capture_mode(mode : input_capture_modes) -> void:
 
 func _on_interact_area_set_interactable_area(area: Area3D) -> void:
 	set_player_interactable_object(area)
+	#print(area.get_parent())
 
 func _is_input_self_captured() -> bool:
 	return input_capture == input_capture_modes.PLAYER_CAPTURED

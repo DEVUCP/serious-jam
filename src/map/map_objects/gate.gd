@@ -6,7 +6,6 @@ extends Node3D
 func _on_interact_area_interacted_with(something: Variant) -> void:
 	if !interact_timer.is_stopped(): return
 	interact_timer.start()
-	
 	var current_keys: int = something.current_keys
 	
 	if current_keys <= 0: return

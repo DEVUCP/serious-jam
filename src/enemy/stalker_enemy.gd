@@ -65,7 +65,7 @@ func update_state(new_state: states) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print(states.keys()[state], global_position)
+	#print(states.keys()[state], global_position)
 	
 	if state == states.stalking:
 		_face_move_direction(player.global_position)
