@@ -9,7 +9,7 @@ const DRAIN_RATE: float = 12.0 # per second
 @onready var crank_sfx: SpatialAudioPlayer3D = $CrankSFX
 @onready var crank_cooldown: Timer = $CrankCooldown
 @onready var flicker_sfx: SpatialAudioPlayer3D = $FlickerSFX
-@onready var sound_area: Area3D = get_parent().get_parent().get_parent().get_parent().get_child(10)
+@onready var sound_area: Area3D = get_parent().get_parent().get_parent().get_parent().get_child(8)
 
 var crank_meter: float = 0
 var crank_rotation_target: float = 0.0
