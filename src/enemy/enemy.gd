@@ -16,7 +16,7 @@ extends CharacterBody3D
 @onready var roaming_sfx_timer: Timer = $RoamingSFXTimer
 @onready var animation_player: AnimationPlayer = $EnemyModel/AnimationPlayer
 
-const SPEED: float = 195.0
+const SPEED: float = 195
 var investigating_sfx: Resource = preload("res://assets/sounds/monkey_investigate.mp3")
 var screech_sfx: Resource = preload("res://assets/sounds/monkey_screech.mp3")
 var roaming_sfx: Resource = preload("res://assets/sounds/monkey_roaming.mp3")
@@ -264,11 +264,10 @@ func _on_roaming_sfx_timer_timeout() -> void:
 
 func _on_jumpscare_area_body_entered(body: Node3D) -> void:
 	if body != player: return
-	print(body)
 	$AnimationPlayer.play("jump_scare")
 	body.is_immune = true
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name != "jump_scare": return
 	
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://src/main_menu.tscn")

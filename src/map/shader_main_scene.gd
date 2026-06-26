@@ -1,4 +1,5 @@
 extends SubViewportContainer
+@export var main_menu: bool = false
 @onready var window_size = get_viewport().get_visible_rect().size
 
 
@@ -9,13 +10,17 @@ func _process(delta: float) -> void:
 		$SubViewport.size = window_size
 
 func _ready() -> void:
-
+	if main_menu:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		return
 	if OS.has_feature("web"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
+	if main_menu:
+		return
 	if OS.has_feature("web"):
 		if event is InputEventMouseButton and event.pressed:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

@@ -16,23 +16,31 @@ func set_is_sprinting(new_val : bool) -> void:
 
 func set_stream(sprinting : bool) -> void:
 	if sprinting and footsteps_player.stream != dirt_sprinting_sfx:
+		stop_footstep()
 		footsteps_player.set_stream(dirt_sprinting_sfx)
 		print("set running")
 		return
 	if !sprinting and footsteps_player.stream != dirt_sfx:
+		stop_footstep()
 		footsteps_player.set_stream(dirt_sfx)
 		print("set walking")
 		return
 
 func play_footstep() -> void:
-	if !floor_ray.is_colliding():
-		stop_footstep()
-		return
+	#if !floor_ray.is_colliding():
+		#stop_footstep()
+		#return
 	
 	if not footsteps_player.playing:
 		footsteps_player.play()
 		sound_area.call_deferred("add_sound", footsteps_player.stream)
 
 func stop_footstep() -> void:
+	if !footsteps_player.playing: return
+	print("stopped x")
 	sound_area.call_deferred("remove_sound", footsteps_player.stream)
 	footsteps_player.stop()
+
+
+func _on_spatial_audio_player_3d_finished() -> void:
+	sound_area.call_deferred("remove_sound", footsteps_player.stream)

@@ -1,7 +1,7 @@
 extends Node3D
 
 const DRAIN_RATE: float = 12.0 # per second
-
+@export var main_menu: bool = false
 @onready var crank: Node3D = $FlashlightModel/crank
 @onready var spot_light_3d: SpotLight3D = $SpotLight3D
 @onready var flicker_cooldown: Timer = $FlickerCooldown
@@ -16,7 +16,10 @@ var crank_rotation_target: float = 0.0
 var is_light_blocked: bool = false
 
 func _ready() -> void:
-	spot_light_3d.light_energy = 0
+	if main_menu:
+		spot_light_3d.light_energy = 4
+	else:
+		spot_light_3d.light_energy = 0
 	const LAYER_1 = 1 << 0
 	const LAYER_2 = 1 << 1
 	const LAYER_32 = 1 << 31
@@ -24,6 +27,8 @@ func _ready() -> void:
 	$AreaLight3D.light_cull_mask = ~(LAYER_2 | LAYER_32 | LAYER_1)
 
 func _process(delta: float) -> void:
+	if main_menu:
+		return
 	if Input.is_action_just_pressed("Crank"):
 		crank_flashlight(delta)
 	crank_meter = max(crank_meter - DRAIN_RATE * delta, 0.0)
@@ -80,5 +85,5 @@ func _on_flicker_cooldown_timeout() -> void:
 
 
 func _on_crank_cooldown_timeout() -> void:
-	sound_area.call_deferred("remove_sound", crank_sfx.stream)	
+	sound_area.call_deferred("remove_sound", crank_sfx.stream)
 	crank_sfx.stop()

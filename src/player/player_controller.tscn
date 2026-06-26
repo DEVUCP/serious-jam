@@ -1,15 +1,20 @@
 [gd_scene format=3 uid="uid://cbp1l7joajh4g"]
 
 [ext_resource type="Script" uid="uid://c383iukdu6f1f" path="res://src/player/player_controller.gd" id="1_1va15"]
+[ext_resource type="Script" uid="uid://doykxpvrsmrht" path="res://src/player/player_ui.gd" id="2_1v6gv"]
+[ext_resource type="Texture2D" uid="uid://xewr64we1voc" path="res://assets/textures/speaker_icon.png" id="2_05uut"]
 [ext_resource type="Script" uid="uid://uymfay1sfh1w" path="res://src/player/interact_area.gd" id="2_oiuio"]
 [ext_resource type="Script" uid="uid://bd523k4h83cda" path="res://src/player/lean_collision_area.gd" id="2_t85a7"]
 [ext_resource type="PackedScene" uid="uid://cm8exx4gwxin5" path="res://src/flashlight/flash_light.tscn" id="2_wkdd3"]
+[ext_resource type="Texture2D" uid="uid://dwln3n5hg5ob5" path="res://assets/textures/speaker_icon3.png" id="3_e4nac"]
 [ext_resource type="Script" uid="uid://cysjq0xtohde" path="res://src/player/lean_collision_area_right.gd" id="3_wkdd3"]
+[ext_resource type="Texture2D" uid="uid://cmhnc411ghse5" path="res://assets/textures/speaker_icon2.png" id="4_8w71o"]
 [ext_resource type="AudioStream" uid="uid://btkdgts8ma80j" path="res://assets/sounds/freesound_community-night-woods-7012.mp3" id="4_culmh"]
+[ext_resource type="Texture2D" uid="uid://ckh6o2yi8k5n5" path="res://assets/textures/speaker_icon1.png" id="5_50a0k"]
 [ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="5_dmwdg"]
-[ext_resource type="AudioStream" uid="uid://bet0l4xojy8fp" path="res://assets/sounds/footsteps_grass.mp3" id="8_dmwdg"]
 [ext_resource type="Script" uid="uid://bxb0s8odw0k4l" path="res://src/player/footsteps.gd" id="8_gwvns"]
 [ext_resource type="Script" uid="uid://bxgfyo4nkmet4" path="res://src/player/sound_area.gd" id="10_h0ep3"]
+[ext_resource type="AudioStream" uid="uid://ddahhas8ygeh1" path="res://assets/sounds/dirt_footsteps.mp3" id="14_8w71o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fqqb2"]
 
@@ -38,7 +43,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewport/Control/ColorRect:modulate")
+tracks/0/path = NodePath("SubViewport/PlayerUI/ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -54,7 +59,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewport/Control/ColorRect:modulate")
+tracks/0/path = NodePath("SubViewport/PlayerUI/ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,7 +75,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewport/Control/ColorRect:modulate")
+tracks/0/path = NodePath("SubViewport/PlayerUI/ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -146,7 +151,7 @@ transparent_bg = true
 snap_2d_vertices_to_pixel = true
 size = Vector2i(1920, 1080)
 
-[node name="Control" type="Control" parent="neck/Camera3D/HUD/SubViewport" unique_id=1667897560]
+[node name="PlayerUI" type="Control" parent="neck/Camera3D/HUD/SubViewport" unique_id=1667897560]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -154,8 +159,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("2_1v6gv")
 
-[node name="ColorRect" type="ColorRect" parent="neck/Camera3D/HUD/SubViewport/Control" unique_id=594762497]
+[node name="ColorRect" type="ColorRect" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=594762497]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
@@ -167,7 +173,7 @@ grow_vertical = 2
 mouse_filter = 1
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="neck/Camera3D/HUD/SubViewport/Control" unique_id=452160227]
+[node name="ColorRect2" type="ColorRect" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=452160227]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -180,7 +186,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.42745098)
 
-[node name="StaminaBar" type="HBoxContainer" parent="neck/Camera3D/HUD/SubViewport/Control" unique_id=423714851]
+[node name="StaminaBar" type="HBoxContainer" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=423714851]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
 anchors_preset = 7
@@ -196,7 +202,7 @@ grow_vertical = 0
 theme_override_constants/separation = -1
 alignment = 1
 
-[node name="StaminaBarLeft" type="ProgressBar" parent="neck/Camera3D/HUD/SubViewport/Control/StaminaBar" unique_id=160354562]
+[node name="StaminaBarLeft" type="ProgressBar" parent="neck/Camera3D/HUD/SubViewport/PlayerUI/StaminaBar" unique_id=160354562]
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_oiuio")
@@ -204,12 +210,67 @@ value = 100.0
 fill_mode = 1
 show_percentage = false
 
-[node name="StaminaBarRight" type="ProgressBar" parent="neck/Camera3D/HUD/SubViewport/Control/StaminaBar" unique_id=2009118967]
+[node name="StaminaBarRight" type="ProgressBar" parent="neck/Camera3D/HUD/SubViewport/PlayerUI/StaminaBar" unique_id=2009118967]
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_oiuio")
 value = 100.0
 show_percentage = false
+
+[node name="speaker0" type="TextureRect" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=1946569417]
+modulate = Color(1, 1, 1, 0.5803922)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -125.0
+offset_right = 125.0
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(0, 108.44)
+texture = ExtResource("3_e4nac")
+
+[node name="speaker1" type="TextureRect" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=1635771564]
+visible = false
+modulate = Color(1, 1, 0.49019608, 0.5803922)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -125.0
+offset_right = 125.0
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(0, 108.44)
+texture = ExtResource("4_8w71o")
+
+[node name="speaker2" type="TextureRect" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=269700470]
+visible = false
+modulate = Color(0.95686275, 0.8235294, 0.1882353, 0.8862745)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -125.0
+offset_right = 125.0
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(0, 108.44)
+texture = ExtResource("5_50a0k")
+
+[node name="speaker3" type="TextureRect" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=621800595]
+visible = false
+modulate = Color(0.94509804, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -125.0
+offset_right = 125.0
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(0, 108.44)
+texture = ExtResource("2_05uut")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="neck/Camera3D/HUD" unique_id=2061881600]
 libraries/ = SubResource("AnimationLibrary_a5yua")
@@ -274,7 +335,7 @@ script = ExtResource("8_gwvns")
 
 [node name="SpatialAudioPlayer3D" type="AudioStreamPlayer3D" parent="Footsteps" unique_id=1106574362]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9813928, 0)
-stream = ExtResource("8_dmwdg")
+stream = ExtResource("14_8w71o")
 panning_strength = 0.0
 bus = &"SFX"
 script = ExtResource("5_dmwdg")
@@ -320,4 +381,5 @@ one_shot = true
 [connection signal="body_shape_exited" from="LeanCollisionAreaLeft" to="LeanCollisionAreaLeft" method="_on_body_shape_exited"]
 [connection signal="body_shape_entered" from="LeanCollisionAreaRight" to="LeanCollisionAreaRight" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="LeanCollisionAreaRight" to="LeanCollisionAreaRight" method="_on_body_shape_exited"]
+[connection signal="finished" from="Footsteps/SpatialAudioPlayer3D" to="Footsteps" method="_on_spatial_audio_player_3d_finished"]
 [connection signal="timeout" from="SoundArea/RefreshAreaTimer" to="SoundArea" method="_on_refresh_area_timer_timeout"]

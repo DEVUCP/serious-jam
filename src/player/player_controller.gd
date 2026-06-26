@@ -24,8 +24,8 @@ signal camera_finished_transition
 @onready var stamina_cooldown: Timer = $StaminaCooldown
 @onready var flashlight: Node3D = $neck/Camera3D/Hand/Flashlight
 
-@onready var stamina_bar_left: ProgressBar = $neck/Camera3D/HUD/SubViewport/Control/StaminaBar/StaminaBarLeft
-@onready var stamina_bar_right: ProgressBar = $neck/Camera3D/HUD/SubViewport/Control/StaminaBar/StaminaBarRight
+@onready var stamina_bar_left: ProgressBar = $neck/Camera3D/HUD/SubViewport/PlayerUI/StaminaBar/StaminaBarLeft
+@onready var stamina_bar_right: ProgressBar = $neck/Camera3D/HUD/SubViewport/PlayerUI/StaminaBar/StaminaBarRight
 @onready var sound_area: Area3D = $SoundArea
 
 var _mouse_input : bool = false
@@ -285,7 +285,7 @@ func _physics_process(delta: float) -> void:
 
 	var leaning = _handle_leaning()
 	
-	if (input_dir.y > 0 or input_dir.y < 0) and not leaning:
+	if (input_dir.y > 0 or input_dir.y < 0 or input_dir.x > 0 or input_dir.x < 0) and not leaning:
 		if Input.is_action_pressed("slow_walk"):
 			footsteps.call_deferred("stop_footstep")
 		else:
@@ -379,4 +379,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "camera_out" and not is_in_tutorial:
 		get_tree().change_scene_to_file("res://src/UI/win_page.tscn")
 	elif is_in_tutorial:
-		get_tree().change_scene_to_file("res://src/map/map.tscn")
+		get_tree().change_scene_to_file("res://src/map/shader_main_scene.tscn")
