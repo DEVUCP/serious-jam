@@ -88,8 +88,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hthqk"]
-radius = 0.2
-height = 0.9975586
+radius = 0.12451172
+height = 0.8776245
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fqqsv"]
 size = Vector3(1.0476909, 0.535, 1.0150757)
@@ -222,7 +222,7 @@ collision_mask = 2
 script = ExtResource("2_oiuio")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="neck/Camera3D/InteractArea" unique_id=1800865379]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.19999999, -0.22377926)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.19999999, -0.16381222)
 shape = SubResource("CapsuleShape3D_hthqk")
 
 [node name="Hand" type="Node3D" parent="neck/Camera3D" unique_id=1223726754]
