@@ -11,14 +11,15 @@ var time_elapsed_paused: float = 0.0
 @onready var music_sfx: SpatialAudioPlayer3D = $MusicSFX
 @onready var key: Node3D = $Key
 @onready var sound_area: Area3D = $SoundArea
+@onready var interact_area: InteractArea = $InteractArea
 
 const JACK_IN_THE_BOX_OPEN = preload("uid://chi30reeokeef")
-
 
 @export var crank_target: int = 13.5
 var playback_position: float = 0.0
 
 func _on_interact_area_interacted_with(something: Variant) -> void:
+	print("DSADS")
 	if crank_cooldown_timer.is_stopped():
 		crank()
 		crank_cooldown_timer.start()
@@ -27,6 +28,7 @@ func _physics_process(delta: float) -> void:
 	_reverse_crank(delta)
 
 func crank() -> void:
+	print("CRANKING?")
 	if crank_meter >= crank_target:
 		return
 	
@@ -45,7 +47,7 @@ func crank() -> void:
 
 
 func _reverse_crank(delta) -> void:
-	if crank_cooldown_timer.is_stopped() and crank_meter < crank_target and crank_meter > 0 and !Input.is_action_pressed("interact"):
+	if ((crank_cooldown_timer.is_stopped() or !interact_area.has_overlapping_areas()) and crank_meter < crank_target and crank_meter > 0):
 		print("reversing crank")
 		_deplete_crank_meter(delta)
 		_do_reverse_tween()
@@ -134,9 +136,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 
 func _on_interact_area_area_entered(area: Area3D) -> void:
+	if area.get_parent().name == "Key": return
 	$InteractArea/CollisionShape3D/Outline.visible = true
-
-
 
 func _on_interact_area_area_exited(area: Area3D) -> void:
 	$InteractArea/CollisionShape3D/Outline.visible = false
