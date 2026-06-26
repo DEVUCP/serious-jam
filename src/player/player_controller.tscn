@@ -100,7 +100,6 @@ size = Vector3(1.0773926, 0.54248047, 1.020874)
 [sub_resource type="SphereShape3D" id="SphereShape3D_bhunq"]
 
 [node name="PlayerController" type="CharacterBody3D" unique_id=698889221]
-collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_1va15")
 
