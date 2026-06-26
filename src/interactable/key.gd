@@ -18,6 +18,8 @@ func _on_interact_area_interacted_with(something: Variant) -> void:
 
 
 func _on_interact_area_area_entered(area: Area3D) -> void:
+	if area.get_parent().name == "MusicBox": return
+
 	$outline.visible = true
 
 
