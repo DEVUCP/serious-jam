@@ -4,13 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://cdj2vxedhkbv7" path="res://assets/textures/night_sky.png" id="1_gfbba"]
 [ext_resource type="Script" uid="uid://coary8i53txgy" path="res://src/map/player_activated_label.gd" id="3_yousn"]
 [ext_resource type="PackedScene" uid="uid://bulcetb8rqt3i" path="res://src/interactable/key.tscn" id="4_fnk61"]
+[ext_resource type="PackedScene" uid="uid://dpotuexotkcp0" path="res://src/interactable/music_box.tscn" id="5_ebyqm"]
 [ext_resource type="Script" uid="uid://dr71ob1ycoego" path="res://src/map/map_objects/gate.gd" id="6_wdlv4"]
 [ext_resource type="PackedScene" uid="uid://ju5n8h4m1jry" path="res://assets/models/fence.gltf" id="7_es0wi"]
 [ext_resource type="Texture2D" uid="uid://bnr85o7skxj0x" path="res://assets/models/gate_door_1.png" id="8_tmg3o"]
 [ext_resource type="Texture2D" uid="uid://bwan0g7ona7dk" path="res://assets/models/gate_door_0.png" id="9_358lo"]
+[ext_resource type="FontFile" uid="uid://m4eqw8kmlmos" path="res://assets/fonts/ITCKRIST.TTF" id="10_es0wi"]
 [ext_resource type="PackedScene" uid="uid://2regwhwwib2v" path="res://src/lock/lock.tscn" id="10_twfp3"]
 [ext_resource type="Script" uid="uid://bee7wobtehwtp" path="res://src/interactable/interact_area.gd" id="11_b0yhf"]
-[ext_resource type="PackedScene" uid="uid://buxfi7yhewrdq" path="res://src/map/music_box_tut_label.tscn" id="11_wdlv4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fnk61"]
 panorama = ExtResource("1_gfbba")
@@ -153,6 +154,9 @@ size = Vector3(1.071167, 1.5682373, 1.1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
 radius = 3.1000001
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_tmg3o"]
+radius = 3.1000001
+
 [node name="TutorialLevel" type="Node3D" unique_id=488874645]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=550423834]
@@ -256,18 +260,14 @@ shape = SubResource("BoxShape3D_riqys")
 wait_time = 0.5
 one_shot = true
 
-[node name="PlayerController" parent="." unique_id=698889221 instance=ExtResource("1_2gyo0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73739636, 0)
-is_in_tutorial = true
-
 [node name="PlayerActivatedLabel" type="Label3D" parent="." unique_id=1928134815]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.13250789, 1.3000001, -2.6298938)
 visible = false
 billboard = 1
-modulate = Color(1, 1, 0.7921569, 1)
-outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0.41568628)
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
 text = "WASD for movement
 "
+font = ExtResource("10_es0wi")
 script = ExtResource("3_yousn")
 
 [node name="Area3D" type="Area3D" parent="PlayerActivatedLabel" unique_id=45890704]
@@ -280,10 +280,11 @@ shape = SubResource("SphereShape3D_g4v7s")
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.13250789, 1.3000001, -16.629894)
 visible = false
 billboard = 1
-modulate = Color(1, 1, 0.7921569, 1)
-outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0.41568628)
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
 text = "Hold CTRL while walking to slow walk, 
 this is quiet and makes no noise"
+font = ExtResource("10_es0wi")
 script = ExtResource("3_yousn")
 
 [node name="Area3D" type="Area3D" parent="PlayerActivatedLabel3" unique_id=891300079]
@@ -296,10 +297,11 @@ shape = SubResource("SphereShape3D_g4v7s")
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.13250789, 1.3000001, -25.629894)
 visible = false
 billboard = 1
-modulate = Color(1, 1, 0.7921569, 1)
-outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0.41568628)
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
 text = "Mash right click to crank flashlight.
 it will slowly lose power, so it must be cranked periodically."
+font = ExtResource("10_es0wi")
 script = ExtResource("3_yousn")
 
 [node name="Area3D" type="Area3D" parent="PlayerActivatedLabel4" unique_id=519966925]
@@ -312,9 +314,10 @@ shape = SubResource("SphereShape3D_g4v7s")
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.13250789, 1.3000001, -34.629894)
 visible = false
 billboard = 1
-modulate = Color(1, 1, 0.7921569, 1)
-outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0.41568628)
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
 text = "Careful, cranking the flashlight is loud"
+font = ExtResource("10_es0wi")
 script = ExtResource("3_yousn")
 
 [node name="Area3D" type="Area3D" parent="PlayerActivatedLabel5" unique_id=1959675306]
@@ -327,10 +330,11 @@ shape = SubResource("SphereShape3D_g4v7s")
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.26749203, 1.3000001, -7.7701054)
 visible = false
 billboard = 1
-modulate = Color(1, 1, 0.7921569, 1)
-outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0.41568628)
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0, 0, 0, 0)
 text = "Shift for sprint (mind your stamina),
  but be careful- you make more sound this way"
+font = ExtResource("10_es0wi")
 script = ExtResource("3_yousn")
 
 [node name="Area3D" type="Area3D" parent="PlayerActivatedLabel2" unique_id=562784777]
@@ -343,10 +347,11 @@ shape = SubResource("SphereShape3D_g4v7s")
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.13250789, 1.3000001, -41.6299)
 visible = false
 billboard = 1
-modulate = Color(1, 1, 0.7921569, 1)
-outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0.41568628)
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
 text = "Also mind where you shine it. 
 It may give your location away to any with good eyesight."
+font = ExtResource("10_es0wi")
 script = ExtResource("3_yousn")
 
 [node name="Area3D" type="Area3D" parent="PlayerActivatedLabel6" unique_id=1344574591]
@@ -359,9 +364,10 @@ shape = SubResource("SphereShape3D_g4v7s")
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 1.267492, 1.4000001, -50.6299)
 visible = false
 billboard = 1
-modulate = Color(1, 1, 0.7921569, 1)
-outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0.41568628)
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
 text = "Press F to pickup Item"
+font = ExtResource("10_es0wi")
 script = ExtResource("3_yousn")
 
 [node name="Area3D" type="Area3D" parent="PlayerActivatedLabel7" unique_id=2096718448]
@@ -383,9 +389,10 @@ spot_angle = 34.265224
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.26749206, 1.4000001, -64.8299)
 visible = false
 billboard = 1
-modulate = Color(1, 1, 0.7921569, 1)
-outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0.41568628)
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
 text = "Press F to use key to escape"
+font = ExtResource("10_es0wi")
 script = ExtResource("3_yousn")
 
 [node name="Area3D" type="Area3D" parent="PlayerActivatedLabel9" unique_id=823878360]
@@ -399,8 +406,34 @@ transform = Transform3D(-0.14845254, 0.8191519, -0.55403227, -0.9659259, 4.11663
 light_energy = 5.715
 spot_angle = 34.265224
 
-[node name="PlayerActivatedLabel8" parent="." unique_id=379542185 instance=ExtResource("11_wdlv4")]
+[node name="PlayerActivatedLabel8" type="Label3D" parent="." unique_id=379542185]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 1.509733, 1.223546, -57)
+visible = false
+billboard = 1
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
+text = "Hold F to wind up
+careful, it makes ALOT of noise :)"
+font = ExtResource("10_es0wi")
+script = ExtResource("3_yousn")
+
+[node name="Area3D" type="Area3D" parent="PlayerActivatedLabel8" unique_id=1713632803]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivatedLabel8/Area3D" unique_id=2017146413]
+shape = SubResource("SphereShape3D_tmg3o")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="PlayerActivatedLabel8" unique_id=632251848]
+transform = Transform3D(-0.25881907, -4.2221952e-08, -0.9659257, -0.9659259, 1.1313341e-08, 0.2588191, 0, 0.9999999, -4.371138e-08, -2.2999997, 0.20000005, -2.1000023)
+light_energy = 5.715
+spot_angle = 34.265224
+
+[node name="MusicBox" parent="PlayerActivatedLabel8" unique_id=836771714 instance=ExtResource("5_ebyqm")]
+transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, 0.70000005, -1.4000001, -1.8999977)
+
+[node name="PlayerController" parent="." unique_id=698889221 instance=ExtResource("1_2gyo0")]
+collision_layer = 1
+is_in_tutorial = true
 
 [connection signal="interacted_with" from="Gate/InteractArea" to="Gate" method="_on_interact_area_interacted_with"]
 [connection signal="body_entered" from="PlayerActivatedLabel/Area3D" to="PlayerActivatedLabel" method="_on_area_3d_body_entered"]
@@ -419,3 +452,5 @@ transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 1.509733, 1.2
 [connection signal="body_exited" from="PlayerActivatedLabel7/Area3D" to="PlayerActivatedLabel7" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="PlayerActivatedLabel9/Area3D" to="PlayerActivatedLabel9" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="PlayerActivatedLabel9/Area3D" to="PlayerActivatedLabel9" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="PlayerActivatedLabel8/Area3D" to="PlayerActivatedLabel8" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="PlayerActivatedLabel8/Area3D" to="PlayerActivatedLabel8" method="_on_area_3d_body_exited"]
