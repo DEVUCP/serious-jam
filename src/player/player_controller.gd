@@ -203,11 +203,18 @@ func _update_camera(delta):
 	_tilt_input = 0.0
 
 func _stamina_regen(delta: float) -> void:
+	if stamina >= 99:
+		stamina_bar_left.visible = false
+		stamina_bar_right.visible = false
+	
 	if stamina_cooldown.is_stopped() and stamina <= 99:
 		stamina = clamp(stamina + 15 * delta, 0, 100)
 		_stamina_bar(0.09, delta)
 
 func _stamina_deplete(delta: float) -> void:
+	stamina_bar_left.visible = true
+	stamina_bar_right.visible = true
+	
 	stamina = clamp(stamina - 20 * delta, 0, 100)
 	if stamina <= 1:
 		stamina_cooldown.start(STAMINA_PENALTY)
