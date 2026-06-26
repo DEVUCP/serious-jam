@@ -711,6 +711,7 @@ shape = SubResource("CapsuleShape3D_6f8o3")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1290362176]
 top_level = true
+visible = false
 material_override = SubResource("StandardMaterial3D_qr0ht")
 mesh = SubResource("SphereMesh_6f8o3")
 

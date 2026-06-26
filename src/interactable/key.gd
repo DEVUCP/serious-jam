@@ -13,4 +13,13 @@ func _process(delta: float) -> void:
 
 func _on_interact_area_interacted_with(something: Variant) -> void:
 	something.call_deferred("take_key")
+	#await get_tree().create_timer(1).timeout
 	self.call_deferred("queue_free")
+
+
+func _on_interact_area_area_entered(area: Area3D) -> void:
+	$outline.visible = true
+
+
+func _on_interact_area_area_exited(area: Area3D) -> void:
+	$outline.visible = false

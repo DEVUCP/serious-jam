@@ -242,10 +242,10 @@ shadow_mesh = SubResource("ArrayMesh_ynp6d")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
 transparency = 1
 cull_mode = 1
-albedo_color = Color(1, 0.4509804, 0.19215687, 0.9843137)
+albedo_color = Color(1, 1, 0.24313726, 1)
 emission_enabled = true
-emission = Color(1, 0.50980395, 0, 1)
-emission_energy_multiplier = 4.1
+emission = Color(1, 1, 0.6313726, 1)
+emission_energy_multiplier = 5.99
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_758dx"]
 resource_name = "material_1"
@@ -375,5 +375,7 @@ mesh = SubResource("ArrayMesh_2nhyy")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1181238487]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+light_color = Color(1, 1, 0.7490196, 1)
 shadow_enabled = true
-omni_attenuation = -0.355
+omni_range = 9.0
+omni_attenuation = 0.145

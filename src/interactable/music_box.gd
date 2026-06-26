@@ -3,6 +3,7 @@ extends Node3D
 var crank_meter: float = 0.0
 var stopped_time: float = 0.0
 var time_elapsed_paused: float = 0.0
+@onready var crankoutline_2: Node3D = $InteractArea/CollisionShape3D/Outline/crankoutline2
 
 @onready var crank_obj: Node3D = $blockbench_export/crank
 @onready var crank_cooldown_timer: Timer = $CrankCooldownTimer
@@ -87,6 +88,15 @@ func _do_reverse_tween() -> void:
 		crank_obj.rotation.x - deg_to_rad(70),
 		1
 	)
+	var tween_outline = create_tween()
+	tween_outline.set_ease(Tween.EASE_OUT)
+	tween_outline.set_trans(Tween.TRANS_SINE)
+	tween_outline.tween_property(
+		crankoutline_2,
+		"rotation:x",
+		crankoutline_2.rotation.x - deg_to_rad(70),
+		1
+	)
 
 func _do_crank_tween() -> void:
 	var tween = create_tween()
@@ -96,6 +106,15 @@ func _do_crank_tween() -> void:
 		crank_obj,
 		"rotation:x",
 		crank_obj.rotation.x + deg_to_rad(90),
+		0.7
+	)
+	var outlinetween = create_tween()
+	outlinetween.set_ease(Tween.EASE_OUT)
+	outlinetween.set_trans(Tween.TRANS_SINE)
+	outlinetween.tween_property(
+		crankoutline_2,
+		"rotation:x",
+		crankoutline_2.rotation.x + deg_to_rad(90),
 		0.7
 	)
 
@@ -109,7 +128,15 @@ func _on_finished_crank_completion() -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name != "open": return
 	key.visible = true
-	await get_tree().create_timer(1).timeout
-	key.get_child(1).monitoring = true
-	key.get_child(1).monitorable = true
+	key.get_child(2).monitoring = true
+	key.get_child(2).monitorable = true
 	
+
+
+func _on_interact_area_area_entered(area: Area3D) -> void:
+	$InteractArea/CollisionShape3D/Outline.visible = true
+
+
+
+func _on_interact_area_area_exited(area: Area3D) -> void:
+	$InteractArea/CollisionShape3D/Outline.visible = false

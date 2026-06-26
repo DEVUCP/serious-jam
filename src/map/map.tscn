@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://b0wg88yrglv3a" path="res://src/map/map_objects/rock.tscn" id="16_agi0h"]
 [ext_resource type="PackedScene" uid="uid://c5cnl3aly5hvf" path="res://src/map/map_objects/gate.tscn" id="16_b3iwv"]
 [ext_resource type="PackedScene" uid="uid://bbe5al0s1sf7g" path="res://src/enemy/stalker_enemy.tscn" id="18_e7nxu"]
+[ext_resource type="PackedScene" uid="uid://bulcetb8rqt3i" path="res://src/interactable/key.tscn" id="18_g8ld4"]
 [ext_resource type="PackedScene" uid="uid://cqjatbhtiwnkr" path="res://src/map/map_objects/crate.tscn" id="23_xvq5t"]
 [ext_resource type="PackedScene" uid="uid://btneqlwpl4a5o" path="res://src/map/map_objects/barrel.tscn" id="24_a8rdb"]
 [ext_resource type="PackedScene" uid="uid://dy2csty78ky26" path="res://src/enemy/hearing_enemy.tscn" id="31_a8rdb"]
@@ -1715,21 +1716,21 @@ size = Vector3(0.072064206, 0.2, 0.10688476)
 [node name="Map" type="Node3D" unique_id=82686766]
 
 [node name="PlayerController" parent="." unique_id=698889221 instance=ExtResource("5_osvph")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18.536488, 1.8457716, 119.02956)
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -17.536488, 1.8457716, 119.02956)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1109885631]
 environment = SubResource("Environment_dacv3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=567087704]
-transform = Transform3D(0.258819, 0.83651644, -0.48296285, 4.2707107e-08, 0.4999999, 0.86602545, 0.9659258, -0.2241438, 0.1294095, 0, 0, 0)
+transform = Transform3D(0.1830128, 0.94505966, 0.27086604, -0.18301268, -0.23795319, 0.95387876, 0.9659258, -0.22414386, 0.12940945, 0, 0, 0)
 light_energy = 0.0
 shadow_enabled = true
 
 [node name="MusicBox" parent="." unique_id=836771714 instance=ExtResource("6_4cvdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.78118, 0.9847187, 27.77523)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -50.78118, 0.9847187, 27.77523)
 
 [node name="MusicBox2" parent="." unique_id=342778208 instance=ExtResource("6_4cvdr")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -192.68118, 1.7847185, 201.97523)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -192.68118, 0.7847185, 201.97523)
 
 [node name="MusicBox3" parent="." unique_id=971450914 instance=ExtResource("6_4cvdr")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -46.681183, 0.01659301, 210.97523)
@@ -1747,17 +1748,21 @@ transform = Transform3D(13.135, 0, 0, 0, 13.135, 0, 0, 0, 13.135, -192.70001, 0.
 
 [node name="mesh" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export" unique_id=1213095180]
 transform = Transform3D(0.0037907362, 0.00033196807, 0.9999928, -0.13044317, 0.9914558, 0.00016535074, -0.9914486, -0.13044286, 0.0038016438, 0, 0, -1.0625)
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_hyj1p")
 
 [node name="cylinder" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export" unique_id=1213681685]
-transform = Transform3D(1, 0, 0, 0, 0.65, 0, 0, 0, 1, 0, -0.0042029917, 0)
+transform = Transform3D(1, 0, 0, 0, 0.26, 0, 0, 0, 1, 0, -0.0042029917, 0)
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_n36vh")
 
 [node name="plane" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export" unique_id=2064263030]
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_mnu1c")
 
 [node name="plane2" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export" unique_id=1436883702]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0.3125, -1.071875)
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_88p2s")
 
 [node name="group" type="Node3D" parent="NavigationRegion3D/ritualstones/blockbench_export" unique_id=34870883]
@@ -1765,42 +1770,52 @@ transform = Transform3D(0.6427876, 0, 0.7660445, 0, 1, 0, -0.7660445, 0, 0.64278
 
 [node name="mesh2" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export/group" unique_id=1298164936]
 transform = Transform3D(0.0038016438, 0.99904823, 0.043453425, -0.08707282, 0.043619394, -0.9952465, -0.9961947, -2.9802322e-08, 0.0871557, 0, 0, 0)
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_713xo")
 
 [node name="mesh3" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export/group" unique_id=990228003]
 transform = Transform3D(0.6432539, 0.7653153, 0.022735387, -0.08707276, 0.043619394, 0.9952465, 0.7606857, -0.6421758, 0.09469652, -0.125, 0, 0.125)
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_8uipf")
 
 [node name="mesh4" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export/group" unique_id=289458107]
 transform = Transform3D(0.0037907362, -0.00033196807, -0.9999928, 0.13044317, 0.9914558, 0.00016535074, 0.9914486, -0.13044286, 0.0038016438, 0, 0, 0)
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_0opxd")
 
 [node name="plane3" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export/group" unique_id=1562239562]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_0qlcp")
 
 [node name="plane4" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export/group" unique_id=1700097811]
 transform = Transform3D(0, -0.7660445, 0.64278764, 1, 0, 0, 0, 0.64278764, 0.76604444, -0.125, 0, 0.125)
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_6opqf")
 
 [node name="plane5" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export/group" unique_id=881833490]
 transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -1.03125, 0, 0)
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_cc63q")
 
 [node name="pyramid" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export" unique_id=775800034]
-transform = Transform3D(1, 0, 0, 0, 0.65, 0, 0, 0, 1, 0, 0.05673451, -0.06875038)
+transform = Transform3D(1, 0, 0, 0, 0.65, 0, 0, 0, 1, 0, -0.019397961, -0.06875038)
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_xgiqx")
 
 [node name="pyramid2" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export" unique_id=725466813]
-transform = Transform3D(1, 0, 0, 0, 0.65, 0, 0, 0, 1, 0, 0.05673451, 0.06718731)
+transform = Transform3D(1, 0, 0, 0, 0.65, 0, 0, 0, 1, 0, -0.019397961, 0.06718731)
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_fcvqc")
 
 [node name="pyramid3" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export" unique_id=1528086665]
-transform = Transform3D(0, 0, -1, 0, 0.65, 0, 1, 0, 0, 0.0625, 0.05673451, 0.0015621185)
+transform = Transform3D(0, 0, -1, 0, 0.65, 0, 1, 0, 0, 0.0625, -0.019397961, 0.0015621185)
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_8r1t8")
 
 [node name="pyramid4" type="MeshInstance3D" parent="NavigationRegion3D/ritualstones/blockbench_export" unique_id=1833515671]
-transform = Transform3D(0, 0, -1, 0, 0.65, 0, 1, 0, 0, -0.0625, 0.05673451, 0.0015621185)
+transform = Transform3D(0, 0, -1, 0, 0.65, 0, 1, 0, 0, -0.0625, -0.019397961, 0.0015621185)
+visibility_range_end = 60.0
 mesh = SubResource("ArrayMesh_xlku0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/ritualstones/blockbench_export" unique_id=2078082007]
@@ -3149,8 +3164,11 @@ transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-
 [node name="Lantern" parent="NavigationRegion3D/Objects/chair" unique_id=759981112 instance=ExtResource("9_vvkyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
-[node name="Lantern2" parent="NavigationRegion3D/Objects/chair" unique_id=296572471 instance=ExtResource("9_vvkyc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.300003)
+[node name="Lantern3" parent="NavigationRegion3D/Objects/chair" unique_id=47033263 instance=ExtResource("9_vvkyc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5999985, 0, -4.300003)
+
+[node name="Lantern4" parent="NavigationRegion3D/Objects/chair" unique_id=256780338 instance=ExtResource("9_vvkyc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.599998, 0, 1.699997)
 
 [node name="CartCage" parent="NavigationRegion3D/Objects" unique_id=1511341321 instance=ExtResource("8_6kuiv")]
 transform = Transform3D(-3.4, 0, 5.1338577e-07, 0, 3.4, 0, -5.1338577e-07, 0, -3.4, 75, 0, -95)
@@ -3352,68 +3370,85 @@ transform = Transform3D(-16.000002, 0, -27.712812, 0, 32, 0, 27.712812, 0, -16.0
 [node name="circus_tent" type="Node3D" parent="NavigationRegion3D/tent" unique_id=2003481013]
 
 [node name="mesh" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=205397448]
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_usn50")
 
 [node name="cone" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=1343973752]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.469447e-18, -0.50625)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_swjtb")
 
 [node name="mesh2" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=383844995]
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_uyn5i")
 
 [node name="mesh3" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=634421580]
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_wepr4")
 
 [node name="mesh4" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=253630985]
 transform = Transform3D(0.872496, 0.4886212, 0, -0.4886212, 0.872496, 0, 0, 0, 1, -0.625, 0, -0.3125)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_l60qg")
 
 [node name="mesh5" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=899233018]
 transform = Transform3D(-0.76316476, 0.045656472, -0.644589, -0.2276879, 0.91453207, 0.33434904, 0.6047625, 0.40192854, -0.6875433, -0.375, 0, -0.640625)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_8sro1")
 
 [node name="mesh6" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=542319140]
 transform = Transform3D(0.872496, 0.4886212, 0, -0.4886212, 0.872496, 0, 0, 0, 1, -0.625, 0, -0.0625)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_1kdoa")
 
 [node name="mesh7" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=1979682176]
 transform = Transform3D(0.872496, 0.4886212, 0, -0.4886212, 0.872496, 0, 0, 0, 1, -0.625, 0, 0.15625)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_mjukj")
 
 [node name="mesh8" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=2019851056]
 transform = Transform3D(0.872496, 0.4886212, 0, -0.4886212, 0.872496, 0, 0, 0, 1, -0.625, 0, 0.40625)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_wru7x")
 
 [node name="mesh9" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=2014294779]
 transform = Transform3D(0.872496, -0.4886212, 0, 0.4886212, 0.872496, 0, 0, 0, 1, 0.625, 0, 0.40625)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_w2myj")
 
 [node name="mesh10" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=1902410785]
 transform = Transform3D(-0.76316476, -0.045656472, 0.644589, 0.2276879, 0.91453207, 0.33434904, -0.6047625, 0.40192854, -0.6875433, 0.375, 0, -0.640625)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_emged")
 
 [node name="mesh11" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=1310938712]
 transform = Transform3D(0.872496, -0.4886212, 0, 0.4886212, 0.872496, 0, 0, 0, 1, 0.625, 0, -0.0625)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_weaou")
 
 [node name="mesh12" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=2128064958]
 transform = Transform3D(0.872496, -0.4886212, 0, 0.4886212, 0.872496, 0, 0, 0, 1, 0.625, 0, 0.15625)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_xjjg7")
 
 [node name="mesh13" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=1023024577]
 transform = Transform3D(0.872496, -0.4886212, 0, 0.4886212, 0.872496, 0, 0, 0, 1, 0.625, 0, -0.3125)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_ovev0")
 
 [node name="mesh14" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=2146099178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, -0.15625, -0.59375)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_bnumy")
 
 [node name="mesh15" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=546398918]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, -0.15625, -0.59375)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_ub68t")
 
 [node name="mesh16" type="MeshInstance3D" parent="NavigationRegion3D/tent/circus_tent" unique_id=844724195]
 transform = Transform3D(0.30070573, -0.95371693, 0, 0.95371693, 0.30070573, 0, 0, 0, 1, -0.1875, 0.1875, -0.515625)
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_xofho")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/tent" unique_id=1645059113]
@@ -3429,7 +3464,7 @@ transform = Transform3D(-4.3711385e-08, -1, 4.371139e-08, 1, -4.371139e-08, -4.3
 collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/tent/StaticBody3D4" unique_id=1244327324]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41837168, 0, 0)
+transform = Transform3D(1, 3.5527137e-15, 7.1054274e-15, 3.5527137e-15, 1, 0, -3.5527137e-15, 0, 1, 0.6058717, 0, 0)
 shape = SubResource("BoxShape3D_vvkyc")
 debug_color = Color(0.8520906, 0.0008361274, 0.8945451, 1)
 
@@ -3496,10 +3531,6 @@ shape = SubResource("BoxShape3D_d0u6y")
 [node name="fence" type="Node3D" parent="NavigationRegion3D" unique_id=1839320975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 135)
 
-[node name="Gate" parent="NavigationRegion3D/fence" unique_id=535208570 instance=ExtResource("16_b3iwv")]
-transform = Transform3D(-8.9786866e-08, 0, 2, 0, 2, 0, -2.0540838, 0, -8.742278e-08, -13.8, 0, -14.990646)
-script = null
-
 [node name="Fence" parent="NavigationRegion3D/fence" unique_id=1654036097 instance=ExtResource("15_b3iwv")]
 transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -13.8, 0, -9)
 
@@ -3524,8 +3555,11 @@ transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -13.
 [node name="Fence8" parent="NavigationRegion3D/fence" unique_id=1144312110 instance=ExtResource("15_b3iwv")]
 transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -13.8, 0, -39)
 
+[node name="Gate" parent="NavigationRegion3D/fence" unique_id=535208570 instance=ExtResource("16_b3iwv")]
+transform = Transform3D(1.509958e-07, 0, 2, 0, 2, 0, -2, 0, 1.509958e-07, -13.7, 0, -15)
+
 [node name="Enemy" parent="." unique_id=448364292 instance=ExtResource("2_cti7x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.97551, 3.8146973e-06, 219.95895)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.97551, 3.8146973e-06, 212.95895)
 collision_layer = 1
 player_path = NodePath("../PlayerController")
 nav_region_path = NodePath("../NavigationRegion3D")
@@ -3539,3 +3573,6 @@ nav_region_path = NodePath("../NavigationRegion3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162, 0, 38)
 player_path = NodePath("../PlayerController")
 nav_region_path = NodePath("../NavigationRegion3D")
+
+[node name="Key" parent="." unique_id=236443187 instance=ExtResource("18_g8ld4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 118)

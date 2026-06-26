@@ -11,6 +11,8 @@ extends CharacterBody3D
 @onready var monkey_sounds: SpatialAudioPlayer3D = $MonkeySounds
 @onready var roaming_sfx_timer: Timer = $RoamingSFXTimer
 @onready var sound_detection_area: Area3D = $SoundDetectionArea
+@onready var animation_player: AnimationPlayer = $EnemyModel/AnimationPlayer
+
 
 const SPEED: float = 235.0
 var investigating_sfx: Resource = preload("res://assets/sounds/monkey_investigate.mp3")
@@ -63,17 +65,22 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = Vector3.ZERO
 	
+	if animation_player.current_animation == "investigating":
+		return
+	
 	#_on_player_detected()
 	on_sound_detected()
 		
 	if target_pos == Vector3.ZERO: 
-		print("VECTOR ZERO")
+		#print("VECTOR ZERO")
 		#do_state_action()
 		return
 	
 	var next_nav_point = _handle_movement(delta)
 	_face_move_direction(next_nav_point)
 	_do_footstep_sounds()
+	if (velocity.x > 0.2 or velocity.z > 0.2) and !animation_player.is_playing():
+		animation_player.play("running")
 	move_and_slide()
 
 ## Handles movement of body to next poisition 
@@ -116,7 +123,7 @@ func _initiate_investigation() -> void:
 	for i in range(4):
 		randomize()
 		investigation_positions.append(last_known_player_location + Vector3(randf_range(-investigate_range, investigate_range), 0, randf_range(-investigate_range, investigate_range)))
-	print(investigation_positions)
+	#print(investigation_positions)
 
 ## Sets target position to a random point on the map
 func roam():
@@ -193,12 +200,15 @@ func do_state_action():
 			chase()
 
 func _on_navigation_agent_3d_target_reached() -> void:
-	print("REACHED")
+	#print("REACHED")
+	
 	if is_done_investigating():
 		update_state(states.roaming)
 		return
 		
 	if state == states.investigating:
+		animation_player.stop()
+		animation_player.play("investigating")
 		_update_investigation_point()
 		
 		

@@ -372,4 +372,5 @@ shape = SubResource("CylinderShape3D_g4v7s")
 
 [node name="cylinder" type="MeshInstance3D" parent="blockbench_export" unique_id=752882147]
 layers = 2
+visibility_range_end = 40.0
 mesh = SubResource("ArrayMesh_4bc6y")

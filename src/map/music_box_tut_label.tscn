@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://buxfi7yhewrdq"]
+
+[ext_resource type="Script" uid="uid://coary8i53txgy" path="res://src/map/player_activated_label.gd" id="1_jd3sd"]
+[ext_resource type="PackedScene" uid="uid://dpotuexotkcp0" path="res://src/interactable/music_box.tscn" id="2_tiwcj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 3.1000001
+
+[node name="PlayerActivatedLabel8" type="Label3D" unique_id=379542185]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+billboard = 1
+modulate = Color(1, 1, 0.7921569, 1)
+outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0.41568628)
+text = "Hold F to wind up
+careful, it makes ALOT of noise :)"
+script = ExtResource("1_jd3sd")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1713632803]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2017146413]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=632251848]
+transform = Transform3D(-0.25881907, -4.2221952e-08, -0.9659257, -0.9659259, 1.1313341e-08, 0.2588191, 0, 0.9999999, -4.371138e-08, -2.2999997, 0.20000005, -0.9000015)
+light_energy = 5.715
+spot_angle = 34.265224
+
+[node name="MusicBox" parent="." unique_id=836771714 instance=ExtResource("2_tiwcj")]
+transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, 0.6999999, -1.4000001, -0.69999695)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

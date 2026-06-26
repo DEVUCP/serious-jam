@@ -16,7 +16,7 @@ extends CharacterBody3D
 @onready var roaming_sfx_timer: Timer = $RoamingSFXTimer
 @onready var animation_player: AnimationPlayer = $EnemyModel/AnimationPlayer
 
-const SPEED: float = 235.0
+const SPEED: float = 195.0
 var investigating_sfx: Resource = preload("res://assets/sounds/monkey_investigate.mp3")
 var screech_sfx: Resource = preload("res://assets/sounds/monkey_screech.mp3")
 var roaming_sfx: Resource = preload("res://assets/sounds/monkey_roaming.mp3")
