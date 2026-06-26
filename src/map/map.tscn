@@ -1722,7 +1722,8 @@ transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -17.
 environment = SubResource("Environment_dacv3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=567087704]
-transform = Transform3D(0.258819, 0.83651644, -0.48296285, 4.2707107e-08, 0.4999999, 0.86602545, 0.9659258, -0.2241438, 0.1294095, 0, 0, 0)
+transform = Transform3D(0.1830128, 0.94505966, 0.27086604, -0.18301268, -0.23795319, 0.95387876, 0.9659258, -0.22414386, 0.12940945, 0, 0, 0)
+light_energy = 0.0
 shadow_enabled = true
 
 [node name="MusicBox" parent="." unique_id=836771714 instance=ExtResource("6_4cvdr")]
