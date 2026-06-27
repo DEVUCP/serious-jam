@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://bee7wobtehwtp" path="res://src/interactable/interact_area.gd" id="3_wo3q0"]
 [ext_resource type="PackedScene" uid="uid://2regwhwwib2v" path="res://src/lock/lock.tscn" id="4_s3u8g"]
 [ext_resource type="Texture2D" uid="uid://bwan0g7ona7dk" path="res://assets/models/gate_door_0.png" id="4_safxb"]
+[ext_resource type="AudioStream" uid="uid://bjpvtht3i8l8r" path="res://assets/sounds/lock_sfx.mp3" id="7_sev2n"]
+[ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="8_facy4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wd54j"]
 resource_name = "material_1"
@@ -196,5 +198,14 @@ shape = SubResource("BoxShape3D_riqys")
 [node name="InteractTimer" type="Timer" parent="." unique_id=1787414014]
 wait_time = 0.5
 one_shot = true
+
+[node name="LockSFX" type="AudioStreamPlayer3D" parent="." unique_id=887127771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.6)
+stream = ExtResource("7_sev2n")
+bus = &"SFX"
+script = ExtResource("8_facy4")
+reverb_collision_mask = 4
+occlusion_collision_mask = 4
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
 
 [connection signal="interacted_with" from="InteractArea" to="." method="_on_interact_area_interacted_with"]

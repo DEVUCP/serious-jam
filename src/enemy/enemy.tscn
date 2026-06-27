@@ -691,6 +691,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0248632, 0)
 shape = SubResource("CapsuleShape3D_bhunq")
 
 [node name="FootstepSFX" type="AudioStreamPlayer3D" parent="." unique_id=83427751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 stream = ExtResource("2_xso4u")
 bus = &"SFX"
 script = ExtResource("2_ig63i")

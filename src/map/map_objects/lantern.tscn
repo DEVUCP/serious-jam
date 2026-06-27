@@ -335,47 +335,58 @@ shadow_mesh = SubResource("ArrayMesh_8y8gm")
 
 [node name="cylinder" type="MeshInstance3D" parent="blockbench_export" unique_id=204505270]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0625, 0)
+visibility_range_end = 30.0
 mesh = SubResource("ArrayMesh_awyuo")
 
 [node name="cylinder2" type="MeshInstance3D" parent="blockbench_export" unique_id=1893683678]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.703125, 0)
+visibility_range_end = 30.0
 mesh = SubResource("ArrayMesh_2epwq")
 
 [node name="cylinder3" type="MeshInstance3D" parent="blockbench_export" unique_id=682907229]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9015625, 0)
+visibility_range_end = 30.0
 mesh = SubResource("ArrayMesh_p8o1y")
 
 [node name="cylinder4" type="MeshInstance3D" parent="blockbench_export" unique_id=1939160559]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.828125, 0)
+visibility_range_end = 30.0
 mesh = SubResource("ArrayMesh_wxhbh")
 
 [node name="cylinder5" type="MeshInstance3D" parent="blockbench_export" unique_id=1888556927]
 transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -0.021875, 0.109375, 0)
+visibility_range_end = 30.0
 mesh = SubResource("ArrayMesh_tjv57")
 
 [node name="cylinder6" type="MeshInstance3D" parent="blockbench_export" unique_id=583399207]
 transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0.021875, 0.109375, 0)
+visibility_range_end = 30.0
 mesh = SubResource("ArrayMesh_mrssx")
 
 [node name="torus" type="MeshInstance3D" parent="blockbench_export" unique_id=929295814]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 1, 0)
+visibility_range_end = 30.0
 mesh = SubResource("ArrayMesh_kyr44")
 
 [node name="sphere" type="MeshInstance3D" parent="blockbench_export" unique_id=1447622201]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.265625, 0)
 material_override = SubResource("StandardMaterial3D_g4v7s")
 cast_shadow = 0
+visibility_range_end = 30.0
 mesh = SubResource("ArrayMesh_dphiv")
 
 [node name="cylinder7" type="MeshInstance3D" parent="blockbench_export" unique_id=966300591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1328125, 0)
 material_override = SubResource("StandardMaterial3D_3dh01")
 cast_shadow = 0
+visibility_range_end = 30.0
 mesh = SubResource("ArrayMesh_2nhyy")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1181238487]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 light_color = Color(1, 1, 0.7490196, 1)
 shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 30.0
 omni_range = 9.0
 omni_attenuation = 0.145

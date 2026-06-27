@@ -18,12 +18,12 @@ func set_stream(sprinting : bool) -> void:
 	if sprinting and footsteps_player.stream != dirt_sprinting_sfx:
 		stop_footstep()
 		footsteps_player.set_stream(dirt_sprinting_sfx)
-		print("set running")
+		#print("set running")
 		return
 	if !sprinting and footsteps_player.stream != dirt_sfx:
 		stop_footstep()
 		footsteps_player.set_stream(dirt_sfx)
-		print("set walking")
+		#print("set walking")
 		return
 
 func play_footstep() -> void:
@@ -37,7 +37,7 @@ func play_footstep() -> void:
 
 func stop_footstep() -> void:
 	if !footsteps_player.playing: return
-	print("stopped x")
+	#print("stopped x")
 	sound_area.call_deferred("remove_sound", footsteps_player.stream)
 	footsteps_player.stop()
 

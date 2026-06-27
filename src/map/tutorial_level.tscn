@@ -12,6 +12,8 @@
 [ext_resource type="FontFile" uid="uid://m4eqw8kmlmos" path="res://assets/fonts/ITCKRIST.TTF" id="10_es0wi"]
 [ext_resource type="PackedScene" uid="uid://2regwhwwib2v" path="res://src/lock/lock.tscn" id="10_twfp3"]
 [ext_resource type="Script" uid="uid://bee7wobtehwtp" path="res://src/interactable/interact_area.gd" id="11_b0yhf"]
+[ext_resource type="AudioStream" uid="uid://bjpvtht3i8l8r" path="res://assets/sounds/lock_sfx.mp3" id="13_358lo"]
+[ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="14_twfp3"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fnk61"]
 panorama = ExtResource("1_gfbba")
@@ -22,6 +24,12 @@ sky_material = SubResource("PanoramaSkyMaterial_fnk61")
 [sub_resource type="Environment" id="Environment_yousn"]
 background_mode = 2
 sky = SubResource("Sky_gfbba")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 3.1000001
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tmg3o"]
+radius = 3.1000001
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wd54j"]
 resource_name = "material_1"
@@ -151,12 +159,6 @@ size = Vector3(3, 1.7, 0.3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_riqys"]
 size = Vector3(1.071167, 1.5682373, 1.1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
-radius = 3.1000001
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_tmg3o"]
-radius = 3.1000001
-
 [node name="TutorialLevel" type="Node3D" unique_id=488874645]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=550423834]
@@ -203,63 +205,6 @@ use_collision = true
 collision_layer = 4
 size = Vector3(16.21167, 0.3154297, 8.580627)
 
-[node name="Gate" type="Node3D" parent="." unique_id=535208570]
-transform = Transform3D(-2.0000002, 0, -1.7484557e-07, 0, 2, 0, 1.7484557e-07, 0, -2.0000002, 0.072918415, -0.19999993, -67.8299)
-script = ExtResource("6_wdlv4")
-
-[node name="blockbench_export2" parent="Gate" unique_id=1388438545 instance=ExtResource("7_es0wi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
-
-[node name="blockbench_export3" parent="Gate" unique_id=1890661457 instance=ExtResource("7_es0wi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-
-[node name="blockbench_export" type="Node3D" parent="Gate" unique_id=1881522746]
-
-[node name="mesh2" type="MeshInstance3D" parent="Gate/blockbench_export" unique_id=1518825043]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5625, 0)
-mesh = SubResource("ArrayMesh_6amsk")
-
-[node name="mesh3" type="MeshInstance3D" parent="Gate/blockbench_export" unique_id=2104498522]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.640625, 0.5625, 0)
-mesh = SubResource("ArrayMesh_wwf0k")
-
-[node name="Node3D" type="Node3D" parent="Gate/blockbench_export" unique_id=699038084]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59071493, 0, 0)
-
-[node name="mesh" type="MeshInstance3D" parent="Gate/blockbench_export/Node3D" unique_id=684550642]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.59071493, -0.1875, 0)
-mesh = SubResource("ArrayMesh_leqvn")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Gate" unique_id=998817279]
-collision_layer = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate/StaticBody3D" unique_id=218166611]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0.049999982)
-shape = SubResource("BoxShape3D_g4v7s")
-
-[node name="Locks" type="Node3D" parent="Gate" unique_id=750826055]
-
-[node name="Lock" parent="Gate/Locks" unique_id=1138028920 instance=ExtResource("10_twfp3")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.43304452, 0.40685183, -0.10860556)
-
-[node name="Lock2" parent="Gate/Locks" unique_id=387599537 instance=ExtResource("10_twfp3")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.43304452, 0.6068518, -0.10860443)
-
-[node name="InteractArea" type="Area3D" parent="Gate" unique_id=935968364]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45859742, 0)
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("11_b0yhf")
-metadata/_custom_type_script = "uid://bee7wobtehwtp"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate/InteractArea" unique_id=1665638434]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035583496, 0.28411865, -0.02148436)
-shape = SubResource("BoxShape3D_riqys")
-
-[node name="InteractTimer" type="Timer" parent="Gate" unique_id=1787414014]
-wait_time = 0.5
-one_shot = true
-
 [node name="PlayerActivatedLabel" type="Label3D" parent="." unique_id=1928134815]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.13250789, 1.3000001, -2.6298938)
 visible = false
@@ -282,7 +227,7 @@ visible = false
 billboard = 1
 modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
 outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
-text = "Hold CTRL while walking to slow walk, 
+text = "Hold SPACEBAR while walking to slow walk, 
 this is quiet and makes no noise"
 font = ExtResource("10_es0wi")
 script = ExtResource("3_yousn")
@@ -386,7 +331,7 @@ spot_range = 4.0
 spot_angle = 34.265224
 
 [node name="PlayerActivatedLabel9" type="Label3D" parent="." unique_id=927855140]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.26749206, 1.4000001, -64.8299)
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.06749205, 1.4000001, -71.0299)
 visible = false
 billboard = 1
 modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
@@ -432,10 +377,92 @@ spot_angle = 34.265224
 transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, 0.70000005, -1.4000001, -1.8999977)
 
 [node name="PlayerController" parent="." unique_id=698889221 instance=ExtResource("1_2gyo0")]
-collision_layer = 1
+transform = Transform3D(1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, 1, 0, 0, 0)
 is_in_tutorial = true
 
-[connection signal="interacted_with" from="Gate/InteractArea" to="Gate" method="_on_interact_area_interacted_with"]
+[node name="Gate" type="Node3D" parent="." unique_id=535208570]
+transform = Transform3D(-2, 0, 1.7484555e-07, 0, 2, 0, -1.7484555e-07, 0, -2, 0, 0, -73)
+script = ExtResource("6_wdlv4")
+
+[node name="blockbench_export2" parent="Gate" unique_id=1388438545 instance=ExtResource("7_es0wi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="blockbench_export3" parent="Gate" unique_id=1890661457 instance=ExtResource("7_es0wi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="blockbench_export" type="Node3D" parent="Gate" unique_id=1881522746]
+
+[node name="mesh2" type="MeshInstance3D" parent="Gate/blockbench_export" unique_id=1518825043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5625, 0)
+mesh = SubResource("ArrayMesh_6amsk")
+
+[node name="mesh3" type="MeshInstance3D" parent="Gate/blockbench_export" unique_id=2104498522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.640625, 0.5625, 0)
+mesh = SubResource("ArrayMesh_wwf0k")
+
+[node name="Node3D" type="Node3D" parent="Gate/blockbench_export" unique_id=699038084]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59071493, 0, 0)
+
+[node name="mesh" type="MeshInstance3D" parent="Gate/blockbench_export/Node3D" unique_id=684550642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.59071493, -0.1875, 0)
+mesh = SubResource("ArrayMesh_leqvn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Gate" unique_id=998817279]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate/StaticBody3D" unique_id=218166611]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0.049999982)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="Locks" type="Node3D" parent="Gate" unique_id=750826055]
+
+[node name="Lock" parent="Gate/Locks" unique_id=1138028920 instance=ExtResource("10_twfp3")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.43304452, 0.40685183, -0.10860556)
+
+[node name="Lock2" parent="Gate/Locks" unique_id=1613299808 instance=ExtResource("10_twfp3")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.30281428, 0.40685183, -0.10860556)
+
+[node name="InteractArea" type="Area3D" parent="Gate" unique_id=935968364]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45859742, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("11_b0yhf")
+metadata/_custom_type_script = "uid://bee7wobtehwtp"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate/InteractArea" unique_id=1665638434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035583496, 0.28411865, -0.02148436)
+shape = SubResource("BoxShape3D_riqys")
+
+[node name="InteractTimer" type="Timer" parent="Gate" unique_id=1787414014]
+wait_time = 0.5
+one_shot = true
+
+[node name="LockSFX" type="AudioStreamPlayer3D" parent="Gate" unique_id=887127771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.6)
+stream = ExtResource("13_358lo")
+bus = &"SFX"
+script = ExtResource("14_twfp3")
+reverb_collision_mask = 4
+occlusion_collision_mask = 4
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
+
+[node name="PlayerActivatedLabel10" type="Label3D" parent="." unique_id=2124158400]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.26749206, 1.4000001, -64.6299)
+visible = false
+billboard = 1
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
+text = "Keep an eye on the bottom left of your screen
+that is the amount of sound you're making"
+font = ExtResource("10_es0wi")
+script = ExtResource("3_yousn")
+
+[node name="Area3D" type="Area3D" parent="PlayerActivatedLabel10" unique_id=1795367848]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivatedLabel10/Area3D" unique_id=79599741]
+shape = SubResource("SphereShape3D_g4v7s")
+
 [connection signal="body_entered" from="PlayerActivatedLabel/Area3D" to="PlayerActivatedLabel" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="PlayerActivatedLabel/Area3D" to="PlayerActivatedLabel" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="PlayerActivatedLabel3/Area3D" to="PlayerActivatedLabel3" method="_on_area_3d_body_entered"]
@@ -454,3 +481,6 @@ is_in_tutorial = true
 [connection signal="body_exited" from="PlayerActivatedLabel9/Area3D" to="PlayerActivatedLabel9" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="PlayerActivatedLabel8/Area3D" to="PlayerActivatedLabel8" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="PlayerActivatedLabel8/Area3D" to="PlayerActivatedLabel8" method="_on_area_3d_body_exited"]
+[connection signal="interacted_with" from="Gate/InteractArea" to="Gate" method="_on_interact_area_interacted_with"]
+[connection signal="body_entered" from="PlayerActivatedLabel10/Area3D" to="PlayerActivatedLabel10" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="PlayerActivatedLabel10/Area3D" to="PlayerActivatedLabel10" method="_on_area_3d_body_exited"]

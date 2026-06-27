@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 
 
 func _update_sound_indicator() -> void:
-	print(sound_level)
+	#print(sound_level)
 	if sound_level < 3:
 		_set_speaker_visibility(0)
 	elif sound_level < 11:

@@ -19,16 +19,19 @@ const JACK_IN_THE_BOX_OPEN = preload("uid://chi30reeokeef")
 var playback_position: float = 0.0
 
 func _on_interact_area_interacted_with(something: Variant) -> void:
-	print("DSADS")
+	#print("DSADS")
+	if !sound_area.player_ui:
+		sound_area.set_player_ui(something.get_player_ui())
 	if crank_cooldown_timer.is_stopped():
 		crank()
 		crank_cooldown_timer.start()
 
 func _physics_process(delta: float) -> void:
 	_reverse_crank(delta)
+	#print(music_sfx.is_playing())
 
 func crank() -> void:
-	print("CRANKING?")
+	#print("CRANKING?")
 	if crank_meter >= crank_target:
 		return
 	
@@ -39,6 +42,8 @@ func crank() -> void:
 		#music_sfx.play()
 	#
 	if !_resume_music() and !music_sfx.is_playing():
+		#print("i Should On")
+		#print()
 		music_sfx.play()
 		sound_area.call_deferred("add_sound", music_sfx.stream)
 	
@@ -47,8 +52,9 @@ func crank() -> void:
 
 
 func _reverse_crank(delta) -> void:
+	#print("areas: ", interact_area.get_overlapping_areas())
 	if ((crank_cooldown_timer.is_stopped() or !interact_area.has_overlapping_areas()) and crank_meter < crank_target and crank_meter > 0):
-		print("reversing crank")
+		#print("reversing crank")
 		_deplete_crank_meter(delta)
 		_do_reverse_tween()
 		_set_stopped_time()
@@ -56,7 +62,7 @@ func _reverse_crank(delta) -> void:
 
 func _resume_music() -> bool:
 	if floor(stopped_time) and !music_sfx.is_playing():
-		print('resumed')
+		#print('resumed')
 		music_sfx.seek(clampf(stopped_time - time_elapsed_paused, 0, stopped_time))
 		stopped_time = 0
 		time_elapsed_paused = 0
@@ -140,4 +146,5 @@ func _on_interact_area_area_entered(area: Area3D) -> void:
 	$InteractArea/CollisionShape3D/Outline.visible = true
 
 func _on_interact_area_area_exited(area: Area3D) -> void:
+	#print("i exited the area")
 	$InteractArea/CollisionShape3D/Outline.visible = false
