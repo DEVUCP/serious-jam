@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cnlkunqpcu00r"]
+
+[ext_resource type="PackedScene" uid="uid://bl0b7j463egsu" path="res://assets/models/chair-normal.gltf" id="1_u42oo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.6807617, 1.7484375, 0.54681396)
+
+[node name="chair" type="StaticBody3D" unique_id=2095497399]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1925610150]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.040380836, 0.8257813, -0.0010681152)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="blockbench_export" parent="." unique_id=1829288944 instance=ExtResource("1_u42oo")]

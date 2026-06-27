@@ -1,0 +1,398 @@
+[gd_scene format=3 uid="uid://cbp1l7joajh4g"]
+
+[ext_resource type="Script" uid="uid://c383iukdu6f1f" path="res://src/player/player_controller.gd" id="1_1va15"]
+[ext_resource type="Script" uid="uid://doykxpvrsmrht" path="res://src/player/player_ui.gd" id="2_1v6gv"]
+[ext_resource type="Texture2D" uid="uid://xewr64we1voc" path="res://assets/textures/speaker_icon.png" id="2_05uut"]
+[ext_resource type="Script" uid="uid://uymfay1sfh1w" path="res://src/player/interact_area.gd" id="2_oiuio"]
+[ext_resource type="Script" uid="uid://bd523k4h83cda" path="res://src/player/lean_collision_area.gd" id="2_t85a7"]
+[ext_resource type="PackedScene" uid="uid://cm8exx4gwxin5" path="res://src/flashlight/flash_light.tscn" id="2_wkdd3"]
+[ext_resource type="Texture2D" uid="uid://dwln3n5hg5ob5" path="res://assets/textures/speaker_icon3.png" id="3_e4nac"]
+[ext_resource type="Script" uid="uid://cysjq0xtohde" path="res://src/player/lean_collision_area_right.gd" id="3_wkdd3"]
+[ext_resource type="Texture2D" uid="uid://cmhnc411ghse5" path="res://assets/textures/speaker_icon2.png" id="4_8w71o"]
+[ext_resource type="AudioStream" uid="uid://btkdgts8ma80j" path="res://assets/sounds/freesound_community-night-woods-7012.mp3" id="4_culmh"]
+[ext_resource type="Texture2D" uid="uid://ckh6o2yi8k5n5" path="res://assets/textures/speaker_icon1.png" id="5_50a0k"]
+[ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="5_dmwdg"]
+[ext_resource type="Script" uid="uid://bxb0s8odw0k4l" path="res://src/player/footsteps.gd" id="8_gwvns"]
+[ext_resource type="Script" uid="uid://bxgfyo4nkmet4" path="res://src/player/sound_area.gd" id="10_h0ep3"]
+[ext_resource type="AudioStream" uid="uid://ddahhas8ygeh1" path="res://assets/sounds/dirt_footsteps.mp3" id="14_8w71o"]
+[ext_resource type="AudioStream" uid="uid://bqiud443sqj2" path="res://assets/sounds/ambient_scream.mp3" id="16_50a0k"]
+[ext_resource type="Script" uid="uid://q3dl4h2dyea" path="res://src/player/scream_ambient_timer.gd" id="17_acgb3"]
+[ext_resource type="AudioStream" uid="uid://dw011g46rod6s" path="res://assets/sounds/key_pickup.mp3" id="18_1wm50"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fqqb2"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_u3ddb"]
+viewport_path = NodePath("neck/Camera3D/HUD/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u3ddb"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+no_depth_test = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_u3ddb")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fuhe1"]
+viewport_path = NodePath("neck/Camera3D/HUD/SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oiuio"]
+bg_color = Color(0.7173393, 0.617981, 0.16985252, 1)
+
+[sub_resource type="Animation" id="Animation_1wijd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/PlayerUI/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a5yua"]
+resource_name = "camera_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/PlayerUI/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8ich8"]
+resource_name = "camera_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/PlayerUI/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a5yua"]
+_data = {
+&"RESET": SubResource("Animation_1wijd"),
+&"camera_in": SubResource("Animation_a5yua"),
+&"camera_out": SubResource("Animation_8ich8")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hthqk"]
+radius = 0.12451172
+height = 0.8776245
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fqqsv"]
+size = Vector3(1.0476909, 0.535, 1.0150757)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kxctt"]
+size = Vector3(1.0773926, 0.54248047, 1.020874)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bhunq"]
+
+[node name="PlayerController" type="CharacterBody3D" unique_id=698889221]
+transform = Transform3D(0.34202024, 0, 0.9396926, 0, 1, 0, -0.9396926, 0, 0.34202024, 0, 0, 0)
+collision_mask = 4
+script = ExtResource("1_1va15")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=755441300]
+visible = false
+shape = SubResource("CapsuleShape3D_fqqb2")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1819404388]
+
+[node name="neck" type="Node3D" parent="." unique_id=1161167349]
+
+[node name="Camera3D" type="Camera3D" parent="neck" unique_id=1760317265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+current = true
+far = 2000.0
+
+[node name="RayCast3D" type="RayCast3D" parent="neck/Camera3D" unique_id=1702715253]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+visible = false
+target_position = Vector3(0, -10, 0)
+collision_mask = 0
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="HUD" type="Sprite3D" parent="neck/Camera3D" unique_id=1517648699]
+transform = Transform3D(0.063, 0, 0, 0, 0.063, 0, 0, 0, 0.063, 0, 0, -0.4470975)
+material_override = SubResource("StandardMaterial3D_u3ddb")
+texture = SubResource("ViewportTexture_fuhe1")
+
+[node name="SubViewport" type="SubViewport" parent="neck/Camera3D/HUD" unique_id=1961634024]
+transparent_bg = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(1920, 1080)
+
+[node name="PlayerUI" type="Control" parent="neck/Camera3D/HUD/SubViewport" unique_id=1667897560]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_1v6gv")
+
+[node name="ColorRect" type="ColorRect" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=594762497]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=452160227]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.42745098)
+
+[node name="StaminaBar" type="HBoxContainer" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=423714851]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -1
+alignment = 1
+
+[node name="StaminaBarLeft" type="ProgressBar" parent="neck/Camera3D/HUD/SubViewport/PlayerUI/StaminaBar" unique_id=160354562]
+custom_minimum_size = Vector2(250, 25)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_oiuio")
+value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="StaminaBarRight" type="ProgressBar" parent="neck/Camera3D/HUD/SubViewport/PlayerUI/StaminaBar" unique_id=2009118967]
+custom_minimum_size = Vector2(250, 25)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_oiuio")
+value = 100.0
+show_percentage = false
+
+[node name="speaker0" type="TextureRect" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=1946569417]
+modulate = Color(1, 1, 1, 0.5803922)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -125.0
+offset_right = 125.0
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(0, 108.44)
+texture = ExtResource("3_e4nac")
+
+[node name="speaker1" type="TextureRect" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=1635771564]
+visible = false
+modulate = Color(1, 1, 0.49019608, 0.5803922)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -125.0
+offset_right = 125.0
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(0, 108.44)
+texture = ExtResource("4_8w71o")
+
+[node name="speaker2" type="TextureRect" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=269700470]
+visible = false
+modulate = Color(0.95686275, 0.8235294, 0.1882353, 0.8862745)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -125.0
+offset_right = 125.0
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(0, 108.44)
+texture = ExtResource("5_50a0k")
+
+[node name="speaker3" type="TextureRect" parent="neck/Camera3D/HUD/SubViewport/PlayerUI" unique_id=621800595]
+visible = false
+modulate = Color(0.94509804, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -125.0
+offset_right = 125.0
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(0, 108.44)
+texture = ExtResource("2_05uut")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="neck/Camera3D/HUD" unique_id=2061881600]
+libraries/ = SubResource("AnimationLibrary_a5yua")
+
+[node name="InteractArea" type="Area3D" parent="neck/Camera3D" unique_id=1896025638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19999999, -0.7)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_oiuio")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="neck/Camera3D/InteractArea" unique_id=1800865379]
+transform = Transform3D(1, 0, 2.6645353e-15, 0, -4.371139e-08, -1, 0, 1, -4.3711392e-08, -1.4901161e-08, 0.19999999, -0.16381228)
+shape = SubResource("CapsuleShape3D_hthqk")
+
+[node name="Hand" type="Node3D" parent="neck/Camera3D" unique_id=1223726754]
+transform = Transform3D(0.9396925, 0, 0.34202015, 0, 1, 0, -0.34202015, 0, 0.9396925, 0.4, -0.3235088, -0.6747516)
+
+[node name="Flashlight" parent="neck/Camera3D/Hand" unique_id=1150915125 instance=ExtResource("2_wkdd3")]
+transform = Transform3D(0.93988365, 0, -0.34149435, 0, 1, 0, 0.34149435, 0, 0.93988365, 0, 0, 0)
+
+[node name="FlashlightSFX" type="AudioStreamPlayer3D" parent="neck" unique_id=2124313023]
+panning_strength = 0.0
+
+[node name="SpatialAudioPlayer3D2" type="AudioStreamPlayer3D" parent="neck" unique_id=864942129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.069977, 0)
+stream = ExtResource("4_culmh")
+max_db = 5.127
+autoplay = true
+panning_strength = 0.0
+bus = &"Ambient"
+script = ExtResource("5_dmwdg")
+ignore_floor = true
+reverb_collision_mask = 4
+occlusion_strength = 0.1
+occlusion_collision_mask = 4
+inner_radius = 10.35
+falloff_distance = 18.6
+enable_air_absorption = true
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
+
+[node name="LeanCollisionAreaLeft" type="Area3D" parent="." unique_id=1864338033]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_t85a7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeanCollisionAreaLeft" unique_id=345243184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5336071, 0.23266602, -0.007537842)
+shape = SubResource("BoxShape3D_fqqsv")
+
+[node name="LeanCollisionAreaRight" type="Area3D" parent="." unique_id=1759174609]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("3_wkdd3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeanCollisionAreaRight" unique_id=108801963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52893066, 0.22875977, -0.010437012)
+shape = SubResource("BoxShape3D_kxctt")
+
+[node name="Footsteps" type="Node3D" parent="." unique_id=1260492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9813928, 0)
+script = ExtResource("8_gwvns")
+
+[node name="SpatialAudioPlayer3D" type="AudioStreamPlayer3D" parent="Footsteps" unique_id=1106574362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9813928, 0)
+stream = ExtResource("14_8w71o")
+panning_strength = 0.0
+bus = &"SFX"
+script = ExtResource("5_dmwdg")
+ignore_floor = true
+reverb_collision_mask = 4
+occlusion_collision_mask = 4
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
+
+[node name="RayCast3D" type="RayCast3D" parent="Footsteps" unique_id=1213471744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8853983, 0)
+target_position = Vector3(0, -1.115, 0)
+collision_mask = 4
+
+[node name="Listener" type="AudioListener3D" parent="." unique_id=520892794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00068438053, 0.68890774, 0)
+current = true
+
+[node name="StaminaCooldown" type="Timer" parent="." unique_id=1646898248]
+wait_time = 2.0
+one_shot = true
+
+[node name="SoundArea" type="Area3D" parent="." unique_id=1382770982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.827882, 0)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("10_h0ep3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoundArea" unique_id=130853651]
+shape = SubResource("SphereShape3D_bhunq")
+debug_color = Color(0.033818975, 0, 0.8577128, 1)
+
+[node name="RefreshAreaTimer" type="Timer" parent="SoundArea" unique_id=1344367034]
+wait_time = 0.1
+one_shot = true
+
+[node name="ScreamAmbientSFX" type="AudioStreamPlayer3D" parent="." unique_id=1264936024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+stream = ExtResource("16_50a0k")
+bus = &"Ambient"
+script = ExtResource("5_dmwdg")
+reverb_collision_mask = 4
+occlusion_collision_mask = 4
+enable_air_absorption = true
+air_absorption_log_frequency_scaling = false
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
+
+[node name="ScreamAmbientTimer" type="Timer" parent="ScreamAmbientSFX" unique_id=1601318650]
+wait_time = 60.0
+autostart = true
+script = ExtResource("17_acgb3")
+
+[node name="PickupSFX" type="AudioStreamPlayer3D" parent="." unique_id=611369403]
+stream = ExtResource("18_1wm50")
+bus = &"SFX"
+script = ExtResource("5_dmwdg")
+reverb_collision_mask = 4
+occlusion_collision_mask = 4
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
+
+[connection signal="animation_finished" from="neck/Camera3D/HUD/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="neck/Camera3D/InteractArea" to="neck/Camera3D/InteractArea" method="_on_area_entered"]
+[connection signal="area_exited" from="neck/Camera3D/InteractArea" to="neck/Camera3D/InteractArea" method="_on_area_exited"]
+[connection signal="set_interactable_area" from="neck/Camera3D/InteractArea" to="." method="_on_interact_area_set_interactable_area"]
+[connection signal="body_shape_entered" from="LeanCollisionAreaLeft" to="LeanCollisionAreaLeft" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="LeanCollisionAreaLeft" to="LeanCollisionAreaLeft" method="_on_body_shape_exited"]
+[connection signal="body_shape_entered" from="LeanCollisionAreaRight" to="LeanCollisionAreaRight" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="LeanCollisionAreaRight" to="LeanCollisionAreaRight" method="_on_body_shape_exited"]
+[connection signal="finished" from="Footsteps/SpatialAudioPlayer3D" to="Footsteps" method="_on_spatial_audio_player_3d_finished"]
+[connection signal="timeout" from="SoundArea/RefreshAreaTimer" to="SoundArea" method="_on_refresh_area_timer_timeout"]
+[connection signal="timeout" from="ScreamAmbientSFX/ScreamAmbientTimer" to="ScreamAmbientSFX/ScreamAmbientTimer" method="_on_timeout"]

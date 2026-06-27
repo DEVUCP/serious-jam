@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://6j3vqqlt4e4j"]
+
+[ext_resource type="Shader" uid="uid://nce46h1glew4" path="res://src/shaders/PSXCamera.gdshader" id="1_2lbcl"]
+[ext_resource type="Script" uid="uid://mo60fr31l34h" path="res://src/map/shader_main_scene.gd" id="2_1eisi"]
+[ext_resource type="PackedScene" uid="uid://w5oyfptkfvpv" path="res://src/map/tutorial_level.tscn" id="3_pyw0r"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_m33rx"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
+resource_local_to_scene = true
+shader = ExtResource("1_2lbcl")
+shader_parameter/screen_texture = SubResource("ViewportTexture_m33rx")
+shader_parameter/pixel_resolution = 240.0
+shader_parameter/color_steps = 16
+shader_parameter/noise_strength = 0.1
+shader_parameter/enable_dither = true
+shader_parameter/dither_strength = 0.3
+shader_parameter/enable_glow = true
+shader_parameter/glow_strength = 0.16800000798
+shader_parameter/glow_spread = 0.005
+shader_parameter/enable_vintage = true
+shader_parameter/vintage_strength = 0.8
+shader_parameter/binocular_enabled = false
+shader_parameter/fisheye_strength = 1.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" unique_id=146641439]
+material = SubResource("ShaderMaterial_g4v7s")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_1eisi")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=612349064]
+handle_input_locally = false
+audio_listener_enable_3d = true
+physics_object_picking = true
+render_target_update_mode = 4
+
+[node name="TutorialLevel" parent="SubViewport" unique_id=488874645 instance=ExtResource("3_pyw0r")]

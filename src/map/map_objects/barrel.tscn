@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://btneqlwpl4a5o"]
+
+[ext_resource type="PackedScene" uid="uid://wgjausma1267" path="res://assets/models/barrel.gltf" id="1_5c8py"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_oo6pj"]
+height = 0.8
+radius = 0.4
+
+[node name="Barrel" type="Node3D" unique_id=573348540]
+
+[node name="blockbench_export" parent="." unique_id=1569933294 instance=ExtResource("1_5c8py")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2091349218]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=290092115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("CylinderShape3D_oo6pj")
