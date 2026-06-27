@@ -27,6 +27,8 @@ signal camera_finished_transition
 @onready var stamina_bar_left: ProgressBar = $neck/Camera3D/HUD/SubViewport/PlayerUI/StaminaBar/StaminaBarLeft
 @onready var stamina_bar_right: ProgressBar = $neck/Camera3D/HUD/SubViewport/PlayerUI/StaminaBar/StaminaBarRight
 @onready var sound_area: Area3D = $SoundArea
+@onready var player_ui: Control = $neck/Camera3D/HUD/SubViewport/PlayerUI
+
 
 var _mouse_input : bool = false
 var _mouse_rotation : Vector3
@@ -61,6 +63,9 @@ enum input_capture_modes{ # all non "no cam" MUST use the camera (implied)
 
 var cam_transition_state = camera_transition_states.NO_TRANSITION
 var input_capture : input_capture_modes = input_capture_modes.PLAYER_CAPTURED
+
+func get_player_ui() -> Control:
+	return player_ui
 
 func take_key() -> void:
 	current_keys +=1
@@ -215,7 +220,7 @@ func _stamina_deplete(delta: float) -> void:
 	stamina_bar_left.visible = true
 	stamina_bar_right.visible = true
 	
-	stamina = clamp(stamina - 20 * delta, 0, 100)
+	stamina = clamp(stamina - 15 * delta, 0, 100)
 	if stamina <= 1:
 		stamina_cooldown.start(STAMINA_PENALTY)
 	else:

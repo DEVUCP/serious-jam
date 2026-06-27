@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="5_r526a"]
 [ext_resource type="Script" uid="uid://bqjsxd1xs8ll0" path="res://src/interactable/key.gd" id="6_lexcj"]
 [ext_resource type="Texture2D" uid="uid://63ep8km4lftk" path="res://assets/models/key_0.png" id="7_7pqgg"]
-[ext_resource type="Script" uid="uid://bxgfyo4nkmet4" path="res://src/player/sound_area.gd" id="8_lexcj"]
+[ext_resource type="Script" uid="uid://cipclsq32sh1m" path="res://src/interactable/music_box_sound_area.gd" id="8_lexcj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bhunq"]
 size = Vector3(1.4356842, 0.8357849, 1)
