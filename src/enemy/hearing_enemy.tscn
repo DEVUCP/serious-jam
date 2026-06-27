@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bbqa8818y314u" path="res://assets/models/hearing_enemy.gltf" id="2_a0mh5"]
 [ext_resource type="Texture2D" uid="uid://myfmrndtxwwf" path="res://assets/models/hearing_enemy_0.png" id="2_a4v8l"]
 [ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="2_bolxj"]
-[ext_resource type="AudioStream" uid="uid://50pj53ajonrx" path="res://assets/sounds/monkey_screech.mp3" id="3_a0mh5"]
+[ext_resource type="AudioStream" uid="uid://bfrjti7a7i1j6" path="res://assets/sounds/monkey_roaming.mp3" id="6_a4v8l"]
 [ext_resource type="AudioStream" uid="uid://38j6rea3yllh" path="res://assets/sounds/jump_scare.mp3" id="7_62j1r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1t18j"]
@@ -604,7 +604,8 @@ enable_air_absorption = true
 metadata/_custom_type_script = "uid://d0vgcravmqb8m"
 
 [node name="MonkeySounds" type="AudioStreamPlayer3D" parent="." unique_id=994990939]
-stream = ExtResource("3_a0mh5")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+stream = ExtResource("6_a4v8l")
 pitch_scale = 1.68
 bus = &"SFX"
 script = ExtResource("2_bolxj")
@@ -645,6 +646,7 @@ spot_angle = 17.05
 [node name="JumpscareAudio" type="AudioStreamPlayer3D" parent="." unique_id=183157747]
 stream = ExtResource("7_62j1r")
 pitch_scale = 0.75
+bus = &"SFX"
 
 [node name="JumpscareArea" type="Area3D" parent="." unique_id=1365191103]
 collision_layer = 0

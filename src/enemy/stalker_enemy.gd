@@ -147,7 +147,7 @@ func do_state_action():
 		states.chasing:
 			chase()
 		states.waiting:
-			print("IM WAITING")
+			#print("IM WAITING")
 			wait()
 		states.running_away:
 			run_away()
@@ -172,14 +172,16 @@ func stalk() -> void:
 		potential_position = get_random_nav_point((player.global_basis.z * (STALKING_DISTANCE/stalking_stage)) + player.global_position, min(3+i,10))
 		if potential_position.distance_to(player.global_position) > STALKING_DISTANCE/stalking_stage:
 			break
-		print("im a failure")
+		#print("im a failure")
 	if potential_position.distance_to(player.global_position) < STALKING_DISTANCE/stalking_stage:
 		update_state(states.waiting)
 		return
 	update_state(states.stalking)
 	potential_position.y = 0
 	position = potential_position
-
+	#print("im a bruh", stalking_stage)
+	if stalking_stage == STALKING_STAGE_TARGET-1:
+		$TwigSnapSFX.play()
 	visible = true
 	stalking_timer.start()
 
@@ -231,6 +233,7 @@ func _on_waiting_timer_timeout() -> void:
 	
 func _on_jumpscare_area_body_entered(body: Node3D) -> void:
 	if body != player: return
+	if state != states.chasing: return
 	
 	left_eye.visible = false
 	right_eye.visible = false

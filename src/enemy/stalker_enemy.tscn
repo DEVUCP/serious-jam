@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://byo758cqchcx5" path="res://assets/models/stalking_enemy_0.png" id="2_d2vwa"]
 [ext_resource type="PackedScene" uid="uid://c87weibs2tia6" path="res://assets/models/stalking_enemy.gltf" id="2_mgieg"]
 [ext_resource type="AudioStream" uid="uid://38j6rea3yllh" path="res://assets/sounds/jump_scare.mp3" id="3_mgieg"]
+[ext_resource type="AudioStream" uid="uid://cssb7bh66aqwp" path="res://assets/sounds/twig_snap.mp3" id="5_1biko"]
+[ext_resource type="Script" uid="uid://d0vgcravmqb8m" path="res://addons/spatial_audio_extended/spatial_audio_player_3d.gd" id="5_sgeql"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gu7ap"]
 resource_name = "material_0"
@@ -600,12 +602,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0248632, 0)
 shape = SubResource("CapsuleShape3D_bhunq")
 
 [node name="RightEye" type="MeshInstance3D" parent="." unique_id=1905118793]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.34999996, 0.060533658, 3.1571836, -0.2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.34999996, 0.060533658, 3.098276, -0.5791372)
 material_override = SubResource("StandardMaterial3D_57qmd")
 mesh = SubResource("CapsuleMesh_yf5fn")
 
 [node name="LeftEye" type="MeshInstance3D" parent="." unique_id=810460819]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.34999996, -0.05674945, 3.1571836, -0.2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.34999996, -0.05674945, 3.098276, -0.5791372)
 material_override = SubResource("StandardMaterial3D_57qmd")
 mesh = SubResource("CapsuleMesh_yf5fn")
 
@@ -647,6 +649,15 @@ collision_layer = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JumpscareArea" unique_id=1324257862]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2602096, -0.04314208)
 shape = SubResource("SphereShape3D_2rnmv")
+
+[node name="TwigSnapSFX" type="AudioStreamPlayer3D" parent="." unique_id=2001406891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+stream = ExtResource("5_1biko")
+bus = &"SFX"
+script = ExtResource("5_sgeql")
+reverb_collision_mask = 4
+occlusion_collision_mask = 4
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="area_entered" from="LightDetectionArea" to="." method="_on_light_detection_area_area_entered"]

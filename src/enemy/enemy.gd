@@ -187,7 +187,7 @@ func _update_investigation_point() -> void:
 		target_pos = investigation_positions.pop_front()
 		$MeshInstance3D3.global_position = target_pos
 		investigating_cooldown.start()
-		print("INVESTIGATING AT ", target_pos)
+		#print("INVESTIGATING AT ", target_pos)
 	else:
 		target_pos = Vector3.ZERO
 
