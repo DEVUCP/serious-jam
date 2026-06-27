@@ -31,7 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://cqjatbhtiwnkr" path="res://src/map/map_objects/crate.tscn" id="23_xvq5t"]
 [ext_resource type="PackedScene" uid="uid://btneqlwpl4a5o" path="res://src/map/map_objects/barrel.tscn" id="24_a8rdb"]
 [ext_resource type="PackedScene" uid="uid://dy2csty78ky26" path="res://src/enemy/hearing_enemy.tscn" id="31_a8rdb"]
-[ext_resource type="PackedScene" uid="uid://bulcetb8rqt3i" path="res://src/interactable/key.tscn" id="31_v62st"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_b3iwv"]
 panorama = ExtResource("2_e7nxu")
@@ -3568,18 +3567,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7, 0, 121.03095)
 
 [node name="Lantern2" parent="." unique_id=603276954 instance=ExtResource("9_vvkyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7, 0, 118.73095)
-
-[node name="Key" parent="." unique_id=236443187 instance=ExtResource("31_v62st")]
-transform = Transform3D(-8.940697e-08, 0, -1, 0, 1, 0, 1, 0, -8.940697e-08, -17.500002, 1, 119.3)
-
-[node name="Key2" parent="." unique_id=1370009088 instance=ExtResource("31_v62st")]
-transform = Transform3D(-8.940697e-08, 0, -1, 0, 1, 0, 1, 0, -8.940697e-08, -17.500002, 1, 121.3)
-
-[node name="Key3" parent="." unique_id=342889322 instance=ExtResource("31_v62st")]
-transform = Transform3D(-8.940697e-08, 0, -1, 0, 1, 0, 1, 0, -8.940697e-08, -17.500002, 1, 117.3)
-
-[node name="Key4" parent="." unique_id=2128178026 instance=ExtResource("31_v62st")]
-transform = Transform3D(-8.940697e-08, 0, -1, 0, 1, 0, 1, 0, -8.940697e-08, -17.500002, 1, 118.3)
 
 [node name="PlayerController" parent="." unique_id=698889221 instance=ExtResource("5_osvph")]
 transform = Transform3D(-8.940697e-08, 0, -1, 0, 1, 0, 1, 0, -8.940697e-08, -17.5, 1, 119.3)
