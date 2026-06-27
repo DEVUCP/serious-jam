@@ -68,6 +68,7 @@ func get_player_ui() -> Control:
 	return player_ui
 
 func take_key() -> void:
+	$PickupSFX.play()
 	current_keys +=1
 
 func get_flashlight() -> Node3D:
@@ -179,8 +180,6 @@ func _input(event):
 	if _mouse_input :
 		_rotation_input = -event.relative.x * MOUSE_SENSITIVITY
 		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
-	if event.is_action_pressed("ui_cancel"):
-		get_tree().quit()
 
 
 func toggle_camera_capture(val : bool) -> void:
@@ -350,6 +349,8 @@ func _handle_leaning() -> bool:
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	_mouse_rotation.y = rotation.y
+	_mouse_rotation.x = CAMERA_CONTROLLER.rotation.x
 
 func _process(delta: float) -> void:
 	if is_immune: return
@@ -382,6 +383,6 @@ func _process(delta: float) -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "camera_out" and not is_in_tutorial:
-		get_tree().change_scene_to_file("res://src/UI/win_page.tscn")
+		get_tree().change_scene_to_file("res://src/win_screen.tscn")
 	elif is_in_tutorial:
 		get_tree().change_scene_to_file("res://src/map/shader_main_scene.tscn")

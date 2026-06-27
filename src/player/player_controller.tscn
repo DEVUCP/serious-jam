@@ -17,11 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://ddahhas8ygeh1" path="res://assets/sounds/dirt_footsteps.mp3" id="14_8w71o"]
 [ext_resource type="AudioStream" uid="uid://bqiud443sqj2" path="res://assets/sounds/ambient_scream.mp3" id="16_50a0k"]
 [ext_resource type="Script" uid="uid://q3dl4h2dyea" path="res://src/player/scream_ambient_timer.gd" id="17_acgb3"]
+[ext_resource type="AudioStream" uid="uid://dw011g46rod6s" path="res://assets/sounds/key_pickup.mp3" id="18_1wm50"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fqqb2"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pgsjq"]
-size = Vector3(0.5581665, 0.59368896, 0.57177734)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_u3ddb"]
 viewport_path = NodePath("neck/Camera3D/HUD/SubViewport")
@@ -107,6 +105,7 @@ size = Vector3(1.0773926, 0.54248047, 1.020874)
 [sub_resource type="SphereShape3D" id="SphereShape3D_bhunq"]
 
 [node name="PlayerController" type="CharacterBody3D" unique_id=698889221]
+transform = Transform3D(0.34202024, 0, 0.9396926, 0, 1, 0, -0.9396926, 0, 0.34202024, 0, 0, 0)
 collision_mask = 4
 script = ExtResource("1_1va15")
 
@@ -122,17 +121,6 @@ shape = SubResource("CapsuleShape3D_fqqb2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 current = true
 far = 2000.0
-
-[node name="HandObjectDetector" type="Area3D" parent="neck/Camera3D" unique_id=1909803390]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0.25765646, -0.038701713, -1.0266638)
-collision_layer = 0
-collision_mask = 4
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="neck/Camera3D/HandObjectDetector" unique_id=1913906198]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016141355, -0.01864624, 0.31020612)
-shape = SubResource("BoxShape3D_pgsjq")
-debug_color = Color(0.8543358, 0.0008014733, 0.8909647, 0.41960785)
 
 [node name="RayCast3D" type="RayCast3D" parent="neck/Camera3D" unique_id=1702715253]
 transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
@@ -284,7 +272,7 @@ collision_mask = 2
 script = ExtResource("2_oiuio")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="neck/Camera3D/InteractArea" unique_id=1800865379]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.19999999, -0.16381222)
+transform = Transform3D(1, 0, 2.6645353e-15, 0, -4.371139e-08, -1, 0, 1, -4.3711392e-08, -1.4901161e-08, 0.19999999, -0.16381228)
 shape = SubResource("CapsuleShape3D_hthqk")
 
 [node name="Hand" type="Node3D" parent="neck/Camera3D" unique_id=1223726754]
@@ -389,8 +377,14 @@ wait_time = 60.0
 autostart = true
 script = ExtResource("17_acgb3")
 
-[connection signal="body_entered" from="neck/Camera3D/HandObjectDetector" to="neck/Camera3D/Hand" method="_on_hand_object_detector_body_entered"]
-[connection signal="body_exited" from="neck/Camera3D/HandObjectDetector" to="neck/Camera3D/Hand" method="_on_hand_object_detector_body_exited"]
+[node name="PickupSFX" type="AudioStreamPlayer3D" parent="." unique_id=611369403]
+stream = ExtResource("18_1wm50")
+bus = &"SFX"
+script = ExtResource("5_dmwdg")
+reverb_collision_mask = 4
+occlusion_collision_mask = 4
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
+
 [connection signal="animation_finished" from="neck/Camera3D/HUD/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="neck/Camera3D/InteractArea" to="neck/Camera3D/InteractArea" method="_on_area_entered"]
 [connection signal="area_exited" from="neck/Camera3D/InteractArea" to="neck/Camera3D/InteractArea" method="_on_area_exited"]
