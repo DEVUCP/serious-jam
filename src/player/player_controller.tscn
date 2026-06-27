@@ -15,6 +15,8 @@
 [ext_resource type="Script" uid="uid://bxb0s8odw0k4l" path="res://src/player/footsteps.gd" id="8_gwvns"]
 [ext_resource type="Script" uid="uid://bxgfyo4nkmet4" path="res://src/player/sound_area.gd" id="10_h0ep3"]
 [ext_resource type="AudioStream" uid="uid://ddahhas8ygeh1" path="res://assets/sounds/dirt_footsteps.mp3" id="14_8w71o"]
+[ext_resource type="AudioStream" uid="uid://bqiud443sqj2" path="res://assets/sounds/ambient_scream.mp3" id="16_50a0k"]
+[ext_resource type="Script" uid="uid://q3dl4h2dyea" path="res://src/player/scream_ambient_timer.gd" id="17_acgb3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fqqb2"]
 
@@ -371,6 +373,22 @@ debug_color = Color(0.033818975, 0, 0.8577128, 1)
 wait_time = 0.1
 one_shot = true
 
+[node name="ScreamAmbientSFX" type="AudioStreamPlayer3D" parent="." unique_id=1264936024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+stream = ExtResource("16_50a0k")
+bus = &"Ambient"
+script = ExtResource("5_dmwdg")
+reverb_collision_mask = 4
+occlusion_collision_mask = 4
+enable_air_absorption = true
+air_absorption_log_frequency_scaling = false
+metadata/_custom_type_script = "uid://d0vgcravmqb8m"
+
+[node name="ScreamAmbientTimer" type="Timer" parent="ScreamAmbientSFX" unique_id=1601318650]
+wait_time = 60.0
+autostart = true
+script = ExtResource("17_acgb3")
+
 [connection signal="body_entered" from="neck/Camera3D/HandObjectDetector" to="neck/Camera3D/Hand" method="_on_hand_object_detector_body_entered"]
 [connection signal="body_exited" from="neck/Camera3D/HandObjectDetector" to="neck/Camera3D/Hand" method="_on_hand_object_detector_body_exited"]
 [connection signal="animation_finished" from="neck/Camera3D/HUD/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
@@ -383,3 +401,4 @@ one_shot = true
 [connection signal="body_shape_exited" from="LeanCollisionAreaRight" to="LeanCollisionAreaRight" method="_on_body_shape_exited"]
 [connection signal="finished" from="Footsteps/SpatialAudioPlayer3D" to="Footsteps" method="_on_spatial_audio_player_3d_finished"]
 [connection signal="timeout" from="SoundArea/RefreshAreaTimer" to="SoundArea" method="_on_refresh_area_timer_timeout"]
+[connection signal="timeout" from="ScreamAmbientSFX/ScreamAmbientTimer" to="ScreamAmbientSFX/ScreamAmbientTimer" method="_on_timeout"]
