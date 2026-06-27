@@ -13,6 +13,7 @@ func _on_interact_area_interacted_with(something: Variant) -> void:
 		if locks.get_child(current_keys - 1).freeze == true:
 			locks.get_child(current_keys - 1).freeze = false
 		current_keys -= 1
+	$LockSFX.play()
 	
 	if something.current_keys == locks.get_child_count():
 		$blockbench_export/Node3D.rotate_y(-90)

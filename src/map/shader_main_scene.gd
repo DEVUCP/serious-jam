@@ -2,8 +2,8 @@ extends SubViewportContainer
 @export var main_menu: bool = false
 @onready var window_size = get_viewport().get_visible_rect().size
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+#
+## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	window_size = Vector2i(get_viewport().get_visible_rect().size)
 	if window_size != $SubViewport.size:
@@ -11,6 +11,9 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	if main_menu:
+		await get_tree().process_frame
+		await get_tree().process_frame
+		$SubViewport.size = get_viewport().get_visible_rect().size
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		return
 	if OS.has_feature("web"):
