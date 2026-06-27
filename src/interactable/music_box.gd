@@ -28,6 +28,7 @@ func _on_interact_area_interacted_with(something: Variant) -> void:
 
 func _physics_process(delta: float) -> void:
 	_reverse_crank(delta)
+	#print(music_sfx.is_playing())
 
 func crank() -> void:
 	#print("CRANKING?")
@@ -41,6 +42,8 @@ func crank() -> void:
 		#music_sfx.play()
 	#
 	if !_resume_music() and !music_sfx.is_playing():
+		#print("i Should On")
+		#print()
 		music_sfx.play()
 		sound_area.call_deferred("add_sound", music_sfx.stream)
 	
@@ -49,6 +52,7 @@ func crank() -> void:
 
 
 func _reverse_crank(delta) -> void:
+	#print("areas: ", interact_area.get_overlapping_areas())
 	if ((crank_cooldown_timer.is_stopped() or !interact_area.has_overlapping_areas()) and crank_meter < crank_target and crank_meter > 0):
 		#print("reversing crank")
 		_deplete_crank_meter(delta)
@@ -142,4 +146,5 @@ func _on_interact_area_area_entered(area: Area3D) -> void:
 	$InteractArea/CollisionShape3D/Outline.visible = true
 
 func _on_interact_area_area_exited(area: Area3D) -> void:
+	#print("i exited the area")
 	$InteractArea/CollisionShape3D/Outline.visible = false
