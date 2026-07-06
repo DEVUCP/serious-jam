@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://cvu8lhaiyhgu5"]
+
+[ext_resource type="FontFile" uid="uid://m4eqw8kmlmos" path="res://assets/fonts/ITCKRIST.TTF" id="1_l8lx2"]
+[ext_resource type="Script" uid="uid://ctpk7x041wg7l" path="res://src/loading_screen.gd" id="1_o6473"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font = ExtResource("1_l8lx2")
+font_size = 77
+font_color = Color(1, 0.9882353, 0.68235296, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_otj2m"]
+font = ExtResource("1_l8lx2")
+font_size = 23
+font_color = Color(0.8324492, 0.37777635, 0.38959292, 1)
+
+[node name="LoadingScreen" type="Control" unique_id=227362276]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o6473")
+scene_path_to_load = "res://src/main_menu.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=640379241]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=594443617]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.5
+offset_top = -11.5
+offset_right = 36.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOADING..."
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 1
+
+[node name="TipLabel" type="Label" parent="." unique_id=867111707]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.5
+offset_top = -49.0
+offset_right = 36.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "tip:"
+label_settings = SubResource("LabelSettings_otj2m")
+horizontal_alignment = 1
