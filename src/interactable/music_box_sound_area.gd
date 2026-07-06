@@ -15,7 +15,7 @@ var sounds = {
 	DIRT_FOOTSTEPS: 10,
 	DIRT_FOOTSTEPS_RUN: 20,
 	FLASHLIGHT_CRANK_SFX: 20,
-	JACK_IN_THE_BOX_MUSIC: 115,
+	JACK_IN_THE_BOX_MUSIC: 75,
 }
 
 func set_player_ui(player_ui_node: Control) -> void:
