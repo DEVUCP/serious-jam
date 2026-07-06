@@ -296,7 +296,7 @@ radius = 0.1
 height = 0.225
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
-radius = 23.2
+radius = 45.0
 
 [sub_resource type="Animation" id="Animation_pql7r"]
 length = 0.001

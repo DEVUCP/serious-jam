@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export var player_path: NodePath
 @export var nav_region_path: NodePath
 @export var view_range: float = 160.0
-@export var detection_range: float = 25.0
+@export var detection_range: float = 4.0
 @export var agro_range: float = detection_range / 2.0
 @export var investigate_range: float = 5
 @export var light_detection_tolerence: float = 1.0
@@ -16,7 +16,7 @@ extends CharacterBody3D
 @onready var roaming_sfx_timer: Timer = $RoamingSFXTimer
 @onready var animation_player: AnimationPlayer = $EnemyModel/AnimationPlayer
 
-const SPEED: float = 195
+const SPEED: float = 170
 var investigating_sfx: Resource = preload("res://assets/sounds/monkey_investigate.mp3")
 var screech_sfx: Resource = preload("res://assets/sounds/monkey_screech.mp3")
 var roaming_sfx: Resource = preload("res://assets/sounds/monkey_roaming.mp3")
@@ -117,9 +117,9 @@ func _update_detection_range() -> void:
 	var aggro_factor = 1
 	if state != states.roaming:
 		aggro_factor = 1.25
-	
-	detection_range = 15.0 + (15 * light_detection_factor)
-	agro_range = (detection_range / 1.5)  * aggro_factor
+
+	detection_range = 5.0 + (8 * light_detection_factor)
+	agro_range = (detection_range / 2)  * aggro_factor
 	
 	ray_cast_3d.target_position.z = -detection_range
 

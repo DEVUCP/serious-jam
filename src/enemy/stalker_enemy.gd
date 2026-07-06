@@ -169,7 +169,7 @@ func _initiate_stalking() -> void:
 func stalk() -> void:
 	var potential_position = Vector3.ZERO
 	for i in range(100):
-		potential_position = get_random_nav_point((player.global_basis.z * (STALKING_DISTANCE/stalking_stage)) + player.global_position, min(3+i,10))
+		potential_position = get_random_nav_point((player.global_basis.z * (STALKING_DISTANCE/stalking_stage)) + player.global_position, min(3+i,20))
 		if potential_position.distance_to(player.global_position) > STALKING_DISTANCE/stalking_stage:
 			break
 		#print("im a failure")

@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var player_path: NodePath
 @export var nav_region_path: NodePath
-@export var agro_range: float = 10
+@export var agro_range: float = 7
 @export var investigate_range: float = 5
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
@@ -14,7 +14,7 @@ extends CharacterBody3D
 @onready var animation_player: AnimationPlayer = $EnemyModel/AnimationPlayer
 
 
-const SPEED: float = 235.0
+const SPEED: float = 190.0
 var investigating_sfx: Resource = preload("res://assets/sounds/monkey_investigate.mp3")
 var screech_sfx: Resource = preload("res://assets/sounds/monkey_screech.mp3")
 var roaming_sfx: Resource = preload("res://assets/sounds/monkey_roaming.mp3")
@@ -120,7 +120,7 @@ func _initiate_investigation() -> void:
 	
 	investigation_positions.clear()
 	var last_known_player_location = player.global_position
-	for i in range(4):
+	for i in range(3):
 		randomize()
 		investigation_positions.append(last_known_player_location + Vector3(randf_range(-investigate_range, investigate_range), 0, randf_range(-investigate_range, investigate_range)))
 	#print(investigation_positions)
@@ -220,7 +220,7 @@ func _on_roaming_sfx_timer_timeout() -> void:
 
 func on_sound_detected() -> void:
 	if !sound_detection_area.has_overlapping_areas(): return
-	
+	print("im investigating so hard")
 	if _is_in_agro_range():
 		if state == states.chasing: return
 		update_state(states.chasing)

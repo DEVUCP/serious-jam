@@ -284,7 +284,7 @@ emission_energy_multiplier = 3.55
 [sub_resource type="SphereMesh" id="SphereMesh_6f8o3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bhunq"]
-radius = 16.0
+radius = 6.5
 
 [sub_resource type="Animation" id="Animation_pql7r"]
 length = 0.001
@@ -612,8 +612,8 @@ script = ExtResource("2_bolxj")
 ignore_floor = true
 reverb_collision_mask = 4
 occlusion_collision_mask = 4
-inner_radius = 15.0
-falloff_distance = 50.0
+inner_radius = 20.0
+falloff_distance = 60.0
 enable_air_absorption = true
 metadata/_custom_type_script = "uid://d0vgcravmqb8m"
 
