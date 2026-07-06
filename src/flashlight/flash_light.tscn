@@ -342,7 +342,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19329864, 0.66079146, 1.17
 light_energy = 2.0
 light_indirect_energy = 16.0
 light_cull_mask = 4294967291
-spot_range = 13.112555
+spot_range = 27.0
 spot_angle = 29.753487
 
 [node name="FlickerCooldown" type="Timer" parent="." unique_id=581406877]

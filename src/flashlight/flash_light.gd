@@ -1,6 +1,6 @@
 extends Node3D
 
-const DRAIN_RATE: float = 12.0 # per second
+const DRAIN_RATE: float = 6.0 # per second
 @export var main_menu: bool = false
 @onready var crank: Node3D = $FlashlightModel/crank
 @onready var spot_light_3d: SpotLight3D = $SpotLight3D
