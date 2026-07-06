@@ -1,13 +1,10 @@
 extends Control
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-
-
+const MAIN_MENU_SCENE := "res://src/main_menu.tscn"
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	get_tree().change_scene_to_file("res://src/main_menu.tscn")
+	var loading_screen = preload("res://src/loading_screen.tscn").instantiate()
+	loading_screen.scene_path_to_load = MAIN_MENU_SCENE
+	get_tree().root.add_child(loading_screen)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = loading_screen
