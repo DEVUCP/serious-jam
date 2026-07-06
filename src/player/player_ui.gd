@@ -1,6 +1,7 @@
 extends Control
 
 var sound_level = 0
+@onready var settings_page: Control = $SettingsPage
 @onready var speaker_0: TextureRect = $speaker0
 @onready var speaker_1: TextureRect = $speaker1
 @onready var speaker_2: TextureRect = $speaker2

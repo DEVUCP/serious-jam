@@ -9,7 +9,7 @@ signal camera_finished_transition
 @export var is_in_tutorial: bool = false
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
 @export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
-@export var MOUSE_SENSITIVITY : float = 0.5 
+#@export var MOUSE_SENSITIVITY : float = 0.5 
 @export var INTERACT_RANGE : float = 3
 @export var SPRINT_SPEED_FACTOR : float = 2.0
 @export var STAMINA_PENALTY : float = 4.0
@@ -32,7 +32,7 @@ signal camera_finished_transition
 
 var _mouse_input : bool = false
 var _mouse_rotation : Vector3
-var _rotation_input : float
+var _rotation_input : float 
 var _tilt_input : float
 var _player_rotation : Vector3
 var _camera_rotation : Vector3
@@ -174,12 +174,11 @@ func _input(event):
 		return
 	if !_is_input_self_captured():
 		return
-	#if event.is_action_pressed("flashlight"):
-		#toggle_flashlight()
+	
 	_mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 	if _mouse_input :
-		_rotation_input = -event.relative.x * MOUSE_SENSITIVITY
-		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
+		_rotation_input = -event.relative.x * Settings.mouse_sens
+		_tilt_input = -event.relative.y * Settings.mouse_sens
 
 
 func toggle_camera_capture(val : bool) -> void:
@@ -385,4 +384,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "camera_out" and not is_in_tutorial:
 		get_tree().change_scene_to_file("res://src/win_screen.tscn")
 	elif is_in_tutorial:
-		get_tree().change_scene_to_file("res://src/map/shader_main_scene.tscn")
+		var loading_screen = preload("res://src/loading_screen.tscn").instantiate()
+		loading_screen.scene_path_to_load = "res://src/main_menu.tscn"
+		get_tree().root.add_child(loading_screen)
+		get_tree().current_scene.queue_free()
+		get_tree().current_scene = loading_screen
