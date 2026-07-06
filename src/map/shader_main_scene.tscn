@@ -2,7 +2,6 @@
 
 [ext_resource type="Shader" uid="uid://nce46h1glew4" path="res://src/shaders/PSXCamera.gdshader" id="1_b45px"]
 [ext_resource type="Script" uid="uid://mo60fr31l34h" path="res://src/map/shader_main_scene.gd" id="2_3fxir"]
-[ext_resource type="PackedScene" uid="uid://yuy7lp8mln37" path="res://src/map/map.tscn" id="3_m33rx"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_m33rx"]
 viewport_path = NodePath("SubViewport")
@@ -39,4 +38,4 @@ audio_listener_enable_3d = true
 physics_object_picking = true
 render_target_update_mode = 4
 
-[node name="Map" parent="SubViewport" unique_id=82686766 instance=ExtResource("3_m33rx")]
+[node name="Node3D" type="Node3D" parent="SubViewport" unique_id=983294955]

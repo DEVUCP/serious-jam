@@ -1,7 +1,7 @@
 extends SubViewportContainer
 @export var main_menu: bool = false
 @onready var window_size = get_viewport().get_visible_rect().size
-
+@export var tutorial: bool = false
 #
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -20,6 +20,10 @@ func _ready() -> void:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	await get_tree().process_frame
+	if !tutorial:
+		var map = preload("res://src/map/map.tscn").instantiate()
+		$SubViewport/Node3D.add_child(map)
 
 func _input(event):
 	if main_menu:
