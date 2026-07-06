@@ -475,6 +475,30 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector3(-3.8407516, 0.5, -0.677227)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../SubViewportContainer/SubViewport/Camera3D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-43.065426, 0.55799806, 86.619064)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../SubViewportContainer/SubViewport/Camera3D:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.15057416, 1.7770082, 0.07139017)]
+}
 
 [sub_resource type="Animation" id="Animation_j6okc"]
 resource_name = "flicker"
@@ -780,7 +804,7 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/SubViewportContainer/SubViewport" unique_id=272110451]
-transform = Transform3D(-0.19375882, 0.16105872, 0.9677384, 0.07052245, 0.9861668, -0.15000582, -0.97851115, 0.039182335, -0.20243675, -43.065426, 0.55799806, 86.619064)
+transform = Transform3D(-0.19375871, 0.1610587, 0.9677387, 0.070522435, 0.9861668, -0.15000585, -0.9785108, 0.039182346, -0.20243677, -43.065426, 0.55799806, 86.619064)
 current = true
 
 [node name="SpatialAudioPlayer3D" type="AudioStreamPlayer3D" parent="SubViewport/SubViewportContainer/SubViewport/Camera3D" unique_id=1070200099]
