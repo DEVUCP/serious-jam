@@ -2,25 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3wv4ht4ebkrb"
-path.s3tc="res://.godot/imported/tree_5.png-7546c9d2d47f90ec982e884f0f26d5c4.s3tc.ctex"
-path.etc2="res://.godot/imported/tree_5.png-7546c9d2d47f90ec982e884f0f26d5c4.etc2.ctex"
+uid="uid://bojgdafubk4tk"
+path="res://.godot/imported/box_unchecked.png-6bf487f9952ce972e858e91e0c25d9a9.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "ab40df992060d4dd8054c0f935230488"
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/models/tree_5.png"
-dest_files=["res://.godot/imported/tree_5.png-7546c9d2d47f90ec982e884f0f26d5c4.s3tc.ctex", "res://.godot/imported/tree_5.png-7546c9d2d47f90ec982e884f0f26d5c4.etc2.ctex"]
+source_file="res://assets/textures/box_unchecked.png"
+dest_files=["res://.godot/imported/box_unchecked.png-6bf487f9952ce972e858e91e0c25d9a9.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -28,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -42,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

@@ -2,21 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3wv4ht4ebkrb"
-path.s3tc="res://.godot/imported/tree_5.png-7546c9d2d47f90ec982e884f0f26d5c4.s3tc.ctex"
-path.etc2="res://.godot/imported/tree_5.png-7546c9d2d47f90ec982e884f0f26d5c4.etc2.ctex"
+uid="uid://cgul81woj46ef"
+path.s3tc="res://.godot/imported/maptexture.png-6752308f01fd59c31a77e7404d81c3f1.s3tc.ctex"
+path.etc2="res://.godot/imported/maptexture.png-6752308f01fd59c31a77e7404d81c3f1.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "ab40df992060d4dd8054c0f935230488"
-}
 
 [deps]
 
-source_file="res://assets/models/tree_5.png"
-dest_files=["res://.godot/imported/tree_5.png-7546c9d2d47f90ec982e884f0f26d5c4.s3tc.ctex", "res://.godot/imported/tree_5.png-7546c9d2d47f90ec982e884f0f26d5c4.etc2.ctex"]
+source_file="res://assets/textures/maptexture.png"
+dest_files=["res://.godot/imported/maptexture.png-6752308f01fd59c31a77e7404d81c3f1.s3tc.ctex", "res://.godot/imported/maptexture.png-6752308f01fd59c31a77e7404d81c3f1.etc2.ctex"]
 
 [params]
 

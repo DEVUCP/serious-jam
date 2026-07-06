@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://t7p5jnfk8j7"
 path.s3tc="res://.godot/imported/ritual_site_3.png-1d000a9ac8f18d997c89eeedead1127f.s3tc.ctex"
+path.etc2="res://.godot/imported/ritual_site_3.png-1d000a9ac8f18d997c89eeedead1127f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/ritual_site_3.png"
-dest_files=["res://.godot/imported/ritual_site_3.png-1d000a9ac8f18d997c89eeedead1127f.s3tc.ctex"]
+dest_files=["res://.godot/imported/ritual_site_3.png-1d000a9ac8f18d997c89eeedead1127f.s3tc.ctex", "res://.godot/imported/ritual_site_3.png-1d000a9ac8f18d997c89eeedead1127f.etc2.ctex"]
 
 [params]
 

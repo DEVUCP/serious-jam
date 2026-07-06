@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3wv4ht4ebkrb"
-path.s3tc="res://.godot/imported/tree_5.png-7546c9d2d47f90ec982e884f0f26d5c4.s3tc.ctex"
-path.etc2="res://.godot/imported/tree_5.png-7546c9d2d47f90ec982e884f0f26d5c4.etc2.ctex"
+uid="uid://coak07521vqdf"
+path.s3tc="res://.godot/imported/map_0.png-0ddfd6af4ca0930345498081e3898914.s3tc.ctex"
+path.etc2="res://.godot/imported/map_0.png-0ddfd6af4ca0930345498081e3898914.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "ab40df992060d4dd8054c0f935230488"
+"md5": "2c7e29304f05f061bc1f66d4c0ab263d"
 }
 
 [deps]
 
-source_file="res://assets/models/tree_5.png"
-dest_files=["res://.godot/imported/tree_5.png-7546c9d2d47f90ec982e884f0f26d5c4.s3tc.ctex", "res://.godot/imported/tree_5.png-7546c9d2d47f90ec982e884f0f26d5c4.etc2.ctex"]
+source_file="res://assets/models/map_0.png"
+dest_files=["res://.godot/imported/map_0.png-0ddfd6af4ca0930345498081e3898914.s3tc.ctex", "res://.godot/imported/map_0.png-0ddfd6af4ca0930345498081e3898914.etc2.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0fe81n8fcwpo"
 path.s3tc="res://.godot/imported/music_box_0.png-e30bcb7dcb7d03588909fef37c867820.s3tc.ctex"
+path.etc2="res://.godot/imported/music_box_0.png-e30bcb7dcb7d03588909fef37c867820.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/music_box_0.png"
-dest_files=["res://.godot/imported/music_box_0.png-e30bcb7dcb7d03588909fef37c867820.s3tc.ctex"]
+dest_files=["res://.godot/imported/music_box_0.png-e30bcb7dcb7d03588909fef37c867820.s3tc.ctex", "res://.godot/imported/music_box_0.png-e30bcb7dcb7d03588909fef37c867820.etc2.ctex"]
 
 [params]
 
