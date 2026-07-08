@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://meh70737pt13"
-path.s3tc="res://.godot/imported/box_checked.png-f7e94974dfaa4d6c17874a697facb914.s3tc.ctex"
+uid="uid://dntmvdx1k7umh"
+path.s3tc="res://.godot/imported/wasd_icon.png-38a7c16039104cdac9a2dea3d92242f3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/box_checked.png"
-dest_files=["res://.godot/imported/box_checked.png-f7e94974dfaa4d6c17874a697facb914.s3tc.ctex"]
+source_file="res://assets/textures/wasd_icon.png"
+dest_files=["res://.godot/imported/wasd_icon.png-38a7c16039104cdac9a2dea3d92242f3.s3tc.ctex"]
 
 [params]
 

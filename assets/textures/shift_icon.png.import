@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://meh70737pt13"
-path.s3tc="res://.godot/imported/box_checked.png-f7e94974dfaa4d6c17874a697facb914.s3tc.ctex"
+uid="uid://br3hlgjsphbas"
+path.s3tc="res://.godot/imported/shift_icon.png-73e84dc566d8e0f6e3738181b7b8ca72.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/box_checked.png"
-dest_files=["res://.godot/imported/box_checked.png-f7e94974dfaa4d6c17874a697facb914.s3tc.ctex"]
+source_file="res://assets/textures/shift_icon.png"
+dest_files=["res://.godot/imported/shift_icon.png-73e84dc566d8e0f6e3738181b7b8ca72.s3tc.ctex"]
 
 [params]
 
