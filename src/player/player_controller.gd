@@ -31,9 +31,10 @@ signal camera_finished_transition
 
 
 var _mouse_input : bool = false
+var _stick_input: bool = false
 var _mouse_rotation : Vector3
 var _rotation_input : float 
-var _tilt_input : float
+var _tilt_input : float = 0.0
 var _player_rotation : Vector3
 var _camera_rotation : Vector3
 
@@ -46,6 +47,7 @@ var bobbing_up = true
 var stamina : float = 100.0
 var current_keys: int = 0
 var is_immune: bool = false
+var sprinting_toggled: bool = false
  
 enum camera_transition_states{
 	NO_TRANSITION,
@@ -156,6 +158,22 @@ func _on_interact_area_set_interactable_area(area: Area3D) -> void:
 func _is_input_self_captured() -> bool:
 	return input_capture == input_capture_modes.PLAYER_CAPTURED
 
+func _is_sprinting_held() -> bool:
+	return (Input.is_action_pressed("run") and 
+	stamina >= 1 and 
+	!Settings.toggle_sprint_setting and
+	!Input.is_action_pressed("slow_walk") and 
+	not Input.is_action_pressed("lean_left") and 
+	not Input.is_action_pressed("lean_right"))
+
+func _is_sprinting_and_toggled():
+	return (Settings.toggle_sprint_setting and 
+	sprinting_toggled and 
+	stamina >= 1 and
+	!Input.is_action_pressed("slow_walk") and 
+	not Input.is_action_pressed("lean_left") and 
+	not Input.is_action_pressed("lean_right"))
+
 func _cam_transition() -> void:
 	if is_input_allowed():
 		cam_transition_state = camera_transition_states.OUT
@@ -175,11 +193,21 @@ func _input(event):
 	if !_is_input_self_captured():
 		return
 	
+	if Input.is_action_just_pressed("run") and Settings.toggle_sprint_setting:
+		get_viewport().set_input_as_handled()
+		sprinting_toggled = !sprinting_toggled
+	
+
 	_mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 	if _mouse_input :
 		_rotation_input = -event.relative.x * Settings.mouse_sens
 		_tilt_input = -event.relative.y * Settings.mouse_sens
-
+	
+	var look
+	if Input.get_connected_joypads():
+		look = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+		_rotation_input = -look.x * Settings.controller_sensitivity
+		_tilt_input = -look.y * Settings.controller_sensitivity
 
 func toggle_camera_capture(val : bool) -> void:
 	CAMERA_CONTROLLER.current = val
@@ -235,7 +263,7 @@ func _stamina_bar(green_shift: float, delta: float) -> void:
 	stamina_bar_left.get_theme_stylebox("fill").set("bg_color", new_color)
 
 func _sprint(run_speed: float, delta: float, is_moving: bool) -> float:
-	if Input.is_action_pressed("run") and stamina >= 1 and is_moving and !Input.is_action_pressed("slow_walk") and not Input.is_action_pressed("lean_left") and not Input.is_action_pressed("lean_right"):
+	if (_is_sprinting_held() or _is_sprinting_and_toggled()) and is_moving:
 		run_speed = SPRINT_SPEED_FACTOR
 		_stamina_deplete(delta)
 		footsteps.set_stream(true)

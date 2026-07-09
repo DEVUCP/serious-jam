@@ -24,6 +24,7 @@ var sounds = {
 
 func _ready() -> void:
 	collision_shape_3d.disabled = true
+	collision_shape_3d.shape.radius = 0.5
 
 func add_sound(sound_file: Resource) -> void:
 	if collision_shape_3d.shape.radius + sounds[sound_file] > 1:
