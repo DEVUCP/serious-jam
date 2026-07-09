@@ -220,6 +220,9 @@ func _on_roaming_sfx_timer_timeout() -> void:
 
 func on_sound_detected() -> void:
 	if !sound_detection_area.has_overlapping_areas(): return
+	if sound_detection_area.get_overlapping_areas()[0].collision_shape_3d.shape.radius < 10: 
+		print('nevermind hearing')
+		return
 	print("im investigating so hard")
 	if _is_in_agro_range():
 		if state == states.chasing: return
