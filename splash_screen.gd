@@ -8,3 +8,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	get_tree().root.add_child(loading_screen)
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = loading_screen
+
+func _play_godot_anim() -> void:
+	$MarginContainer/AnimatedSprite2D.play("default")

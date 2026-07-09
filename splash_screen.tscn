@@ -58,7 +58,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_r8bb4"]
 resource_name = "boot"
-length = 11.866667
+length = 15.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -66,7 +66,7 @@ tracks/0/path = NodePath("Label:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.0666667, 5.133333, 6),
+"times": PackedFloat32Array(0, 1.0666667, 7.7, 8.566667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -78,7 +78,7 @@ tracks/1/path = NodePath("TextureRect:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 6.3333335, 8, 10.033334, 11.833333),
+"times": PackedFloat32Array(0, 9.466667, 11.133333, 13.166667, 14.966666),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -90,7 +90,7 @@ tracks/2/path = NodePath("Label2:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 6.3501587, 8.006127, 10.033334, 11.866667),
+"times": PackedFloat32Array(0, 9.483493, 11.1394615, 13.166667, 14.999999),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -102,7 +102,7 @@ tracks/3/path = NodePath("AudioStreamPlayer:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(6.233333),
+"times": PackedFloat32Array(9.366667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
