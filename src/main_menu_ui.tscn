@@ -3,8 +3,14 @@
 [ext_resource type="Script" uid="uid://ccdjiuql5dfbm" path="res://src/main_menu_ui.gd" id="1_l1yws"]
 [ext_resource type="FontFile" uid="uid://m4eqw8kmlmos" path="res://assets/fonts/ITCKRIST.TTF" id="1_ys680"]
 [ext_resource type="Texture2D" uid="uid://daf8kl15dj8hk" path="res://assets/textures/slider_bob.png" id="2_pjvno"]
+[ext_resource type="Texture2D" uid="uid://043fsklohvm4" path="res://assets/textures/OptionButtonHoverPopupPanel.png" id="3_5ymdb"]
+[ext_resource type="Texture2D" uid="uid://ckyurxpeatnvi" path="res://assets/textures/box_checked_hover.png" id="3_i2a7v"]
 [ext_resource type="Texture2D" uid="uid://bxbwg00qo51c6" path="res://assets/textures/slider_bob_pressed.png" id="3_l1yws"]
+[ext_resource type="Texture2D" uid="uid://dr60rybf0ero4" path="res://assets/textures/OptionButtonNormal.png" id="3_w86bw"]
+[ext_resource type="Texture2D" uid="uid://cqk7obgypol5" path="res://assets/textures/OptionButtonHover.png" id="4_fya3a"]
+[ext_resource type="Texture2D" uid="uid://b17emdwb00i7g" path="res://assets/textures/OptionButtonNormalPopupPanel.png" id="4_kl0c3"]
 [ext_resource type="Texture2D" uid="uid://meh70737pt13" path="res://assets/textures/box_checked.png" id="5_j3wdj"]
+[ext_resource type="Texture2D" uid="uid://chwl2t08ud3o4" path="res://assets/textures/box_hover_unchecked.png" id="5_w86bw"]
 [ext_resource type="Texture2D" uid="uid://bojgdafubk4tk" path="res://assets/textures/box_unchecked.png" id="6_yk0k8"]
 [ext_resource type="AudioStream" uid="uid://dyg01hyirhoqf" path="res://assets/sounds/flashlight_click.mp3" id="7_yk0k8"]
 [ext_resource type="AudioStream" uid="uid://dg3ae340kd2ar" path="res://assets/sounds/pencil_sfx.mp3" id="8_e4j4s"]
@@ -17,6 +23,48 @@ font = ExtResource("1_ys680")
 font_size = 38
 font_color = Color(0.9490196, 0.93333334, 0.5764706, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_57qmd"]
+texture = ExtResource("3_5ymdb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yf5fn"]
+texture = ExtResource("4_kl0c3")
+
+[sub_resource type="Theme" id="Theme_g4v7s"]
+PopupMenu/colors/font_color = Color(0, 0, 0, 1)
+PopupMenu/constants/item_end_padding = 5
+PopupMenu/constants/item_start_padding = -5
+PopupMenu/font_sizes/font_size = 26
+PopupMenu/fonts/font = ExtResource("1_ys680")
+PopupMenu/icons/radio_checked = ExtResource("3_i2a7v")
+PopupMenu/icons/radio_unchecked = ExtResource("5_w86bw")
+PopupMenu/styles/hover = SubResource("StyleBoxTexture_57qmd")
+PopupMenu/styles/panel = SubResource("StyleBoxTexture_yf5fn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kl0c3"]
+texture = ExtResource("3_w86bw")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_shsh4"]
+texture = ExtResource("3_w86bw")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fya3a"]
+texture = ExtResource("4_fya3a")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i2a7v"]
+texture = ExtResource("4_fya3a")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4j4s"]
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 8
+border_color = Color(0, 0, 0, 0.29803923)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjvno"]
 content_margin_top = 15.0
 bg_color = Color(0.21795529, 0.23095393, 0.22000447, 1)
@@ -24,7 +72,7 @@ bg_color = Color(0.21795529, 0.23095393, 0.22000447, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1yws"]
 bg_color = Color(1, 0.9882353, 0.68235296, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4j4s"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w86bw"]
 bg_color = Color(0.6, 0.34901962, 0.42745098, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ymdb"]
@@ -44,21 +92,20 @@ grow_vertical = 2
 script = ExtResource("1_l1yws")
 
 [node name="MainMenuPage" type="Control" parent="." unique_id=1143942314]
-anchors_preset = 0
-offset_left = 459.565
-offset_top = 177.5
-offset_right = 459.565
-offset_bottom = 470.5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 offset_transform_enabled = true
 
 [node name="Label" type="Label" parent="MainMenuPage" unique_id=1765805572]
 layout_mode = 0
-offset_left = -380.565
-offset_top = -124.5
-offset_right = 450.435
-offset_bottom = -42.5
+offset_left = 23.755
+offset_top = 54.955
+offset_right = 854.755
+offset_bottom = 136.95506
 theme_override_colors/font_color = Color(1, 0.9882353, 0.68235296, 1)
 theme_override_fonts/font = ExtResource("1_ys680")
 theme_override_font_sizes/font_size = 60
@@ -69,9 +116,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -379.565
+offset_left = 72.72
 offset_top = -140.0
-offset_right = -96.565
+offset_right = 355.72
 offset_bottom = 258.0
 grow_vertical = 2
 
@@ -136,7 +183,6 @@ offset_bottom = 608.21497
 grow_horizontal = 2
 grow_vertical = 2
 offset_transform_enabled = true
-offset_transform_rotation = -0.017453292
 theme_override_styles/panel = SubResource("StyleBoxFlat_yf5fn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsPage/Panel" unique_id=193011521]
@@ -145,20 +191,64 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 88.793
+offset_left = 50.403
 offset_top = 43.398
-offset_right = -158.08203
+offset_right = -196.47198
 offset_bottom = -74.25699
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="HBoxContainer6" type="HBoxContainer" parent="SettingsPage/Panel/VBoxContainer" unique_id=2018664581]
+custom_minimum_size = Vector2(518.35, 50.69)
+layout_mode = 2
+offset_transform_enabled = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer6" unique_id=1202636145]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer6/MarginContainer2" unique_id=2065965176]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+offset_transform_enabled = true
+text = "Display Mode"
+label_settings = SubResource("LabelSettings_ys680")
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer6" unique_id=59583288]
+layout_mode = 2
+offset_transform_enabled = true
+
+[node name="OptionButton" type="OptionButton" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer6/MarginContainer" unique_id=1392191822]
+layout_mode = 2
+theme = SubResource("Theme_g4v7s")
+theme_override_colors/font_color = Color(1, 0.9882353, 0.68235296, 1)
+theme_override_fonts/font = ExtResource("1_ys680")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_kl0c3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_shsh4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fya3a")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_i2a7v")
+selected = 2
+item_count = 3
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless"
+popup/item_1/id = 1
+popup/item_2/text = "Windowed"
+popup/item_2/id = 2
+
+[node name="HSeparator2" type="HSeparator" parent="SettingsPage/Panel/VBoxContainer" unique_id=1446671767]
+custom_minimum_size = Vector2(1000, 18.815)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_e4j4s")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsPage/Panel/VBoxContainer" unique_id=1503569209]
-custom_minimum_size = Vector2(518.35, 65.42)
+custom_minimum_size = Vector2(518.35, 50.69)
 layout_mode = 2
 offset_transform_enabled = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer" unique_id=395555855]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer/MarginContainer2" unique_id=1151750871]
@@ -180,17 +270,17 @@ theme_override_icons/grabber = ExtResource("2_pjvno")
 theme_override_icons/grabber_highlight = ExtResource("3_l1yws")
 theme_override_styles/slider = SubResource("StyleBoxFlat_pjvno")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_l1yws")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_e4j4s")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_w86bw")
 max_value = 30.0
 value = 20.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="SettingsPage/Panel/VBoxContainer" unique_id=210608135]
-custom_minimum_size = Vector2(518.35, 65.42)
+custom_minimum_size = Vector2(518.35, 50.69)
 layout_mode = 2
 offset_transform_enabled = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer2" unique_id=1698299190]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=2103138290]
@@ -212,17 +302,17 @@ theme_override_icons/grabber = ExtResource("2_pjvno")
 theme_override_icons/grabber_highlight = ExtResource("3_l1yws")
 theme_override_styles/slider = SubResource("StyleBoxFlat_pjvno")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_l1yws")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_e4j4s")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_w86bw")
 max_value = 30.0
 value = 20.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="SettingsPage/Panel/VBoxContainer" unique_id=1094321453]
-custom_minimum_size = Vector2(518.35, 65.42)
+custom_minimum_size = Vector2(518.35, 50.69)
 layout_mode = 2
 offset_transform_enabled = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer3" unique_id=1454760151]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer3/MarginContainer2" unique_id=449553458]
@@ -244,25 +334,65 @@ theme_override_icons/grabber = ExtResource("2_pjvno")
 theme_override_icons/grabber_highlight = ExtResource("3_l1yws")
 theme_override_styles/slider = SubResource("StyleBoxFlat_pjvno")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_l1yws")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_e4j4s")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_w86bw")
 max_value = 30.0
 value = 20.0
 
+[node name="HSeparator" type="HSeparator" parent="SettingsPage/Panel/VBoxContainer" unique_id=927531590]
+custom_minimum_size = Vector2(1000, 18.815)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_e4j4s")
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="SettingsPage/Panel/VBoxContainer" unique_id=983291109]
+custom_minimum_size = Vector2(518.35, 50.69)
+layout_mode = 2
+offset_transform_enabled = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer7" unique_id=422577935]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer7/MarginContainer2" unique_id=2100509526]
+custom_minimum_size = Vector2(134.73, 0)
+layout_mode = 2
+offset_transform_enabled = true
+text = "Mouse Sensitivity"
+label_settings = SubResource("LabelSettings_ys680")
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer7" unique_id=812938232]
+layout_mode = 2
+
+[node name="SensitivitySlider" type="HSlider" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer7/MarginContainer" unique_id=1295222484]
+custom_minimum_size = Vector2(603.84, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("2_pjvno")
+theme_override_icons/grabber_highlight = ExtResource("3_l1yws")
+theme_override_styles/slider = SubResource("StyleBoxFlat_pjvno")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_l1yws")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_w86bw")
+min_value = 1.0
+max_value = 20.0
+value = 5.0
+
 [node name="HBoxContainer4" type="HBoxContainer" parent="SettingsPage/Panel/VBoxContainer" unique_id=221469034]
-custom_minimum_size = Vector2(518.35, 65.42)
+custom_minimum_size = Vector2(518.35, 50.69)
 layout_mode = 2
 offset_transform_enabled = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer4" unique_id=983008224]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer4/MarginContainer2" unique_id=407128063]
 custom_minimum_size = Vector2(134.73, 0)
 layout_mode = 2
 offset_transform_enabled = true
-text = "Mouse Sensitivity"
+text = "Controller Sensitivity"
 label_settings = SubResource("LabelSettings_ys680")
+clip_text = true
+text_overrun_behavior = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer4" unique_id=1918324605]
 layout_mode = 2
@@ -276,13 +406,14 @@ theme_override_icons/grabber = ExtResource("2_pjvno")
 theme_override_icons/grabber_highlight = ExtResource("3_l1yws")
 theme_override_styles/slider = SubResource("StyleBoxFlat_pjvno")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_l1yws")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_e4j4s")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_w86bw")
 min_value = 1.0
-max_value = 20.0
-value = 5.0
+max_value = 10.0
+step = 0.5
+value = 4.0
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="SettingsPage/Panel/VBoxContainer" unique_id=1747708287]
-custom_minimum_size = Vector2(518.35, 65.42)
+custom_minimum_size = Vector2(518.35, 50.69)
 layout_mode = 2
 offset_transform_enabled = true
 
@@ -291,7 +422,7 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="SettingsPage/Panel/VBoxContainer/HBoxContainer5/MarginContainer2" unique_id=1504160974]
-custom_minimum_size = Vector2(134.73, 0)
+custom_minimum_size = Vector2(309.54, 0)
 layout_mode = 2
 offset_transform_enabled = true
 text = "Toggle Sprint"
@@ -308,13 +439,15 @@ theme_override_icons/checked = ExtResource("5_j3wdj")
 theme_override_icons/unchecked = ExtResource("6_yk0k8")
 
 [node name="SettingsBackButton" type="Button" parent="SettingsPage/Panel" unique_id=1115700961]
-layout_mode = 0
-offset_left = 98.0
-offset_top = 479.215
-offset_right = 179.0
-offset_bottom = 548.21497
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -69.0
+offset_right = 245.0
+grow_vertical = 0
 offset_transform_enabled = true
-theme_override_colors/font_color = Color(1, 0.9882353, 0.68235296, 1)
+theme_override_colors/font_color = Color(0.6, 0.34901962, 0.42745098, 1)
 theme_override_fonts/font = ExtResource("1_ys680")
 theme_override_font_sizes/font_size = 44
 text = "     Back     "
@@ -379,6 +512,15 @@ bus = &"SFX"
 [connection signal="mouse_entered" from="MainMenuPage/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_button_mouse_entered" flags=18]
 [connection signal="mouse_exited" from="MainMenuPage/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_button_mouse_exited" flags=18]
 [connection signal="pressed" from="MainMenuPage/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer6/MarginContainer2" to="." method="_on_settings_element_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer6/MarginContainer2" to="." method="_on_settings_element_mouse_exited" flags=18]
+[connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer6/MarginContainer2/Label" to="." method="_on_settings_element_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer6/MarginContainer2/Label" to="." method="_on_settings_element_mouse_exited" flags=18]
+[connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer6/MarginContainer" to="." method="_on_settings_element_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer6/MarginContainer" to="." method="_on_settings_element_mouse_exited" flags=18]
+[connection signal="item_selected" from="SettingsPage/Panel/VBoxContainer/HBoxContainer6/MarginContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer6/MarginContainer/OptionButton" to="." method="_on_settings_element_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer6/MarginContainer/OptionButton" to="." method="_on_settings_element_mouse_exited" flags=18]
 [connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer/MarginContainer2" to="." method="_on_settings_element_mouse_entered" flags=18]
 [connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer/MarginContainer2" to="." method="_on_settings_element_mouse_exited" flags=18]
 [connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer/MarginContainer2/Label" to="." method="_on_settings_element_mouse_entered" flags=18]
@@ -406,6 +548,15 @@ bus = &"SFX"
 [connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer3/MarginContainer/SFXSlider" to="." method="_on_settings_element_mouse_entered" flags=18]
 [connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer3/MarginContainer/SFXSlider" to="." method="_on_settings_element_mouse_exited" flags=18]
 [connection signal="value_changed" from="SettingsPage/Panel/VBoxContainer/HBoxContainer3/MarginContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer7/MarginContainer2" to="." method="_on_settings_element_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer7/MarginContainer2" to="." method="_on_settings_element_mouse_exited" flags=18]
+[connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer7/MarginContainer2/Label" to="." method="_on_settings_element_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer7/MarginContainer2/Label" to="." method="_on_settings_element_mouse_exited" flags=18]
+[connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer7/MarginContainer" to="." method="_on_settings_element_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer7/MarginContainer" to="." method="_on_settings_element_mouse_exited" flags=18]
+[connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer7/MarginContainer/SensitivitySlider" to="." method="_on_settings_element_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer7/MarginContainer/SensitivitySlider" to="." method="_on_settings_element_mouse_exited" flags=18]
+[connection signal="value_changed" from="SettingsPage/Panel/VBoxContainer/HBoxContainer7/MarginContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer4/MarginContainer2" to="." method="_on_settings_element_mouse_entered" flags=18]
 [connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer4/MarginContainer2" to="." method="_on_settings_element_mouse_exited" flags=18]
 [connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer4/MarginContainer2/Label" to="." method="_on_settings_element_mouse_entered" flags=18]
@@ -414,7 +565,7 @@ bus = &"SFX"
 [connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer4/MarginContainer" to="." method="_on_settings_element_mouse_exited" flags=18]
 [connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer4/MarginContainer/SensitivitySlider" to="." method="_on_settings_element_mouse_entered" flags=18]
 [connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer4/MarginContainer/SensitivitySlider" to="." method="_on_settings_element_mouse_exited" flags=18]
-[connection signal="value_changed" from="SettingsPage/Panel/VBoxContainer/HBoxContainer4/MarginContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="value_changed" from="SettingsPage/Panel/VBoxContainer/HBoxContainer4/MarginContainer/SensitivitySlider" to="." method="_on_controller_sensitivity_slider_value_changed"]
 [connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer5/MarginContainer2" to="." method="_on_settings_element_mouse_entered" flags=18]
 [connection signal="mouse_exited" from="SettingsPage/Panel/VBoxContainer/HBoxContainer5/MarginContainer2" to="." method="_on_settings_element_mouse_exited" flags=18]
 [connection signal="mouse_entered" from="SettingsPage/Panel/VBoxContainer/HBoxContainer5/MarginContainer2/Label" to="." method="_on_settings_element_mouse_entered" flags=18]

@@ -804,7 +804,7 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/SubViewportContainer/SubViewport" unique_id=272110451]
-transform = Transform3D(-0.19375871, 0.1610587, 0.9677387, 0.070522435, 0.9861668, -0.15000585, -0.9785108, 0.039182346, -0.20243677, -43.065426, 0.55799806, 86.619064)
+transform = Transform3D(-0.19375871, 0.1610587, 0.9677387, 0.07052243, 0.9861668, -0.15000585, -0.97851074, 0.039182346, -0.20243677, -43.065426, 0.55799806, 86.619064)
 current = true
 
 [node name="SpatialAudioPlayer3D" type="AudioStreamPlayer3D" parent="SubViewport/SubViewportContainer/SubViewport/Camera3D" unique_id=1070200099]

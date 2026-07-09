@@ -17,9 +17,19 @@ var loading := false
 @onready var old_grabber_area = master_slider.get_theme_stylebox("grabber_area")
 @onready var old_grabber = master_slider.get_theme_icon("grabber")
 
+
+enum display_modes{
+	FULLSCREEN,
+	BORDERLESS,
+	WINDOWED
+}
+
 func _ready() -> void:
 	sensitivity_slider.value = Settings.mouse_sens * 20.0
-
+	$SettingsPage/Panel/VBoxContainer/HBoxContainer5/MarginContainer/CheckButton.button_pressed = Settings.toggle_sprint_setting
+	
+	if OS.has_feature("web"):
+		$SettingsPage/Panel/VBoxContainer/HBoxContainer6/MarginContainer/OptionButton.disabled = true
 
 func _go_to_loading(loaded_scene_path : String) -> void:
 	var loading_screen = preload("res://src/loading_screen.tscn").instantiate()
@@ -65,8 +75,8 @@ func _on_play_button_pressed() -> void:
 	loading_page.visible = true
 	main_menu_page.visible = false
 	settings_page.visible = false
-	#if play_scene:
 	_go_to_loading(PLAY_SCENE)
+	#if play_scene:
 	#else:
 		#print("Play scene is still loading...")
 
@@ -120,9 +130,12 @@ func _on_master_slider_value_changed(value: float) -> void:
 func _on_sensitivity_slider_value_changed(value: float) -> void:
 	Settings.mouse_sens = value / 20.0
 
+func _on_controller_sensitivity_slider_value_changed(value: float) -> void:
+	Settings.controller_sensitivity = value
 
 func _on_check_button_toggled(toggled_on: bool) -> void:
 	toggle_audio_player.play()
+	print(toggled_on)
 	Settings.toggle_sprint_setting = toggled_on
 
 
@@ -198,6 +211,8 @@ func _on_settings_element_mouse_entered(element) -> void:
 			"grabber",
 			control.get_theme_icon("grabber_highlight")
 		)
+	elif control is OptionButton:
+		control.add_theme_color_override("font_color", Color("99596dff"))
 
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
@@ -223,6 +238,8 @@ func _on_settings_element_mouse_exited(element) -> void:
 	elif control is HSlider and element is not HSlider:
 		control.add_theme_stylebox_override("grabber_area", old_grabber_area)
 		control.add_theme_icon_override("grabber", old_grabber)
+	elif control is OptionButton:
+		control.add_theme_color_override("font_color", Color("fffcaeff"))
 
 	label.modulate = Color.WHITE
 	hbox.modulate = Color.WHITE
@@ -231,3 +248,14 @@ func _on_settings_element_mouse_exited(element) -> void:
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(hbox, "offset_transform_scale", Vector2.ONE, 0.4)
+
+
+func _on_option_button_item_selected(index: int) -> void:
+	get_window().borderless = false
+	match index:
+		display_modes.FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		display_modes.BORDERLESS:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		display_modes.WINDOWED:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
