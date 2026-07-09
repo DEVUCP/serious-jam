@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://by7tsoodm7vym" path="res://src/win_screen.gd" id="1_c8wrw"]
 [ext_resource type="Texture2D" uid="uid://buern8g0uvbd3" path="res://assets/models/creature_2_0.png" id="1_rcm3v"]
 [ext_resource type="Texture2D" uid="uid://bd6wu12rjgbyi" path="res://src/enemy/seeing_enemy_0.png" id="2_c8wrw"]
+[ext_resource type="Texture2D" uid="uid://cdj2vxedhkbv7" path="res://assets/textures/night_sky.png" id="2_w7po4"]
 [ext_resource type="AudioStream" uid="uid://ung4yif7ktcp" path="res://assets/music/win_music.mp3" id="4_hao88"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hao88"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_a8rdb"]
+panorama = ExtResource("2_w7po4")
 
 [sub_resource type="Sky" id="Sky_w7po4"]
-sky_material = SubResource("ProceduralSkyMaterial_hao88")
+sky_material = SubResource("PanoramaSkyMaterial_a8rdb")
 
 [sub_resource type="Environment" id="Environment_r0w7l"]
 background_mode = 2
@@ -1157,6 +1157,117 @@ _data = {
 &"mixamo_com": SubResource("Animation_fssfv")
 }
 
+[sub_resource type="Animation" id="Animation_r0w7l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.6431373, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SpotLight3D2:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.45093918, 0.8850761, 0.7754859, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SpotLight3D3:light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.710085, 0.6546789, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../SpotLight3D4:light_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.49943, 0.84409076, 0.9999998, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rmqhr"]
+resource_name = "lights"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 0.6431373, 1, 1), Color(0.49943, 0.84409076, 0.9999998, 1), Color(1, 0.710085, 0.6546789, 1), Color(0.45093918, 0.8850761, 0.7754859, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SpotLight3D2:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(0.45093918, 0.8850761, 0.7754859, 1), Color(1, 0.6431373, 1, 1), Color(0.49943, 0.84409076, 0.9999998, 1), Color(1, 0.710085, 0.6546789, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SpotLight3D3:light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 0.710085, 0.6546789, 1), Color(0.45093918, 0.8850761, 0.7754859, 1), Color(1, 0.6431373, 1, 1), Color(0.49943, 0.84409076, 0.9999998, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../SpotLight3D4:light_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(0.49943, 0.84409076, 0.9999998, 1), Color(1, 0.710085, 0.6546789, 1), Color(0.45093918, 0.8850761, 0.7754859, 1), Color(1, 0.6431373, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_62opv"]
+_data = {
+&"RESET": SubResource("Animation_r0w7l"),
+&"lights": SubResource("Animation_rmqhr")
+}
+
 [node name="WinScreen" type="Node3D" unique_id=629352309]
 script = ExtResource("1_c8wrw")
 
@@ -1165,6 +1276,7 @@ environment = SubResource("Environment_r0w7l")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1409139576]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_energy = 0.0
 shadow_enabled = true
 
 [node name="Headspin Start2" type="Node3D" parent="." unique_id=255945762]
@@ -1463,6 +1575,31 @@ size = Vector3(1, 0.4598877, 1)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=686881353]
 stream = ExtResource("4_hao88")
+
+[node name="LightAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1967367308]
+root_node = NodePath("SpotLight3D")
+libraries/ = SubResource("AnimationLibrary_62opv")
+autoplay = &"lights"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="LightAnimationPlayer" unique_id=120289772]
+transform = Transform3D(0.9829843, 0.14465564, -0.11321059, -0.17905271, 0.8921639, -0.41470927, 0.04101236, 0.42792332, 0.9028841, -0.020043671, 0, 0.5463647)
+light_color = Color(1, 0.6431373, 1, 1)
+light_energy = 4.305
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="LightAnimationPlayer" unique_id=710285700]
+transform = Transform3D(0.04101232, 0.42792338, 0.90288407, -0.1790527, 0.89216393, -0.41470927, -0.9829843, -0.14465564, 0.11321054, 0.57868296, 0, 0.044155538)
+light_color = Color(0.45093918, 0.8850761, 0.7754859, 1)
+light_energy = 4.305
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="LightAnimationPlayer" unique_id=1654248077]
+transform = Transform3D(-0.9829843, -0.14465563, 0.113210514, -0.17905268, 0.8921639, -0.41470936, -0.041012283, -0.42792344, -0.902884, 0.07800847, 0, -0.6201862)
+light_color = Color(1, 0.710085, 0.6546789, 1)
+light_energy = 4.305
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="LightAnimationPlayer" unique_id=30809857]
+transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, -0.52199155, 0, -0.020186186)
+light_color = Color(0.49943, 0.84409076, 0.9999998, 1)
+light_energy = 4.305
 
 [connection signal="animation_finished" from="Headspin Start2/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="Headspin Start2/AnimationPlayer3" to="." method="_on_animation_player_3_animation_finished"]
