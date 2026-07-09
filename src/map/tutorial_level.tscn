@@ -4,11 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://cdj2vxedhkbv7" path="res://assets/textures/night_sky.png" id="1_gfbba"]
 [ext_resource type="Script" uid="uid://coary8i53txgy" path="res://src/map/player_activated_label.gd" id="3_yousn"]
 [ext_resource type="PackedScene" uid="uid://bulcetb8rqt3i" path="res://src/interactable/key.tscn" id="4_fnk61"]
+[ext_resource type="Texture2D" uid="uid://dntmvdx1k7umh" path="res://assets/textures/wasd_icon.png" id="4_twfp3"]
+[ext_resource type="Texture2D" uid="uid://br3hlgjsphbas" path="res://assets/textures/shift_icon.png" id="5_b0yhf"]
 [ext_resource type="PackedScene" uid="uid://dpotuexotkcp0" path="res://src/interactable/music_box.tscn" id="5_ebyqm"]
+[ext_resource type="Texture2D" uid="uid://crewhcafl0ofh" path="res://assets/textures/spacebar_icon.png" id="5_jqc3m"]
 [ext_resource type="Script" uid="uid://dr71ob1ycoego" path="res://src/map/map_objects/gate.gd" id="6_wdlv4"]
+[ext_resource type="Texture2D" uid="uid://cc76bcmiilonl" path="res://assets/textures/right_click_icon.png" id="7_6fqqy"]
 [ext_resource type="PackedScene" uid="uid://ju5n8h4m1jry" path="res://assets/models/fence.gltf" id="7_es0wi"]
+[ext_resource type="Texture2D" uid="uid://ckh6o2yi8k5n5" path="res://assets/textures/speaker_icon1.png" id="8_4vmap"]
 [ext_resource type="Texture2D" uid="uid://bnr85o7skxj0x" path="res://assets/models/gate_door_1.png" id="8_tmg3o"]
 [ext_resource type="Texture2D" uid="uid://bwan0g7ona7dk" path="res://assets/models/gate_door_0.png" id="9_358lo"]
+[ext_resource type="Texture2D" uid="uid://lbyx68wc4dp" path="res://assets/textures/E_icon.png" id="10_dsxso"]
 [ext_resource type="FontFile" uid="uid://m4eqw8kmlmos" path="res://assets/fonts/ITCKRIST.TTF" id="10_es0wi"]
 [ext_resource type="PackedScene" uid="uid://2regwhwwib2v" path="res://src/lock/lock.tscn" id="10_twfp3"]
 [ext_resource type="Script" uid="uid://bee7wobtehwtp" path="res://src/interactable/interact_area.gd" id="11_b0yhf"]
@@ -153,13 +159,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lomhn")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
-size = Vector3(3, 1.7, 0.3)
+[sub_resource type="BoxShape3D" id="BoxShape3D_3dopq"]
+size = Vector3(1, 1.7, 0.3)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_riqys"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_qhqis"]
+size = Vector3(1, 1.7, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_36p27"]
+size = Vector3(1, 1.7, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g8oup"]
 size = Vector3(1.071167, 1.5682373, 1.1)
 
 [node name="TutorialLevel" type="Node3D" unique_id=488874645]
+script = ExtResource("3_yousn")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=550423834]
 environment = SubResource("Environment_yousn")
@@ -170,10 +183,10 @@ light_energy = 0.02
 shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=660622445]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09265137, -0.34228516, -36.632202)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19848633, -0.34228516, -48.632202)
 use_collision = true
 collision_layer = 4
-size = Vector3(16.21167, 0.3154297, 90)
+size = Vector3(34, 0.3154297, 114)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=851715771]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.09265137, 3.7898254, 3.2511272)
@@ -186,6 +199,36 @@ transform = Transform3D(-2.1745763e-07, 1, -4.371139e-08, 0, -4.371139e-08, -1, 
 use_collision = true
 collision_layer = 4
 size = Vector3(16.21167, 0.3154297, 8.580627)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="." unique_id=107062158]
+transform = Transform3D(-3.5177507, 0.7071067, -3.0908616e-08, -1.1839496e-15, -4.3711385e-08, -1, -3.5177503, -0.7071068, 3.0908616e-08, -6.7025337, 3.7898254, -78.71712)
+use_collision = true
+collision_layer = 4
+size = Vector3(2, 0.3154297, 8.580627)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="." unique_id=999311871]
+transform = Transform3D(-2.3841858e-07, 0.99999994, -4.371139e-08, -2.6179071e-14, -4.3711385e-08, -1, -4.9748507, -5.9604645e-08, 5.3290705e-15, -10.302534, 3.7898254, -94.67939)
+use_collision = true
+collision_layer = 4
+size = Vector3(5, 0.3154297, 8.580627)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="." unique_id=1079698621]
+transform = Transform3D(-2.3841858e-07, 0.99999994, -4.371139e-08, -2.6179071e-14, -4.3711385e-08, -1, -4.9748507, -5.9604645e-08, 5.3290705e-15, 10.697466, 3.7898254, -94.67939)
+use_collision = true
+collision_layer = 4
+size = Vector3(5, 0.3154297, 8.580627)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="." unique_id=1369403826]
+transform = Transform3D(-4.9748507, -1.03316026e-07, 7.239756e-15, -2.6179071e-14, -4.3711385e-08, -1, 4.558762e-07, -0.99999994, 4.371139e-08, 6.639208, 3.4995117, -99.92909)
+use_collision = true
+collision_layer = 4
+size = Vector3(1.6400757, 0.3154297, 8)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="." unique_id=840672074]
+transform = Transform3D(-4.9748507, -1.03316026e-07, 7.239756e-15, -2.6179071e-14, -4.3711385e-08, -1, 4.558762e-07, -0.99999994, 4.371139e-08, -7.1607943, 3.4995117, -99.92909)
+use_collision = true
+collision_layer = 4
+size = Vector3(1.6400757, 0.3154297, 8)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="." unique_id=239704753]
 transform = Transform3D(0.7283127, 0.7071068, -3.090862e-08, 0, -4.371139e-08, -1, -0.7283128, 0.7071067, -3.090862e-08, -9.107925, 3.7898254, -3.5658622)
@@ -205,99 +248,122 @@ use_collision = true
 collision_layer = 4
 size = Vector3(16.21167, 0.3154297, 8.580627)
 
-[node name="PlayerActivatedLabel" type="Label3D" parent="." unique_id=1928134815]
+[node name="CSGBox3D8" type="CSGBox3D" parent="." unique_id=627812492]
+transform = Transform3D(3.5177512, 0.7071069, -3.090862e-08, 0, -4.371139e-08, -1, -3.5177507, 0.70710677, -3.0908616e-08, 7.2131944, 3.7898254, -78.71712)
+use_collision = true
+collision_layer = 4
+size = Vector3(2, 0.3154297, 8.580627)
+
+[node name="MovementLabel" type="Label3D" parent="." unique_id=1928134815]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.13250789, 1.3000001, -2.6298938)
 visible = false
-billboard = 1
 modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
-text = "WASD for movement
-"
+text = "for movement"
 font = ExtResource("10_es0wi")
-script = ExtResource("3_yousn")
 
-[node name="Area3D" type="Area3D" parent="PlayerActivatedLabel" unique_id=45890704]
+[node name="Area3D" type="Area3D" parent="MovementLabel" unique_id=45890704]
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivatedLabel/Area3D" unique_id=628223034]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementLabel/Area3D" unique_id=628223034]
 shape = SubResource("SphereShape3D_g4v7s")
 
-[node name="PlayerActivatedLabel3" type="Label3D" parent="." unique_id=1303228711]
+[node name="MovementIcon" type="Sprite3D" parent="MovementLabel" unique_id=1866897531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12488963, 0.24192667, 0)
+texture_filter = 0
+texture = ExtResource("4_twfp3")
+
+[node name="SprintLabel" type="Label3D" parent="." unique_id=1641931627]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.26749203, 1.3000001, -7.7701054)
+visible = false
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "for sprint (mind your stamina),
+ but be careful- you make more sound this way"
+font = ExtResource("10_es0wi")
+
+[node name="Area3D" type="Area3D" parent="SprintLabel" unique_id=562784777]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SprintLabel/Area3D" unique_id=580438887]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="SprintIcon" type="Sprite3D" parent="SprintLabel" unique_id=1740143433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012658149, 0.4369372, 0)
+pixel_size = 0.02
+texture_filter = 0
+texture = ExtResource("5_b0yhf")
+
+[node name="SlowWalkLabel" type="Label3D" parent="." unique_id=1303228711]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.13250789, 1.3000001, -16.629894)
 visible = false
-billboard = 1
 modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
 outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
-text = "Hold SPACEBAR while walking to slow walk, 
+text = "Held while walking to slow walk, 
 this is quiet and makes no noise"
 font = ExtResource("10_es0wi")
-script = ExtResource("3_yousn")
 
-[node name="Area3D" type="Area3D" parent="PlayerActivatedLabel3" unique_id=891300079]
+[node name="Area3D" type="Area3D" parent="SlowWalkLabel" unique_id=891300079]
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivatedLabel3/Area3D" unique_id=1450572410]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SlowWalkLabel/Area3D" unique_id=1450572410]
 shape = SubResource("SphereShape3D_g4v7s")
 
-[node name="PlayerActivatedLabel4" type="Label3D" parent="." unique_id=629497207]
+[node name="SlowWalkIcon" type="Sprite3D" parent="SlowWalkLabel" unique_id=190429780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007240981, 0.47484505, 0)
+pixel_size = 0.02
+texture_filter = 0
+texture = ExtResource("5_jqc3m")
+
+[node name="CrankLabel" type="Label3D" parent="." unique_id=629497207]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.13250789, 1.3000001, -25.629894)
 visible = false
-billboard = 1
 modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
 outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
-text = "Mash right click to crank flashlight.
+text = "Mash              to crank flashlight.
 it will slowly lose power, so it must be cranked periodically."
 font = ExtResource("10_es0wi")
-script = ExtResource("3_yousn")
 
-[node name="Area3D" type="Area3D" parent="PlayerActivatedLabel4" unique_id=519966925]
+[node name="Area3D" type="Area3D" parent="CrankLabel" unique_id=519966925]
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivatedLabel4/Area3D" unique_id=781199809]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CrankLabel/Area3D" unique_id=781199809]
 shape = SubResource("SphereShape3D_g4v7s")
 
-[node name="PlayerActivatedLabel5" type="Label3D" parent="." unique_id=705352469]
+[node name="CrankIcon" type="Sprite3D" parent="CrankLabel" unique_id=1320312267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.18620968, 0)
+pixel_size = 0.02
+texture_filter = 0
+texture = ExtResource("7_6fqqy")
+
+[node name="CrankingIsLoudLabel" type="Label3D" parent="." unique_id=705352469]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.13250789, 1.3000001, -34.629894)
 visible = false
-billboard = 1
 modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
 outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
 text = "Careful, cranking the flashlight is loud"
 font = ExtResource("10_es0wi")
-script = ExtResource("3_yousn")
 
-[node name="Area3D" type="Area3D" parent="PlayerActivatedLabel5" unique_id=1959675306]
+[node name="Area3D" type="Area3D" parent="CrankingIsLoudLabel" unique_id=1959675306]
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivatedLabel5/Area3D" unique_id=1704388314]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CrankingIsLoudLabel/Area3D" unique_id=1704388314]
 shape = SubResource("SphereShape3D_g4v7s")
 
-[node name="PlayerActivatedLabel2" type="Label3D" parent="." unique_id=1641931627]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.26749203, 1.3000001, -7.7701054)
-visible = false
-billboard = 1
-modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "Shift for sprint (mind your stamina),
- but be careful- you make more sound this way"
-font = ExtResource("10_es0wi")
-script = ExtResource("3_yousn")
-
-[node name="Area3D" type="Area3D" parent="PlayerActivatedLabel2" unique_id=562784777]
-collision_layer = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivatedLabel2/Area3D" unique_id=580438887]
-shape = SubResource("SphereShape3D_g4v7s")
+[node name="CrankingIsLoudIcon" type="Sprite3D" parent="CrankingIsLoudLabel" unique_id=689813419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39999998, 0)
+modulate = Color(1, 0.9882353, 0.68235296, 1)
+pixel_size = 0.005
+texture_filter = 0
+texture = ExtResource("8_4vmap")
 
 [node name="PlayerActivatedLabel6" type="Label3D" parent="." unique_id=1676979987]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.13250789, 1.3000001, -41.6299)
 visible = false
-billboard = 1
 modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
 outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
 text = "Also mind where you shine it. 
 It may give your location away to any with good eyesight."
 font = ExtResource("10_es0wi")
-script = ExtResource("3_yousn")
 
 [node name="Area3D" type="Area3D" parent="PlayerActivatedLabel6" unique_id=1344574591]
 collision_layer = 0
@@ -305,139 +371,230 @@ collision_layer = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivatedLabel6/Area3D" unique_id=2089249163]
 shape = SubResource("SphereShape3D_g4v7s")
 
-[node name="PlayerActivatedLabel7" type="Label3D" parent="." unique_id=1615912394]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 1.267492, 1.4000001, -50.6299)
+[node name="PickUpItemLabel" type="Label3D" parent="." unique_id=1615912394]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.87553144, 1.4000001, -50.6299)
 visible = false
-billboard = 1
 modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
 outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
-text = "Press F to pickup Item"
+text = "Press      to pickup Item"
 font = ExtResource("10_es0wi")
-script = ExtResource("3_yousn")
 
-[node name="Area3D" type="Area3D" parent="PlayerActivatedLabel7" unique_id=2096718448]
+[node name="Area3D" type="Area3D" parent="PickUpItemLabel" unique_id=2096718448]
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivatedLabel7/Area3D" unique_id=1219156863]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickUpItemLabel/Area3D" unique_id=1219156863]
 shape = SubResource("SphereShape3D_g4v7s")
 
-[node name="Key" parent="PlayerActivatedLabel7" unique_id=236443187 instance=ExtResource("4_fnk61")]
+[node name="Key" parent="PickUpItemLabel" unique_id=236443187 instance=ExtResource("4_fnk61")]
 transform = Transform3D(0.257525, 0, 0.9610962, 0, 0.995, 0, -0.9610962, 0, 0.257525, -0.2137953, -0.8, -0.099998474)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="PlayerActivatedLabel7" unique_id=1887540476]
+[node name="SpotLight3D" type="SpotLight3D" parent="PickUpItemLabel" unique_id=1887540476]
 transform = Transform3D(0.9999999, 0, 0, 0, -4.3711385e-08, -1, 0, 0.9999999, -4.371138e-08, 0, -1.5, 0.29999924)
 light_energy = 5.715
 spot_range = 4.0
 spot_angle = 34.265224
 
-[node name="PlayerActivatedLabel9" type="Label3D" parent="." unique_id=927855140]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.06749205, 1.4000001, -71.0299)
+[node name="PickupItemIcon" type="Sprite3D" parent="PickUpItemLabel" unique_id=1784622369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36991596, 0.004394293, 0)
+pixel_size = 0.02
+texture_filter = 0
+texture = ExtResource("10_dsxso")
+
+[node name="EscapeLabel" type="Label3D" parent="." unique_id=927855140]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.06749205, 1.4000001, -97.0299)
 visible = false
-billboard = 1
 modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
 outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
-text = "Press F to use key to escape"
+text = "Press        to use key to escape"
 font = ExtResource("10_es0wi")
-script = ExtResource("3_yousn")
 
-[node name="Area3D" type="Area3D" parent="PlayerActivatedLabel9" unique_id=823878360]
+[node name="Area3D" type="Area3D" parent="EscapeLabel" unique_id=823878360]
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivatedLabel9/Area3D" unique_id=816480955]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EscapeLabel/Area3D" unique_id=816480955]
 shape = SubResource("SphereShape3D_g4v7s")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="PlayerActivatedLabel9" unique_id=1387322611]
+[node name="SpotLight3D" type="SpotLight3D" parent="EscapeLabel" unique_id=1387322611]
 transform = Transform3D(-0.14845254, 0.8191519, -0.55403227, -0.9659259, 4.1166324e-09, 0.2588191, 0.21201217, 0.5735764, 0.7912399, -2.3999996, 0.20000005, -0.1000061)
 light_energy = 5.715
 spot_angle = 34.265224
 
-[node name="PlayerActivatedLabel8" type="Label3D" parent="." unique_id=379542185]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 1.509733, 1.223546, -57)
+[node name="EscapeIcon" type="Sprite3D" parent="EscapeLabel" unique_id=916074439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59999996, 0, 0)
+pixel_size = 0.02
+texture_filter = 0
+texture = ExtResource("10_dsxso")
+
+[node name="EnemyInfo" type="Label3D" parent="." unique_id=472946226]
+transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, -0.0650159, 1.8000002, -71.059814)
 visible = false
-billboard = 1
 modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
 outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
-text = "Hold F to wind up
-careful, it makes ALOT of noise :)"
-font = ExtResource("10_es0wi")
-script = ExtResource("3_yousn")
+text = "The Seeing Monkey: (Hear no evil) (deaf)
 
-[node name="Area3D" type="Area3D" parent="PlayerActivatedLabel8" unique_id=1713632803]
+He will see you if you have your light on near him or shine it at him.
+he doesnt see well in the dark, he makes low pitched grunting and growls."
+font = ExtResource("10_es0wi")
+
+[node name="Area3D" type="Area3D" parent="EnemyInfo" unique_id=1343719095]
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivatedLabel8/Area3D" unique_id=2017146413]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyInfo/Area3D" unique_id=1416234213]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="EnemyInfo2" type="Label3D" parent="." unique_id=1785626472]
+transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, -0.0650159, 1.8000002, -78.059814)
+visible = false
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
+text = "The Hearing Monkey: (See no evil)
+
+He will hear for you (he is blind), he makes high pitch grunts and growls."
+font = ExtResource("10_es0wi")
+
+[node name="Area3D" type="Area3D" parent="EnemyInfo2" unique_id=2094497872]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyInfo2/Area3D" unique_id=834487631]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="EnemyInfo3" type="Label3D" parent="." unique_id=958476878]
+transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, -0.0650159, 1.8000002, -85.059814)
+visible = false
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
+text = "The Stalker: (Speak no evil)
+
+He makes no noise, but is afraid of your light. you must flash him before its too late. 
+Look out for glowing eyes and a twig breaking sound."
+font = ExtResource("10_es0wi")
+
+[node name="Area3D" type="Area3D" parent="EnemyInfo3" unique_id=1607462495]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyInfo3/Area3D" unique_id=1917634846]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="EnemyInfo4" type="Label3D" parent="." unique_id=1089240798]
+transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, -0.0650159, 1.8000002, -91.059814)
+visible = false
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
+text = "Growling = someone is investigating your general location. 
+discern which monkey based on pitch."
+font = ExtResource("10_es0wi")
+
+[node name="Area3D" type="Area3D" parent="EnemyInfo4" unique_id=1895450754]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyInfo4/Area3D" unique_id=1829219832]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="WindUpLabel" type="Label3D" parent="." unique_id=379542185]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 1.509733, 1.223546, -57)
+visible = false
+modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
+outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
+text = "Hold        to wind up
+careful, it makes ALOT of noise :)"
+font = ExtResource("10_es0wi")
+
+[node name="Area3D" type="Area3D" parent="WindUpLabel" unique_id=1713632803]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WindUpLabel/Area3D" unique_id=2017146413]
 shape = SubResource("SphereShape3D_tmg3o")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="PlayerActivatedLabel8" unique_id=632251848]
+[node name="SpotLight3D" type="SpotLight3D" parent="WindUpLabel" unique_id=632251848]
 transform = Transform3D(-0.25881907, -4.2221952e-08, -0.9659257, -0.9659259, 1.1313341e-08, 0.2588191, 0, 0.9999999, -4.371138e-08, -2.2999997, 0.20000005, -2.1000023)
 light_energy = 5.715
 spot_angle = 34.265224
 
-[node name="MusicBox" parent="PlayerActivatedLabel8" unique_id=836771714 instance=ExtResource("5_ebyqm")]
+[node name="MusicBox" parent="WindUpLabel" unique_id=836771714 instance=ExtResource("5_ebyqm")]
 transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, 0.70000005, -1.4000001, -1.8999977)
+
+[node name="WindUpIcon" type="Sprite3D" parent="WindUpLabel" unique_id=1210563985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2286942, 0.108964324, 0)
+pixel_size = 0.02
+texture_filter = 0
+texture = ExtResource("10_dsxso")
 
 [node name="PlayerController" parent="." unique_id=698889221 instance=ExtResource("1_2gyo0")]
 transform = Transform3D(1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, 1, 0, 0, 0)
 is_in_tutorial = true
 
-[node name="Gate" type="Node3D" parent="." unique_id=535208570]
-transform = Transform3D(-2, 0, 1.7484555e-07, 0, 2, 0, -1.7484555e-07, 0, -2, 0, 0, -73)
+[node name="Gate2" type="Node3D" parent="." unique_id=1442545393]
+transform = Transform3D(-2, 0, 1.7484555e-07, 0, 2, 0, -1.7484555e-07, 0, -2, 0, 0, -100)
 script = ExtResource("6_wdlv4")
 
-[node name="blockbench_export2" parent="Gate" unique_id=1388438545 instance=ExtResource("7_es0wi")]
+[node name="blockbench_export2" parent="Gate2" unique_id=1154100820 instance=ExtResource("7_es0wi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
-[node name="blockbench_export3" parent="Gate" unique_id=1890661457 instance=ExtResource("7_es0wi")]
+[node name="blockbench_export3" parent="Gate2" unique_id=1027982919 instance=ExtResource("7_es0wi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
-[node name="blockbench_export" type="Node3D" parent="Gate" unique_id=1881522746]
+[node name="blockbench_export" type="Node3D" parent="Gate2" unique_id=311863717]
 
-[node name="mesh2" type="MeshInstance3D" parent="Gate/blockbench_export" unique_id=1518825043]
+[node name="mesh2" type="MeshInstance3D" parent="Gate2/blockbench_export" unique_id=377124058]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5625, 0)
 mesh = SubResource("ArrayMesh_6amsk")
 
-[node name="mesh3" type="MeshInstance3D" parent="Gate/blockbench_export" unique_id=2104498522]
+[node name="mesh3" type="MeshInstance3D" parent="Gate2/blockbench_export" unique_id=1060726449]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.640625, 0.5625, 0)
 mesh = SubResource("ArrayMesh_wwf0k")
 
-[node name="Node3D" type="Node3D" parent="Gate/blockbench_export" unique_id=699038084]
+[node name="Node3D" type="Node3D" parent="Gate2/blockbench_export" unique_id=1841296645]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59071493, 0, 0)
 
-[node name="mesh" type="MeshInstance3D" parent="Gate/blockbench_export/Node3D" unique_id=684550642]
+[node name="mesh" type="MeshInstance3D" parent="Gate2/blockbench_export/Node3D" unique_id=13247807]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.59071493, -0.1875, 0)
 mesh = SubResource("ArrayMesh_leqvn")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Gate" unique_id=998817279]
+[node name="DoorCollision" type="StaticBody3D" parent="Gate2" unique_id=288421540]
 collision_layer = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate/StaticBody3D" unique_id=218166611]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0.049999982)
-shape = SubResource("BoxShape3D_g4v7s")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate2/DoorCollision" unique_id=969000444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3714863e-09, 0.85, 0.049999237)
+shape = SubResource("BoxShape3D_3dopq")
 
-[node name="Locks" type="Node3D" parent="Gate" unique_id=750826055]
+[node name="StaticBody3D2" type="StaticBody3D" parent="Gate2" unique_id=995040730]
+collision_layer = 4
 
-[node name="Lock" parent="Gate/Locks" unique_id=1138028920 instance=ExtResource("10_twfp3")]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate2/StaticBody3D2" unique_id=1697145579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.85, 0.049999237)
+shape = SubResource("BoxShape3D_qhqis")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Gate2" unique_id=1984201739]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate2/StaticBody3D3" unique_id=1454878094]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.85, 0.049999237)
+shape = SubResource("BoxShape3D_36p27")
+
+[node name="Locks" type="Node3D" parent="Gate2" unique_id=523785457]
+
+[node name="Lock" parent="Gate2/Locks" unique_id=1475657631 instance=ExtResource("10_twfp3")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.43304452, 0.40685183, -0.10860556)
 
-[node name="Lock2" parent="Gate/Locks" unique_id=1613299808 instance=ExtResource("10_twfp3")]
+[node name="Lock2" parent="Gate2/Locks" unique_id=1809558459 instance=ExtResource("10_twfp3")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.30281428, 0.40685183, -0.10860556)
 
-[node name="InteractArea" type="Area3D" parent="Gate" unique_id=935968364]
+[node name="InteractArea" type="Area3D" parent="Gate2" unique_id=1808872340]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45859742, 0)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("11_b0yhf")
 metadata/_custom_type_script = "uid://bee7wobtehwtp"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate/InteractArea" unique_id=1665638434]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate2/InteractArea" unique_id=2136258]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035583496, 0.28411865, -0.02148436)
-shape = SubResource("BoxShape3D_riqys")
+shape = SubResource("BoxShape3D_g8oup")
 
-[node name="InteractTimer" type="Timer" parent="Gate" unique_id=1787414014]
+[node name="InteractTimer" type="Timer" parent="Gate2" unique_id=1294694434]
 wait_time = 0.5
 one_shot = true
 
-[node name="LockSFX" type="AudioStreamPlayer3D" parent="Gate" unique_id=887127771]
+[node name="LockSFX" type="AudioStreamPlayer3D" parent="Gate2" unique_id=1886237868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.6)
 stream = ExtResource("13_358lo")
 bus = &"SFX"
@@ -446,41 +603,47 @@ reverb_collision_mask = 4
 occlusion_collision_mask = 4
 metadata/_custom_type_script = "uid://d0vgcravmqb8m"
 
-[node name="PlayerActivatedLabel10" type="Label3D" parent="." unique_id=2124158400]
+[node name="AudioIndicatorLabel" type="Label3D" parent="." unique_id=2124158400]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.26749206, 1.4000001, -64.6299)
 visible = false
-billboard = 1
 modulate = Color(0.9490196, 0.93333334, 0.5764706, 1)
 outline_modulate = Color(0.3137255, 0.3137255, 0.3137255, 0)
 text = "Keep an eye on the bottom left of your screen
 that is the amount of sound you're making"
 font = ExtResource("10_es0wi")
-script = ExtResource("3_yousn")
 
-[node name="Area3D" type="Area3D" parent="PlayerActivatedLabel10" unique_id=1795367848]
+[node name="Area3D" type="Area3D" parent="AudioIndicatorLabel" unique_id=1795367848]
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivatedLabel10/Area3D" unique_id=79599741]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AudioIndicatorLabel/Area3D" unique_id=79599741]
 shape = SubResource("SphereShape3D_g4v7s")
 
-[connection signal="body_entered" from="PlayerActivatedLabel/Area3D" to="PlayerActivatedLabel" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="PlayerActivatedLabel/Area3D" to="PlayerActivatedLabel" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="PlayerActivatedLabel3/Area3D" to="PlayerActivatedLabel3" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="PlayerActivatedLabel3/Area3D" to="PlayerActivatedLabel3" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="PlayerActivatedLabel4/Area3D" to="PlayerActivatedLabel4" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="PlayerActivatedLabel4/Area3D" to="PlayerActivatedLabel4" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="PlayerActivatedLabel5/Area3D" to="PlayerActivatedLabel5" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="PlayerActivatedLabel5/Area3D" to="PlayerActivatedLabel5" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="PlayerActivatedLabel2/Area3D" to="PlayerActivatedLabel2" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="PlayerActivatedLabel2/Area3D" to="PlayerActivatedLabel2" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="PlayerActivatedLabel6/Area3D" to="PlayerActivatedLabel6" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="PlayerActivatedLabel6/Area3D" to="PlayerActivatedLabel6" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="PlayerActivatedLabel7/Area3D" to="PlayerActivatedLabel7" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="PlayerActivatedLabel7/Area3D" to="PlayerActivatedLabel7" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="PlayerActivatedLabel9/Area3D" to="PlayerActivatedLabel9" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="PlayerActivatedLabel9/Area3D" to="PlayerActivatedLabel9" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="PlayerActivatedLabel8/Area3D" to="PlayerActivatedLabel8" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="PlayerActivatedLabel8/Area3D" to="PlayerActivatedLabel8" method="_on_area_3d_body_exited"]
-[connection signal="interacted_with" from="Gate/InteractArea" to="Gate" method="_on_interact_area_interacted_with"]
-[connection signal="body_entered" from="PlayerActivatedLabel10/Area3D" to="PlayerActivatedLabel10" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="PlayerActivatedLabel10/Area3D" to="PlayerActivatedLabel10" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="MovementLabel/Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="MovementLabel/Area3D" to="." method="_on_area_3d_body_exited" flags=18]
+[connection signal="body_entered" from="SprintLabel/Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="SprintLabel/Area3D" to="." method="_on_area_3d_body_exited" flags=18]
+[connection signal="body_entered" from="SlowWalkLabel/Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="SlowWalkLabel/Area3D" to="." method="_on_area_3d_body_exited" flags=18]
+[connection signal="body_entered" from="CrankLabel/Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="CrankLabel/Area3D" to="." method="_on_area_3d_body_exited" flags=18]
+[connection signal="body_entered" from="CrankingIsLoudLabel/Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="CrankingIsLoudLabel/Area3D" to="." method="_on_area_3d_body_exited" flags=18]
+[connection signal="body_entered" from="PlayerActivatedLabel6/Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="PlayerActivatedLabel6/Area3D" to="." method="_on_area_3d_body_exited" flags=18]
+[connection signal="body_entered" from="PickUpItemLabel/Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="PickUpItemLabel/Area3D" to="." method="_on_area_3d_body_exited" flags=18]
+[connection signal="body_entered" from="EscapeLabel/Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="EscapeLabel/Area3D" to="." method="_on_area_3d_body_exited" flags=18]
+[connection signal="body_entered" from="EnemyInfo/Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="EnemyInfo/Area3D" to="." method="_on_area_3d_body_exited" flags=18]
+[connection signal="body_entered" from="EnemyInfo2/Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="EnemyInfo2/Area3D" to="." method="_on_area_3d_body_exited" flags=18]
+[connection signal="body_entered" from="EnemyInfo3/Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="EnemyInfo3/Area3D" to="." method="_on_area_3d_body_exited" flags=18]
+[connection signal="body_entered" from="EnemyInfo4/Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="EnemyInfo4/Area3D" to="." method="_on_area_3d_body_exited" flags=18]
+[connection signal="body_entered" from="WindUpLabel/Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="WindUpLabel/Area3D" to="." method="_on_area_3d_body_exited" flags=18]
+[connection signal="interacted_with" from="Gate2/InteractArea" to="Gate2" method="_on_interact_area_interacted_with"]
+[connection signal="body_entered" from="AudioIndicatorLabel/Area3D" to="AudioIndicatorLabel" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="AudioIndicatorLabel/Area3D" to="AudioIndicatorLabel" method="_on_area_3d_body_exited"]
