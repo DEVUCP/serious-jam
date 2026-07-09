@@ -21,9 +21,9 @@ func _ready() -> void:
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	await get_tree().process_frame
-	if !tutorial:
-		var map = preload("res://src/map/map.tscn").instantiate()
-		$SubViewport/Node3D.add_child(map)
+	#if !tutorial:
+		#var map = preload("res://src/map/map.tscn").instantiate()
+		#$SubViewport/Node3D.add_child(map)
 
 func _input(event):
 	if main_menu:
